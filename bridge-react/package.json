@@ -78,7 +78,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "C://Program Files (x86)/Jenkins/workspace/bridge-react/bridge-react/nyc mocha ./test/**/*Spec.js",
+    "jenkins-test": "C:\Program Files (x86)\Jenkins\workspace\bridge-react\bridge-react\nyc mocha ./test/**/*Spec.js",
     "build-css": "node-sass --importer ./node_modules/node-sass-json-importer/dist/node-sass-json-importer.js --include-path scss ./src/assets/stylesheets/styleguide.scss --output ./src/assets/stylesheets/",
     "watch-css": "nodemon -e scss -x \"npm run build-css\"",
     "dev": "npm run build-css && npm run start",
