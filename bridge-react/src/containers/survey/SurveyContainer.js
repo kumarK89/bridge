@@ -69,13 +69,13 @@ class SurveyContainer extends Component{
         surveyHelpers.getSurveys(searchTerm,
                                  sortParam,
                                  isUnPublished)
-        .then(function(data){
-            this.setState({
-                surveys : data
-            });
-            this.forceUpdate();
-        }.bind(this));
-    }    
+        .then(this.getSurveysResult.bind(this));
+    }
+    getSurveysResult(data){
+        this.setState({
+            surveys : data
+        });
+    }
     render(){              
         return(
             <div className='full-height next-to-sidebar-panel'>

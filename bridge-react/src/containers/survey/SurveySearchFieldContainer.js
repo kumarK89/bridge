@@ -1,7 +1,6 @@
 import React,{Component,PropTypes} from 'react';
 import classnames from 'classnames';
 import IconComponent from '../../components/IconComponent';
-import debounce from '../../components/common/debounce'; 
 
 class SurveySearchFieldContainer extends Component{
   constructor(){
@@ -46,9 +45,7 @@ class SurveySearchFieldContainer extends Component{
     return (this.state.focused || this.isPopulated());
   }
   handleInputChange(event){
-     this.setState({
-       searchTerm : event.target.value
-     })
+    this.setSearchTerm(event.target.value);
   }
   handleKeyDown(event) {
     if (event.key === 'Escape') {
@@ -69,17 +66,6 @@ class SurveySearchFieldContainer extends Component{
   setSearchTerm(searchTerm){
     this.setState({ searchTerm: searchTerm });
     this.props.onSearch(searchTerm);    
-  }
-  componentWillMount() {
-    var debounceMe = this.props.debounceRate ? debounce : (fn) => fn; //Don't invoke debounce if rate is set to 0.
-
-    this.debouncedInputChange = debounceMe((searchTerm) => {
-      this.props.onChange(searchTerm);
-    }, this.props.debounceRate);
-
-    this.handleInputChange = (e) => {
-      this.setSearchTerm(e.target.value);
-    };
   }
   clearSearchTerm(){
     this.setSearchTerm('');
