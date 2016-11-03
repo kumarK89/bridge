@@ -8,6 +8,5 @@ describe('<IconComponent />', () =>{
     it('renders Icon component',()=>{
         const wrapper = shallow(<IconComponent iconClassName='gs-book' />);
         expect(wrapper.containsMatchingElement(<i aria-hidden="true" className='gs-book' />)).to.equal(true);
-        });
-
     });
+});

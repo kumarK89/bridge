@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 import {expect} from 'chai';
 import MenuContainer from '../../../src/containers/menu/MenuContainer.js';
 import MenuComponent from '../../../src/components/menu/MenuComponent.js';
@@ -8,7 +8,7 @@ import MenuComponent from '../../../src/components/menu/MenuComponent.js';
 describe('<MenuContainer />', () =>{
     let mockFunc1;
     beforeEach(() => {
-        mockFunc1 = sinon.spy();
+        mockFunc1 = spy();
     });
     it('Renders Menu container with specified props-I', () => {
         const wrapper = shallow(<MenuContainer open={true} showSubMenu={true} activePanel="" collapseOrOpenMenu={mockFunc1}/>);

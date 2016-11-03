@@ -2,9 +2,16 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import {expect} from 'chai';
-import SurveyContainer from '../../../src/containers/survey/SurveyContainer.js'
+import axios from 'axios';
 
-describe('<SurveyContainer />', () =>{
+import SurveyContainer from '../../../src/containers/survey/SurveyContainer.js'
+import surveyHelpers from '../../../src/utils/survey/surveyHelpers.js'
+
+describe('<SurveyContainer />', () =>{    
+    let mockFunc1;
+    let sandbox;
+    let server;
+    
     const minProps = {
         focused:true,
         isUnPublished:true,
@@ -13,13 +20,19 @@ describe('<SurveyContainer />', () =>{
         onCarriageReturn: ()=>{},
         sortParam:""
     }
-    let mockFunc1;
     beforeEach(() => {
         mockFunc1 = sinon.spy();
-    });
+        sandbox = sinon.sandbox.create();
+        server = sandbox.useFakeServer();
+    });   
+    
+  afterEach(() => {
+    server.restore();
+    sandbox.restore();
+  });
     
     it('Renders Survey container', () => {
-        const wrapper = shallow(<SurveyContainer />);
+        const wrapper = shallow(<SurveyContainer focused={false} surveys={ [] } searchTerm='' isUnPublished={false} sortParam='' />);
         expect(wrapper.containsMatchingElement(<span className="add-btn__text">New Survey</span>)).to.equal(true);
     });
         
@@ -28,38 +41,71 @@ describe('<SurveyContainer />', () =>{
         wrapper.setState({isUnPublished:true});
         wrapper.instance().clearSortFilterParams();
         expect(wrapper.state('isUnPublished')).to.equal(false);
-        wrapper.setState({sortParam:'test'});
-        expect(wrapper.state('sortParam')).to.equal('test');
+        expect(wrapper.state('sortParam')).to.equal('');
     });    
     
     it('Checks for onSortSelect', () => {
         const wrapper = shallow(<SurveyContainer {...minProps}/>);        
-        wrapper.instance().onSortSelect();
-        wrapper.setState({sortParam:'Ascending'});
+        wrapper.instance().onSortSelect('Ascending');
         expect(wrapper.state('sortParam')).to.equal('Ascending');
     });    
         
     it('Checks for onFilterSelect', () => {
         const wrapper = shallow(<SurveyContainer {...minProps}/>);        
-        wrapper.instance().onFilterSelect();
-        wrapper.setState({isUnPublished:true});
+        wrapper.instance().onFilterSelect(true);
         expect(wrapper.state('isUnPublished')).to.equal(true);
     });
     
     it('Checks for onSearch', () => {
         const wrapper = shallow(<SurveyContainer {...minProps}/>);        
-        wrapper.instance().onSearch();
-        wrapper.setState({searchTerm :'Untitled Survey'});
+        wrapper.instance().onSearch('Untitled Survey');
         expect(wrapper.state('searchTerm')).to.equal('Untitled Survey');
     });
-        
-    it('Checks for getSurveys', () => {
-       /* let mockArray = [{id:'1',title:'Test',description:'this is test'}];
-        const wrapper = shallow(<SurveyContainer {...minProps}/>);        
-        wrapper.instance().getSurveys();
-        wrapper.setState({surveys :mockArray});
-        expect(wrapper.state('surveys')).to.equal(mockArray);*/
-    });    
-    
-    
+
+    it('getSurveys checking for success response', (done) => {
+        let data = {key:'test'};
+        const wrapper = shallow(<SurveyContainer {...minProps}/>);
+        const mockFunc = sinon.spy(wrapper.instance(),'getSurveysResult');
+        const resolved = new Promise((resolve) => resolve({ data }));
+        sandbox.stub(axios, 'get').returns(resolved);
+        surveyHelpers.getSurveys('test','Ascending',true).then(() => {
+            expect(mockFunc).to.have.been.called;
+        }).then(done, done);
+        setTimeout(() => server.respond([200,{ 'Content-Type': 'application/json' },'[]']), 0);
+    });
+
+    it('getSurveys checking for error response', (done) => {
+        let data = {error:'test'};
+        const rejected = new Promise((resolve, reject) => reject({ data }));
+        sandbox.stub(axios, 'get').returns(rejected);
+        surveyHelpers.getSurveys('test','Ascending',true).then(() => {
+            expect(data.error).to.equals('test');
+        }).then(done, done);
+        setTimeout(() => server.respond([500, { 'Content-Type': 'application/json' }, '[]']), 0);
+    });
+
+    it('Checks for getSurveysResult', () => {
+        const data = 'test';
+        const wrapper = shallow(<SurveyContainer {...minProps}/>);
+        wrapper.instance().getSurveysResult(data);
+        expect(wrapper.state('surveys')).to.equal('test');
+    });
+
+    xit('deleteSurvey checking for success response', (done) => {
+        const wrapper = shallow(<SurveyContainer {...minProps}/>);
+        let getSurveysFunc = sinon.spy(wrapper.instance(),'getSurveys');
+        wrapper.instance().deleteSurvey(1);
+        expect(getSurveysFunc).to.have.been.called;
+    });
+
+    it('deleteSurvey checking for error response', (done) => {
+        let data = {error:'test'};
+        const rejected = new Promise((resolve, reject) => reject({ data }));
+        sandbox.stub(axios, 'delete').returns(rejected);
+        surveyHelpers.deleteSurvey(1).then(() => {
+            expect(data.error).to.equals('test');
+        }).then(done, done);
+        setTimeout(() => server.respond([500, { 'Content-Type': 'application/json' }, '[]']), 0);
+    });
+
 })

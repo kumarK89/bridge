@@ -10,7 +10,7 @@ const MenuComponent = (props) => (
 		        <nav className="sidebar__main_menu">
 		        	<ul>
 			        	{
-						    props.menuItems.map(function(menuItem,index)
+						    props.menuItems.map(function(menuItem)
 						    {
 						    	return <MenuItemContainer key={menuItem.value} 
 						    						      menuItem={menuItem} 

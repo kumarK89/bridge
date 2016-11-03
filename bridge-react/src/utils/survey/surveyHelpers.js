@@ -22,7 +22,6 @@ var surveyHelpers = {
 
 	},
 	deleteSurvey : function(deleteSurveyId){
-		console.log("in helper"+ deleteSurveyId);
 		return axios.delete(_BASE_URL+'/survey/deleteSurvey?surveyId='
 			         +deleteSurveyId)
 		.then(function(response){

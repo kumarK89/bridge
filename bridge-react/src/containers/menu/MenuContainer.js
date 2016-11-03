@@ -30,8 +30,6 @@ class MenuContainer extends Component{
         }
     }    
     collapseOrOpenMenu(){
-        console.log('state is');
-        console.log(this.state);
         this.setState({
             open: !this.state.open,
             showSubMenu : false

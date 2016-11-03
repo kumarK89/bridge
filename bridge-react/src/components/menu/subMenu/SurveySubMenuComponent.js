@@ -1,6 +1,6 @@
 import React,{PropTypes} from 'react'
 
-const SurveyPanelComponent = (props) => (
+const SurveySubMenuComponent = (props) => (
 	<div className={props.surveyPanelClassName} id="surveys">
 	    <header className="sidebar__panel_header">
 	        <h1>Surveys</h1>
@@ -19,8 +19,8 @@ const SurveyPanelComponent = (props) => (
 	</div>
 );
 
-SurveyPanelComponent.propTypes = {
+SurveySubMenuComponent.propTypes = {
 	surveyPanelClassName: PropTypes.string.isRequired
 }
 
-export default SurveyPanelComponent;
+export default SurveySubMenuComponent;

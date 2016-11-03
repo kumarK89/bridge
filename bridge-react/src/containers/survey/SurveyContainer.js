@@ -57,8 +57,6 @@ class SurveyContainer extends Component{
                         this.state.isUnPublished);
     }
     deleteSurvey(surveyId){
-        console.log('in delete survey');
-        console.log(surveyId);
         surveyHelpers.deleteSurvey(surveyId)
         .then(function(data){
             this.getSurveys(this.state.searchTerm,

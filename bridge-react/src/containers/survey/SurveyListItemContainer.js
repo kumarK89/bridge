@@ -37,7 +37,6 @@ class SurveyListItemContainer extends Component{
 		});
 	}
 	removeSurvey(deleteSurveyId){
-		console.log(deleteSurveyId);
 		this.props.deleteSurvey(deleteSurveyId);
 	}
 	render(){
@@ -72,14 +71,14 @@ class SurveyListItemContainer extends Component{
 				                  "Distribution"
 				                }
 				                {!this.getIsDistributed() &&
-				                  <i>"Draft; this survey has not been distributed yet"</i>
+				                  <i>Draft; this survey has not been distributed yet</i>
 				                }
               				</li>
               			</ul>
 	    			</div>
 	    			{this.state.removable && [
 	    				<div key="text" className="removable-item__confirm">
-			              'Delete Survey?'
+			              Delete Survey?
 			            </div>,
 			            <div key="btns" className="removable-item__buttons">
 			            	<button
