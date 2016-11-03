@@ -1,6 +1,6 @@
-package com.instructure.bridge.survey.adapter.utils;
+package com.bridge.utils;
 
-import com.instructure.bridge.survey.adapter.utils.JooqExecuteListener;
+import com.bridge.utils;.JooqExecuteListener;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -19,9 +19,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.sql.SQLException;
 
-/**
- * Created by skota on 10/19/2016.
- */
 @RunWith(SpringRunner.class)
 public class JooqExecutionListenerTest {
 
