@@ -1,6 +1,6 @@
 package com.bridge.utils;
 
-import com.bridge.utils;.JooqExecuteListener;
+import com.bridge.utils.JooqExecuteListener;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
