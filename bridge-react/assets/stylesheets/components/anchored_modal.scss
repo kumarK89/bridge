@@ -1,0 +1,81 @@
+.anchored-modal__trigger-button {
+  position: relative;
+
+  &__icon {
+    float: none;
+  }
+
+  &--round {
+    @include btn;
+    @include btn-secondary;
+    @include btn--round;
+
+    position: relative;
+    top: auto;
+    font-size: 16px;
+    vertical-align: middle;
+
+    i {
+      font-size: 1em;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.07);
+    }
+    @include breakpoint(large) {
+      font-size: 12px;
+      line-height: 0;
+      i {
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+.anchored-modal--round {
+  margin: 1px .5rem;
+}
+
+.anchored-modal {
+  @include transition(opacity 300ms ease);
+
+  width: 400px;
+  height: auto;
+  box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+  border-radius: $border-radius-default;
+  border: 0px;
+  background: $white;
+  padding: 0px;
+
+  &.ReactModal__Content {
+    bottom: auto;
+    left: auto;
+    opacity: 0;
+    position: absolute;
+    right: auto;
+    top: auto;
+
+    &--after-open {
+      opacity: 1;
+
+      @include breakpoint(small) {
+        -webkit-overflow-scrolling: unset;
+      }
+    }
+  }
+
+  @include breakpoint(small) {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right:0;
+    bottom:0;
+    left: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+.anchored-modal__overlay {
+  background-color: transparent;
+}

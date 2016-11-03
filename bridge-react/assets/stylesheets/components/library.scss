@@ -1,0 +1,375 @@
+.library {
+  background-color: $grey;
+}
+
+.library-actions {
+  background-color: $white;
+  @extend .border-b;
+  border-color: $med-grey;
+  @include clearfix;
+
+  margin-top: 1px;
+  @include breakpoint(small) {
+    margin-top: 0;
+  }
+
+  @include breakpoint(large) {
+    @include space(padding, xs, top bottom);
+  }
+
+  .search-field {
+    color: $blue-grey;
+
+    @include breakpoint(small) {
+      padding-left: 20px;
+    }
+
+    &__label {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+    }
+
+    &__input {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+    }
+
+    &__input--populated {
+      color: $blue;
+    }
+
+    .gs-search {
+      @extend .gs-3-4;
+    }
+  }
+}
+
+.library-actions__links {
+  @include space(padding, xs, top bottom);
+  @include space(padding, m, left right);
+
+  @include breakpoint(small) {
+    padding: 0;
+    border-top: 1px solid $grey;
+
+    .popdown {
+      @include space(padding, xs, top bottom);
+    }
+
+    & > span {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      border-bottom: 1px solid $grey;
+
+      * {
+        display: inline;
+      }
+    }
+  }
+}
+
+.library-list-cards {
+  @include space(padding, xl, bottom);
+}
+
+.library-list-row {
+  @include clearfix;
+}
+
+.library-list-item {
+  @include rounded-corners-default;
+  position: relative;
+  width: 230px;
+  height: 265px;
+  float: left;
+  margin-right: 15px;
+  margin-top: 45px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  background-color: $white;
+}
+.library-list-item:last-child {
+  margin-right: 0;
+}
+.library-list-item:hover {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* overlays */
+.library-list-item__overlay {
+  @include rounded-corners-default;
+  @include transition(all 0.2s ease-in-out);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  color: $white;
+  text-align: center;
+  opacity: 0;
+}
+.library-list-item__overlay-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.library-list-item__overlay--empty {
+  z-index: -1;
+}
+
+.library-list-item__overlay--completed {
+  background-color: $dark-grey;
+  opacity: 0.97;
+
+  .course-status--white {
+    margin: 0 auto 7px auto;
+  }
+}
+
+.library-list-item__overlay--enrolled {
+  @extend .sebastian-bach;
+  opacity: 0.96;
+
+  .course-status--white {
+    margin: 0 auto 7px auto;
+  }
+  .progress-arc .range--white {
+    stroke: $white;
+    opacity: 0.5;
+  }
+  .progress-arc .progress--white {
+    stroke: $white;
+  }
+}
+.library-list-item__overlay-text {
+  line-height: 1.3em;
+  // otherwise IE 11 makes this wider than the container
+  width: 100%;
+}
+.library-list-item__overlay-details {
+  @extend .flex-column;
+  @extend .flex-space-around;
+  @include align-items(center);
+  @include full-height;
+}
+
+/* reveal */
+.library-list-item__revealer {
+  border-top-left-radius: $border-radius-default;
+  border-top-right-radius: $border-radius-default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  overflow: hidden;
+  background-color: $light-grey;
+  @include transition(all 0.25s ease-in-out);
+  @extend .flex-column;
+  @extend .flex-space-between;
+
+}
+.library-list-item__revealer--open {
+  @include rounded-corners-default;
+  height: 100%;
+}
+.library-list-item__revealer-contents {
+  min-height: 50px;
+  @include flex-grow(1);
+}
+.library-list-item__revealer-header {
+  @include clearfix;
+  border-top-left-radius: $border-radius-default;
+  border-top-right-radius: $border-radius-default;
+  height: 50px;
+  line-height: 1em;
+  cursor: pointer;
+  padding: 16px;
+}
+.library-list-item__time {
+  float: left;
+}
+.library-list-item__revealer--open {
+  .library-list-item__revealer-header {
+    float: right;
+  }
+  .library-list-item__time {
+    display: none;
+  }
+}
+.library-list-item__arrow,
+.library-list-item__close {
+  float: right;
+  padding: 0;
+}
+.library-list-item__h3 {
+  font-size: 100%;
+  padding-bottom: 8px;
+}
+.library-list-item__features {
+  padding: 20px 20px 0;
+}
+.library-list-item__feature {
+  padding: 4px 0;
+}
+.library-list-item__feature-label {
+  margin-left: 10px;
+}
+.library-list-item__action {
+  width: 100%;
+  background-color: $white;
+  padding: 12px;
+  text-align: center;
+  opacity: 0;
+  @include transition(all 0.25s ease-in-out);
+}
+.library-list-item__action--open {
+  opacity: 1;
+  bottom: 0;
+}
+
+/* details */
+.library-list-item__details {
+  padding: 66px 20px 16px 20px;
+}
+.library-list-item__link {
+  display: block;
+  display: -webkit-box;
+  max-width: 187px;
+  max-height: 110px;
+  font-size: 1.32rem;
+  position: relative;
+  line-height: 1.3;
+  overflow: hidden;
+  color: $indigo;
+  text-align: left;
+  padding: 0;
+}
+.library-list-item__link:hover {
+  color: $blue;
+}
+.library-list-item--overlay .library-list-item__link:hover {
+  text-decoration: none;
+}
+.library-list-item__updated {
+  color: $dark-grey;
+}
+.library-header {
+  background-color: $white;
+  a.library-header__lynda-link {
+    @include space(padding, xxs, top);
+    padding-bottom: 1px;
+
+    &:hover, &:focus {
+      padding-bottom: 0;
+    }
+
+    & > img {
+      height: 40px;
+    }
+  }
+}
+
+.library-tag-tray {
+  &__trigger {
+    @include space(padding, s);
+
+    color: $blue-grey;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  &__trigger__icon {
+    @extend .gs-tag;
+    @extend .gs-1x;
+    @include space(margin, xs, right);
+  }
+
+  &__header {
+    @include display(flex);
+    @include flex-flow(column nowrap);
+    @include borders(solid, 1px, bottom);
+    border-color: $grey;
+    margin: auto;
+  }
+
+  &__icon {
+    @extend .gs-tag;
+    @extend .gs-3-4;
+    @include space(margin, xs, right);
+  }
+
+  &__search {
+    @include space(padding, m, top);
+    @include display(flex);
+    @include justify-content(space-between);
+  }
+
+  &__title {
+    @include align-self(center);
+    @include x-large;
+  }
+
+  .search-field {
+    color: $blue-grey;
+
+    @include breakpoint(small) {
+      padding-left: 20px;
+    }
+
+    &__label {
+      @include small;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+    }
+
+    &__input {
+      @include small;
+      font-weight: bold;
+      letter-spacing: 0.8px;
+    }
+
+    &__input--populated {
+      color: $blue;
+    }
+
+    .gs-search {
+      @extend .gs-3-4;
+    }
+  }
+}
+
+.library-tag-filter {
+  @include space(padding, s, left right);
+
+  @include small;
+  list-style: none;
+
+  @include display(flex);
+  @include align-items(baseline);
+
+  &__label {
+    @include space(padding, s, right);
+  }
+}
+
+.library-tag-filter__tag.tag-pill {
+  color: $white;
+  border: 1px solid $blue;
+  background-color: $blue;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $blue-dk;
+  }
+}
+
+.library-filters {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include justify-content(flex-end);
+  @include space(margin, s, top);
+}

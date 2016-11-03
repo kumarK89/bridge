@@ -1,0 +1,121 @@
+.auth-layout {
+  @extend .pure-g-r;
+  @include indigo-gradient;
+  color: $white;
+}
+.auth-layout__bridge-logo {
+  max-width: 104px;
+  max-height: 36px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  margin-left: -52px;
+
+  &__bars {
+    fill: $bridgelogo-bars-color;
+  }
+  &__wordmark {
+    fill: $bridgelogo-word-color;
+  }
+
+  &--on-dark {
+    &__bars,
+    &__wordmark {
+      fill: $white;
+    }
+  }
+
+  @include breakpoint(short) {
+    display: none;
+  }
+}
+
+
+.theme-light .auth-layout {
+  background: $light-grey;
+  color: $indigo;
+}
+
+.login-form,
+.auth-layout__loginform {
+  @include breakpoint(medium) {
+    @include space(margin, s, right left);
+  }
+}
+
+.auth-layout__login-form {
+
+  .checkbox {
+    color: $blue-grey;
+    &--focused{
+      outline: 2px solid $blue-grey;
+    }
+
+    .checkbox__display-checkbox {
+      background: transparent;
+      border-color: $blue-grey;
+    }
+  }
+
+  /* Centers long logos on login page */
+  .auth-layout__content {
+    width: auto;
+  }
+}
+.theme-light .auth-layout__login-form {
+  .checkbox {
+    color: $dark-grey;
+
+    .checkbox__display-checkbox {
+      border-color: $chart-grey;
+    }
+  }
+}
+
+.auth-layout__input {
+  @include block;
+  @include full-width;
+  @include space(margin, l, bottom);
+  @include space(padding, s);
+  @extend .inverse-input;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &[aria-invalid=true] {
+    border-color: $pink;
+  }
+}
+.theme-light .auth-layout__input {
+  border: 2px solid $chart-grey;
+  color: $blue-grey;
+}
+
+.auth-layout__reset-it {
+  color: $pink;
+}
+
+.auth-layout__i-forgot {
+  @include block;
+  @include space(margin, s, top);
+  @include small;
+  color: $white;
+}
+.theme-light .auth-layout__i-forgot {
+  color: $dark-grey;
+}
+
+.auth-layout__submit-btn {
+  @include btn;
+  @include btn-filled-alert;
+  @include centered;
+  @include block;
+  color: $white;
+}
+.theme-light .auth-layout__submit-btn {
+  color: $white;
+}

@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.avatar-container--group {
+  line-height: 80px;
+}
+
+.avatar--smart-group__name input.h1 {
+  border: 0;
+  padding: 2px 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.avatar--smart-group__name h1 {
+  /*
+  /me cries - had to do this to get the summary to not move
+  */
+  padding-top: 11px;
+  line-height: 1;
+}
+

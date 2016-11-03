@@ -1,0 +1,585 @@
+@charset "utf-8";
+
+.layout--list__content .sub-accounts {
+  @media #{$media-query-desktop} {
+    padding-top: 30px;
+  }
+  .search-field__label {
+    display: inline-block;
+    @media #{$media-query-mobile} {
+      line-height: 1.5;
+      font-size: 1.2em;
+      color: $grey;
+      font-weight: bold;
+    }
+  }
+}
+
+.layout--item-header__details {
+  .sub-account-header__title {
+    @extend .black;
+  }
+}
+
+.layout--item-header__actions {
+  .sub-account__disable-btn {
+    color: $blue-grey;
+    @include space(margin, s, top);
+
+    position: relative;
+    border-color: $blue-grey;
+    letter-spacing: normal;
+
+    &:hover:not([disabled]) {
+      border-color: $blue-grey;
+      color: $blue-grey;
+    }
+
+    &:active:not([disabled]) {
+      border-color: $blue-grey;
+      color: $blue-grey;
+    }
+  }
+}
+
+.sub-accounts__tab-controls {
+  width: 100%;
+  border-bottom: none;
+  text-align: right;
+  @media #{$media-query-mobile} {
+    background-color: $grey;
+  }
+  @media #{$media-query-desktop} {
+    margin-bottom: 20px;
+  }
+}
+
+.sub-accounts__panels--offset {
+  @media #{$media-query-mobile} {
+    margin-top: 112px;
+  }
+}
+
+.sub-accounts__controls-block--sticky {
+  @media #{$media-query-mobile} {
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    z-index: $zIndex-10;
+  }
+}
+
+// tab controls
+.sub-accounts__tab_control {
+  padding: 0 5px;
+  display: inline-block;
+  border-radius: 0;
+  border: 1px solid $grey;
+  &:first-child {
+    border-right: none;
+    border-radius: 3px 0 0 3px;
+    @media #{$media-query-mobile} {
+      border-right: 1px solid $dark-grey;
+    }
+  }
+  &:last-child {
+    border-left: none;
+    border-radius: 0 3px 3px 0;
+    @media #{$media-query-mobile} {
+      border-left: 1px solid $dark-grey;
+    }
+  }
+  i {
+    color: $grey;
+  }
+  @media #{$media-query-mobile} {
+    border: none;
+    height: 64px;
+    width:calc(100% / 3);
+    display: inline-block;
+    text-align: center;
+    i {
+      vertical-align: bottom;
+      color: $black;
+    }
+    &.sub-accounts__tab_control--active {
+      background-color: $blue;
+      i {
+        color: $white;
+      }
+    }
+  }
+}
+
+&.sub-accounts__tab_control--active i {
+  color: $black;
+}
+
+.sub-accounts__table--list, .sub-accounts__table--admins, .sub-accounts__table--analytics {
+  margin-top: 20px;
+}
+
+.sub-accounts__add-account-button {
+  margin-top: 15px;
+}
+
+.sub-accounts__search--mobile {
+  width: 100%;
+  float: none;
+  height: 3em;
+  background-color: $white;
+}
+
+.sub-accounts__tab-section {
+  position: relative;
+  width: 100%;
+  .react-toggle {
+    float: right;
+    margin-top: 3px;
+  }
+}
+
+// mobile
+.sub-accounts__section-button {
+  position: absolute;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  height: 2.5em;
+  width: 2.5em;
+  outline: 0;
+  border: 0;
+  background: none;
+  pointer-events: none;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 12px;
+    width: 4px;
+    background-color: $dark-grey;
+    transform-origin: 50%;
+    top: 50%;
+    left: 50%;
+    transition: all .4s ease-in-out;
+    transform: translate(75%, -50%) rotate(45deg);
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 12px;
+    width: 4px;
+    background-color: $dark-grey;
+    transform-origin: 50%;
+    top: 50%;
+    left: 50%;
+    transition: all .4s ease-in-out;
+    transform: translate(-75%, -50%) rotate(-45deg);
+  }
+}
+
+.sub-accounts__tab-section--open {
+  .sub-accounts__section-article {
+    max-height: 500px;
+  }
+  .sub-accounts__section-button {
+    &:before {
+      transform: translate(75%, -50%) rotate(135deg);
+    }
+    &:after {
+      transform: translate(-75%, -50%) rotate(-135deg);
+    }
+  }
+}
+
+.sub-accounts__section-article {
+  max-height: 0;
+  overflow: hidden;
+  transition: all .2s ease-in;
+}
+
+.sub-accounts__section-head {
+  width: 100%;
+  overflow: hidden;
+  background: $white;
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// admin view
+.sub-account__admin--name {
+  display: inline-block;
+  vertical-align: sub;
+}
+
+.sub-account__btn--add-admin {
+  text-align: center;
+  display: none;
+  .btn {
+    @include btn-secondary;
+  }
+  .add-btn__text {
+    display: inline-block;
+  }
+}
+.sub-account__btn--add-admin--active {
+  display: block;
+}
+@media #{$media-query-desktop} {
+  .sub-account__admins-list {
+    @include display("flex");
+    @include flex-wrap("wrap");
+    @include flex-wrap("wrap");
+  }
+
+  .sub-account__admin {
+    width: 50%;
+    button {
+      margin-top: 5px;
+      display: none;
+    }
+    &:hover {
+      button {
+        display: block;
+      }
+    }
+  }
+}
+
+.sub-accounts__add-admin {
+  text-align: center;
+  span {
+    font-size: 2em;
+  }
+}
+
+.sub-accounts-add-admin__btn {
+  display: none;
+  width: 35px;
+  height: 35px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+.sub-accounts-add-admin__btn--active {
+  display: inline-block;
+}
+
+.sub-accounts__add-admin-block {
+  margin-bottom: 15px;
+  width: 100%;
+  display: none;
+}
+
+.sub-accounts__add-admin-block--active {
+  display: inline-block;
+}
+
+.sub-accounts__combobox {
+  width: 90%;
+}
+
+// list view
+.sub-account-admins-list__show-more {
+  display: none;
+}
+
+.sub-account-admins-list__show-less {
+  display: none;
+}
+
+.sub-account-admins-list__show-more--active {
+  display: block;
+}
+
+.sub-account-admins-list__show-less--active {
+  display: block;
+}
+
+.sub-account-admins-list__show-more-count {
+  padding: 6px;
+  font-size: 0.9em;
+  border-radius: 20px;
+}
+
+.sub-accounts-removable-item__confirm {
+  width: 40%;
+  @media #{$media-query-mobile} {
+    width: 100%;
+  }
+}
+
+// analytics view
+.sub-account-analytics__stats {
+  width: 100%;
+  @include display("flex");
+  @include flex-wrap("wrap");
+}
+
+.sub-account-analytics__stats--content {
+  width: 33%;
+  text-align: center;
+  padding-right: 10px;
+}
+
+.sub-account-analytics__stats--count {
+  font-size: 3em;
+  font-weight: 100;
+  color: $blue;
+}
+
+.sub-account-analytics__stats--label {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  margin-top: -15px;
+}
+
+.sub-account__name {
+  font-weight: bold;
+}
+
+.sub-account__link,
+.sub-account__admins--present {
+  color: $black;
+}
+
+.sub-account__link--inactive {
+  color: $dark-grey;
+}
+
+.sub-account__switch-button {
+  padding: 0;
+}
+
+.sub-account__input {
+  width: 95%;
+  &[type="text"],
+  &[type="password"] {
+    height: 50px;
+    border: 2px solid $grey;
+  }
+}
+
+.sub-account__textarea {
+  @extend .sub-account__input;
+  font-family: monospace;
+}
+
+.sub-account__combo-box {
+  width: 95%;
+  font-size: inherit; // need to reset .locale-selector's font-size override
+
+  .combo-box__box {
+    border: 2px solid $grey;
+    border-radius: 0;
+  }
+  .combo-box__icon {
+    float: right;
+    margin-top: 7px;
+    margin-right: 7px;
+  }
+  ul {
+    padding-top: 43px;
+  }
+}
+
+// create/edit
+.sub-account__form-container {
+  @include display("flex");
+}
+
+.sub-account__form {
+  min-width: 55%;
+}
+
+.sub-account__bridgeapp {
+  display: inline-block;
+  padding-top: 12px;
+}
+
+.sub-account-profile__domain-name {
+  @include display("flex");
+  @include flex-flow("row wrap");
+  width: 95%;
+}
+
+.sub-account-profile__domain-name-input {
+  flex: auto;
+  height: 50px;
+  border: 2px solid $grey;
+}
+
+.sub-account__settings {
+  display: inline-block;
+  width: 95%;
+  .react-toggle {
+    float: right;
+  }
+}
+.sub-account-settings__label {
+  float: left;
+}
+
+// moderate admins
+.sub-account__admin-list {
+  clear: both;
+  border-top: 1px solid $grey;
+}
+.sub-account__admin-table {
+  width: 100%;
+}
+
+.sub-account__admin-form {
+  @include display("flex");
+}
+.sub-account__admin-field,
+.sub-account__admin-submit {
+  width: 75%;
+  display: block;
+  float: left;
+  margin-right: 12px;
+}
+.sub-account__admin-submit {
+  width: 23%;
+  margin: 0;
+}
+.sub-account__admin-label {
+  display: block;
+  color: $dark-grey;
+}
+.sub-account__admin-input {
+  @include rounded-corners-default;
+  width: 100%;
+  border: 2px solid $grey;
+  &:focus {
+    border-color: $blue;
+    outline: none;
+  }
+}
+.sub-account__admin-input--error {
+  border: 2px solid $pink;
+}
+
+// disable
+.sub-account__disable-wrapper {
+  position: relative;
+}
+
+.sub-account__disable-dialog {
+  background-color: $white;
+  @include shadow;
+
+  bottom: initial;
+  left: initial;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  width: 560px;
+}
+
+.sub-account__disable-dialog__count {
+  @include space(padding, xs, right);
+
+  .bold {
+    @include space(padding, xxs, left);
+  }
+}
+
+.sub-account__disable-dialog__actions {
+  @include space(padding, l, top bottom);
+  @include space(padding, s, right left);
+
+  float: left;
+
+  &__cancel-btn {
+    @include btn;
+    @include btn--reset;
+
+    color: $dark-grey;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: normal;
+
+  }
+
+  &__confirm-btn {
+    @include btn;
+    @include btn--reset;
+
+    color: $pink;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: normal;
+    padding: 9px 10px 7px;
+  }
+
+  // Explicit class name for specificity
+  .sub-account__disable-dialog__actions__cancel-btn {
+    &:active:not([disabled]), &:hover:not([disabled]) {
+      background-color: transparent;
+      border: none;
+      color: $dark-grey;
+    }
+  }
+
+  // Explicit class name for specificity
+  .sub-account__disable-dialog__actions__confirm-btn {
+    &:active:not([disabled]), &:hover:not([disabled]) {
+      background-color: transparent;
+      border: none;
+      color: $pink;
+    }
+  }
+}
+
+.sub-account__disable-dialog__prompt {
+  @include space(padding, m, top bottom);
+  @include space(padding, l, right left);
+
+  border-right: 2px solid $grey;
+  float: left;
+  width: 316px;
+
+  h1 {
+    @include bold;
+    color: $blue-grey;
+    @include space(padding, xs, bottom);
+    @extend .text-left;
+
+    float: none;
+    font-size: 16px;
+    word-wrap: break-word;
+  }
+
+  p {
+    color: $blue-grey;
+    @include small;
+    @extend .text-left;
+
+    float: none;
+  }
+}
+
+
+.sub-account-new--admin-view {
+  .admin-nav {
+    @include breakpoint(large) {
+      @include space(margin, s, bottom);
+    }
+  }
+  .nav-wrapper {
+    @include large-content-area;
+    @include centered;
+    @extend .button-set;
+    @include clearfix;
+    @include breakpoint(medium) {
+      padding: 0;
+    }
+    @include breakpoint(large) {
+      @include space(padding, m, right left);
+    }
+  }
+}

@@ -1,0 +1,150 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2-rc2")
+    }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'org.sonarqube'
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+jar {
+    baseName = 'bridge_boot'
+    version = '1.0'
+}
+
+subprojects {
+}
+
+allprojects {
+    group 'bridge'
+    version '1.0'
+
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    apply plugin: 'spring-boot'
+    apply plugin: 'jacoco'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile('org.springframework.boot:spring-boot-starter-web')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.springframework.boot:spring-boot-starter-jooq')
+        compile('org.jooq:jooq-meta')
+        compile('org.jooq:jooq-codegen')
+        compile('org.modelmapper.extensions:modelmapper-jooq:0.7.7')
+        runtime('org.postgresql:postgresql')
+
+    }
+    task hello << { task -> println "I'm $task.project.name" }
+}
+
+project(':bridge-jooq-adapter') {
+    dependencies {
+        compile project(':bridge-domain')
+        testCompile project(':bridge-domain').sourceSets.main.output
+    }
+}
+
+project(':bridge-rest-adapter') {
+    dependencies {
+        compile project(':bridge-domain')
+        compile project(':bridge-service-port')
+        testCompile project(':bridge-domain').sourceSets.main.output
+        testCompile project(':bridge-service-port').sourceSets.main.output
+    }
+}
+
+project(':bridge-service-port') {
+    dependencies {
+        compile project(':bridge-domain')
+        compile project(':bridge-jooq-adapter')
+        testCompile project(':bridge-jooq-adapter').sourceSets.main.output
+        testCompile project(':bridge-domain').sourceSets.main.output
+    }
+}
+
+
+dependencies {
+    compile project(':bridge-domain')
+    compile project(':bridge-jooq-adapter')
+    compile project(':bridge-rest-adapter')
+    compile project(':bridge-service-port')
+
+}
+
+task generate << {
+    def writer = new StringWriter()
+    def xml = new groovy.xml.MarkupBuilder(writer)
+            .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd') {
+        jdbc() {
+            driver('org.postgresql.Driver')
+            url('jdbc:postgresql://localhost:5432/bridge')
+            user('postgres')
+            password('admin')
+        }
+        generator() {
+            database() {
+                name('org.jooq.util.postgres.PostgresDatabase')
+                inputSchema('public')
+            }
+            generate() {
+                pojos('true')
+                instanceFields('true')
+                deprecated('false')
+            }
+            target() {
+                packageName('com.bridge.survey.entity')
+                directory('src/main/java')
+            }
+        }
+    }
+
+    org.jooq.util.GenerationTool.generate(
+            javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()),
+                    org.jooq.util.jaxb.Configuration.class)
+    )
+}
+
+test {
+    classpath = project(":bridge-rest-adapter").sourceSets.main.runtimeClasspath
+    classpath = project(":bridge-service-port").sourceSets.main.runtimeClasspath
+    classpath = project(":bridge-jooq-adapter").sourceSets.main.runtimeClasspath
+    classpath = project(":bridge-domain").sourceSets.main.runtimeClasspath
+}
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+}
+
+sonarqube {
+    properties {
+        property "sonar.modules", "boot"
+        property "boot.sonar.host.url", "http://localhost:9000"
+        property "boot.sonar.projectVersion", "1.0"
+        property "boot.sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+        property "boot.sonar.jacoco.itReportPath", "${project.buildDir}/jacoco/jacoco-it.exec"
+        property "sonar.exclusions", "src/main/java/com/bridge/survey/entity/**"
+        property "sonar.coverage.exclusions", "src/main/java/com/bridge/survey/entity/**"
+    }
+}

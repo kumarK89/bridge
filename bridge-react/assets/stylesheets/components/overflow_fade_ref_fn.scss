@@ -1,0 +1,23 @@
+.overflow-fade-ref-fn:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70%;
+  pointer-events: none;
+}
+
+@for $i from 1 through 5 {
+  .overflow-fade-ref-fn__lines-#{$i}:after{
+    height: percentage(1/$i)
+  }
+}
+
+@each $colorName, $colorVal in $variables {
+    @if(type-of($colorVal) == 'color'){
+      .overflow-fade-ref-fn__color-#{$colorName}:after{
+        background: linear-gradient(to right, rgba($colorVal, 0), $colorVal 85%);
+      }
+  }
+}

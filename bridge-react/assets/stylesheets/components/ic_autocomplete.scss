@@ -1,0 +1,60 @@
+@charset "utf-8";
+
+// our defaults for ic-autocomplete
+// individual components build on this
+ic-autocomplete {
+  position: relative;
+  display: inline-block;
+  background: $white;
+  font-family: $font-stack;
+
+  input {
+    @include space(padding, xs);
+    background: $white;
+    position: relative;
+    outline: none;
+  }
+
+  ic-autocomplete-list { display: none; }
+
+  &[is-open] ic-autocomplete-list {
+    display: block;
+    position: absolute;
+    background: $white;
+    left: 0;
+    width: 100%;
+  }
+
+  ic-autocomplete-toggle {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    font-size: 12px;
+  }
+
+  ic-autocomplete-option {
+    display: block;
+    cursor: pointer;
+    @include space(padding, xs);
+    line-height: 32px;
+
+    &[selected] {
+      font-weight: bold;
+    }
+
+    &:focus {
+      outline: none;
+      background: $blue;
+      color: $white;
+    }
+
+    &:last-of-type {
+      @include border-bottom-radius($border-radius-default);
+    }
+
+    &.disabled {
+      color: $med-grey;
+      cursor: auto;
+    }
+  }
+}

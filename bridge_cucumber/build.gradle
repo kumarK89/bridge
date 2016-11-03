@@ -1,0 +1,91 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+    }
+}
+
+plugins {
+    id 'com.github.samueltbrown.cucumber' version '0.9'
+    id 'org.sonarqube' version '1.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'spring-boot'
+apply plugin: 'com.github.samueltbrown.cucumber'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+jar {
+    baseName = 'cucumberDemo'
+    version = '0.0.1-SNAPSHOT'
+}
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+
+    def CUCUMBER_VERSION = '1.2.2'
+
+    compile('org.springframework.boot:spring-boot-starter-jooq')
+
+    runtime('org.postgresql:postgresql')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile 'info.cukes:cucumber-core:' + CUCUMBER_VERSION
+
+    testCompile 'junit:junit:4.11'
+    testCompile 'info.cukes:cucumber-junit:' + CUCUMBER_VERSION
+    testCompile 'info.cukes:cucumber-java:' + CUCUMBER_VERSION
+    // Need to remove this file
+    compile files('./src/test/resources/libs/bridge-domain-1.0.jar',
+            './src/test/resources/libs/bridge-jooq-adapter-1.0.jar',
+            './src/test/resources/libs/bridge-service-port-1.0.jar',
+            './src/test/resources/libs/bridge-rest-adapter-1.0.jar')
+
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/test/java')
+        }
+        resources.srcDir file('src/test/resources/features')
+    }
+
+    cucumberReports {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/test/java')
+        }
+        resources.srcDir file('src/test/resources/features')
+    }
+}
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+}
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test

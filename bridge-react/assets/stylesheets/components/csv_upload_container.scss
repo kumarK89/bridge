@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.csv-upload-container {
+  @include display(flex);
+  @include flex-direction(column);
+  @extend .full-min-height;
+  @extend .grey-gradient-bg;
+  @include full-width;
+  @include space(padding, xxl);
+
+  &__header {
+    @include fb-vertical-center;
+  }
+
+  &__top-toast {
+    background-color: $blue;
+    @include space(padding, m);
+    @include space(margin, m, bottom);
+    border-radius: $border-radius-default;
+    color: $white;
+
+    & a {
+      color: $white;
+    }
+  }
+
+  &__top-header {
+    @include light;
+    @include margin-none;
+  }
+
+  &__cancel-link {
+    @include btn;
+    @include btn-secondary;
+    @include right;
+    @include space(padding, m, right left);
+  }
+}

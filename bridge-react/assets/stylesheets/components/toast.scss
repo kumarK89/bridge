@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+.toaster {
+  height: auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+
+  @include transition(left 125ms ease-in-out);
+
+  @include breakpoint(large) {
+    left: $sidebar-lg-width;
+  }
+
+  .tray-is-open & {
+    left:0px;
+    @include transition(left 75ms ease-in-out);
+    max-width:100%;
+  }
+
+  .sidebar-is-closed & {
+
+    @include breakpoint(small) {
+      left: 0;
+    }
+
+    @include breakpoint(large) {
+      left: $sidebar-lg-width-closed;
+    }
+  }
+
+  .tray-is-open.sidebar-is-closed & {
+      left: 0;
+  }
+
+  .sidebar-is-expanded & {
+    @include breakpoint(large) {
+      left: $sidebar-lg-width + $sidebar-lg-width-closed;
+    }
+  }
+
+  .without-sidebar & {
+    left: 0;
+  }
+
+  &--notice {
+    background-color: $blue;
+    color: $white;
+  }
+
+  &--error {
+    background-color: $pink;
+    color: $white;
+  }
+
+  &--butter {
+    @extend .yellow-bg;
+    color: $indigo;
+  }
+
+  &--presence {
+    background-color: $pink;
+    @include space(padding, m, top bottom);
+    padding-left: 60px;
+    position: relative;
+    color: $white;
+  }
+
+  &__loader {
+    margin-top: 1px;
+    margin-right: 8px;
+  }
+
+  &__toast--large {
+    .without-sidebar & {
+      max-width: inherit;
+    }
+  }
+}
+.theme-light .toaster {
+  &--notice {
+    background-color: $neutral-primary;
+    color: $white;
+  }
+  &--error {
+    background-color: $neutral-danger;
+    color: $white;
+  }
+  &--notice {
+    background-color: $neutral-primary;
+    color: $white;
+  }
+  &--presence {
+    background-color: $neutral-danger;
+    color: $white;
+  }
+}

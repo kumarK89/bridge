@@ -1,0 +1,467 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Colors
+name: 001_colors
+category: Colors
+---
+
+[[[plugin:src-file-path]]]
+
+Bridge is bold and vibrant. On the saturation slider, Bridge's
+colors always live at the extreme. Avoid pastels. Never use black when our
+deep blue will work. Never use a desaturated gray when our blue-tinted gray
+will work. White is your friend.
+
+Note: red and green should be used sparingly.
+
+<ul class="sg-color-palette--small">
+  <li class="transparent-bg">
+  <li class="black-bg">
+  <li class="indigo-bg">
+  <li class="white-bg">
+  <li class="light-grey-bg">
+  <li class="grey-bg">
+  <li class="med-grey-bg">
+  <li class="chart-grey-bg">
+  <li class="dark-grey-bg">
+  <li class="blue-grey-bg">
+  <li class="blue-bg">
+  <li class="bright-blue-bg">
+  <li class="dim-blue-bg">
+  <li class="cyan-bg">
+  <li class="purple-bg">
+  <li class="pink-bg">
+  <li class="orange-bg">
+  <li class="yellow-bg">
+  <li class="pale-yellow-bg">
+  <li class="red-bg">
+  <li class="green-bg">
+  <li class="light-green-bg">
+</ul>
+
+<ul class="sg-text-colors">
+  <li class="transparent">
+  <li class="black">
+  <li class="indigo">
+  <li class="white">
+  <li class="light-grey">
+  <li class="grey">
+  <li class="med-grey">
+  <li class="chart-grey">
+  <li class="dark-grey">
+  <li class="blue-grey">
+  <li class="blue">
+  <li class="bright-blue">
+  <li class="dim-blue">
+  <li class="cyan">
+  <li class="purple">
+  <li class="pink">
+  <li class="orange">
+  <li class="yellow">
+  <li class="pale-yellow">
+  <li class="red">
+  <li class="green">
+  <li class="light-green">
+</ul>
+
+*/
+
+$transparent : json-var(TRANSPARENT);
+$black       : json-var(BLACK);
+$indigo      : json-var(INDIGO);
+$white       : json-var(WHITE);
+$light-grey  : json-var(LIGHT_GREY);
+$grey        : json-var(GREY);
+$med-grey    : json-var(MED_GREY);
+$chart-grey  : json-var(CHART_GREY);
+$dark-grey   : json-var(DARK_GREY);
+$input-grey  : json-var(INPUT_GREY);
+$blue-grey   : json-var(BLUE_GREY);
+$blue        : json-var(BLUE);
+$bright-blue : json-var(BRIGHT_BLUE);
+$dim-blue    : tint($blue, 40%);
+$cyan        : json-var(CYAN);
+$purple      : json-var(PURPLE);
+$pink        : json-var(PINK);
+$orange      : json-var(ORANGE);
+$yellow      : json-var(YELLOW);
+$pale-yellow : json-var(PALE_YELLOW);
+
+// colors for custom branding neutral theme
+$neutral-primary : json-var(NEUTRAL_PRIMARY);
+$neutral-success : json-var(NEUTRAL_SUCCESS);
+$neutral-info    : json-var(NEUTRAL_INFO);
+$neutral-warning : json-var(NEUTRAL_WARNING);
+$neutral-danger  : json-var(NEUTRAL_DANGER);
+
+// specific colors for the bridge logo
+$bridgelogo-bars-color : json-var(BRIDGELOGO_BARS_COLOR);
+$bridgelogo-word-color : json-var(BRIDGELOGO_WORD_COLOR);
+
+// stoplight colors - avoid if you can
+$red   : json-var(RED);
+$green : json-var(GREEN);
+$light-green : json-var(LIGHT_GREEN);
+
+@include breakpointify(".transparent")    { color:      $transparent; }
+@include breakpointify(".transparent-bg") { background: $transparent; }
+@include breakpointify(".black")          { color:      $black;       }
+@include breakpointify(".black-bg")       { background: $black;       }
+@include breakpointify(".indigo")         { color:      $indigo;      }
+@include breakpointify(".indigo-bg")      { background: $indigo;      }
+@include breakpointify(".white")          { color:      $white;       }
+@include breakpointify(".white-bg")       { background: $white;       }
+@include breakpointify(".light-grey")     { color:      $light-grey;  }
+@include breakpointify(".light-grey-bg")  { background: $light-grey;  }
+@include breakpointify(".grey")           { color:      $grey;        }
+@include breakpointify(".grey-bg")        { background: $grey;        }
+@include breakpointify(".dark-grey")      { color:      $dark-grey;   }
+@include breakpointify(".dark-grey-bg")   { background: $dark-grey;   }
+@include breakpointify(".med-grey")       { color:      $med-grey;    }
+@include breakpointify(".med-grey-bg")    { background: $med-grey;    }
+@include breakpointify(".blue-grey")      { color:      $blue-grey;   }
+@include breakpointify(".blue-grey-bg")   { background: $blue-grey;   }
+@include breakpointify(".chart-grey-bg")  { background: $chart-grey;  }
+@include breakpointify(".blue")           { color:      $blue;        }
+@include breakpointify(".blue-bg")        { background: $blue;        }
+@include breakpointify(".bright-blue")    { color:      $bright-blue; }
+@include breakpointify(".bright-blue-bg") { background: $bright-blue; }
+@include breakpointify(".dim-blue")       { color:      $dim-blue;    }
+@include breakpointify(".dim-blue-bg")    { background: $dim-blue;    }
+@include breakpointify(".cyan")           { color:      $cyan;        }
+@include breakpointify(".cyan-bg")        { background: $cyan;        }
+@include breakpointify(".purple")         { color:      $purple;      }
+@include breakpointify(".purple-bg")      { background: $purple;      }
+@include breakpointify(".pink")           { color:      $pink;        }
+@include breakpointify(".pink-bg")        { background: $pink;        }
+@include breakpointify(".orange")         { color:      $orange;      }
+@include breakpointify(".orange-bg")      { background: $orange;      }
+@include breakpointify(".yellow")         { color:      $yellow;      }
+@include breakpointify(".yellow-bg")      { background: $yellow;      }
+@include breakpointify(".pale-yellow-bg") { background: $pale-yellow; }
+
+@include breakpointify(".green")          { color:      $green;       }
+@include breakpointify(".green-bg")       { background: $green;       }
+@include breakpointify(".light-green")    { color:      $light-green; }
+@include breakpointify(".light-green-bg") { background: $light-green; }
+@include breakpointify(".red")            { color:      $red;         }
+@include breakpointify(".red-bg")         { background: $red;         }
+
+
+/*doc
+---
+title: Group Avatar Colors
+name: group_avatar_colors
+category: Colors
+---
+
+<ul class="sg-text-colors">
+  <li class="jay-z">
+  <li class="kanye">
+  <li class="nas">
+  <li class="dmx">
+  <li class="dre">
+  <li class="tupac">
+  <li class="andre3000">
+  <li class="big-boi">
+  <li class="drake">
+  <li class="kendrick-lamar">
+  <li class="q-tip">
+  <li class="notorious-big">
+  <li class="black-thought">
+  <li class="pusha-t">
+  <li class="lil-wayne">
+</ul>
+
+*/
+
+// OPTIMIZE: consider scoping these to the group-avatar component as modifiers
+$group-color-variation-percent : 35%;
+@function gs-darken($color, $percent) {
+  @return saturate(shade($color, $percent), $percent);
+}
+
+$group-avatar-colors: (
+  $blue,
+  $pink,
+  $cyan,
+  $purple,
+  $orange
+);
+$group-avatar-names: (
+    'jay-z',
+    'kanye',
+    'nas',
+    'dmx',
+    'dre',
+    'tupac',
+    'andre3000',
+    'big-boi',
+    'drake',
+    'kendrick-lamar',
+    'q-tip',
+    'notorious-big',
+    'black-thought',
+    'pusha-t',
+    'lil-wayne'
+);
+@for $i from 1 through length($group-avatar-names) {
+  $name: nth($group-avatar-names, $i);
+  $num-colors: length($group-avatar-colors);
+  $color-i: $i % $num-colors+1;
+
+  $color: nth($group-avatar-colors, $color-i);
+  .#{$name} {
+    @if ($i <= $num-colors) {
+      color: tint($color, $group-color-variation-percent);
+    }
+    @if ($i > $num-colors and $i <= 2*$num-colors){
+      color: $color;
+    }
+    @if ($i > 2*$num-colors) {
+      color:gs-darken($color, $group-color-variation-percent);
+    }
+  }
+}
+
+/*doc
+---
+title: Color Variants
+name: color_variants
+category: Colors
+---
+
+A base color along with one or more of the codes below, joined with hyphens.
+
+* op\d{2} - opacity, with the two digits reflecting the opacity as a percentage.
+* lt      - lighten
+* dk      - darken
+* sa      - saturate
+* ds      - desaturate
+
+<ul class="sg-color-palette">
+  <li class="white-op10">
+</ul>
+
+<ul class="sg-text-colors">
+  <li class="white-op40">
+  <li class="indigo-lt25">
+  <li class="pink-op30">
+</ul>
+
+*/
+
+$chart-grey-op20: rgba($chart-grey, 0.2); // not used
+$white-op05  : rgba($white, 0.05);
+$white-op10  : rgba($white, 0.1);
+$white-op40  : rgba($white, 0.4);
+$white-op50  : rgba($white, 0.5);
+$white-op70  : rgba($white, 0.7);
+$white-op90  : rgba($white, 0.9);
+$indigo-lt25 : tint($indigo, 25%);
+$indigo-op15 : rgba($indigo, 0.15);
+$indigo-op25 : rgba($indigo, 0.25);
+$indigo-op30 : rgba($indigo, 0.3);
+$black-op10  : rgba($black, 0.1);
+$black-op20  : rgba($black, 0.2);
+$black-op40  : rgba($black, 0.4);
+$orange-op40 : rgba($orange, 0.4);
+$light-green-op40 : rgba($light-green, 0.4);
+$blue-op40   : rgba($blue, 0.4);
+$blue-op70   : rgba($blue, 0.7);
+$blue-dk     : gs-darken($blue, 20%);
+$pink-lt25   : tint($pink, 25%);
+$pink-op30   : rgba($pink, 0.3);
+$light-grey-op40: rgba($light-grey, 0.4);
+//introduced for the tray
+$lighter-grey: tint($light-grey, 50%);
+
+// variants
+@include breakpointify(".white-op10")   { background: $white-op10; }
+@include breakpointify(".white-op40")   { color: $white-op40;      }
+@include breakpointify(".indigo-lt25")  { color: $indigo-lt25;     }
+@include breakpointify(".pink-op30")    { color: $pink-op30;       }
+@include breakpointify(".pink-lt25")    { color: $pink-lt25;       }
+
+/*doc
+---
+title: Opacity
+name: color_opacity
+category: Colors
+---
+
+To give an element (and its contents) 50% opacity, apply the `.translucent` class.
+
+*/
+
+@include breakpointify(".translucent") {
+  opacity: 0.5;
+}
+
+.transparent-overlay {
+  opacity: 0;
+}
+
+/*doc
+---
+title: Gradients
+name: gradients
+category: Colors
+---
+
+Gradients, with tact and taste, can be used in many different places.
+Gradients denote movement and transition - just as Bridge is meant to
+help learners transition from ignorance to intelligence. Use gradients in
+large blocks where the gradient will be apparent (such as a full-height
+sidebar). Never use a gradient to create a skeuomorphic depth in which the
+darker color lives at the bottom of the gradient.
+
+<ul class="sg-color-palette">
+  <li class="indigo-gradient-bg">
+  <li class="blue-gradient-bg">
+  <li class="orange-gradient-bg">
+  <li class="grey-gradient-bg">
+</ul>
+
+*/
+
+@mixin indigo-gradient {
+  @include linear-gradient($indigo, json-var(INDIGO_GRADIENT_STOP));
+}
+
+@mixin blue-gradient {
+  @include linear-gradient($blue, json-var(BLUE_GRADIENT_STOP));
+}
+
+@mixin orange-gradient {
+  @include linear-gradient($orange, json-var(ORANGE_GRADIENT_STOP));
+}
+
+$grey-gradient-start: json-var(GREY_GRADIENT_START);
+$grey-gradient-stop: json-var(GREY_GRADIENT_STOP);
+$med-grey-gradient-start: json-var(MED_GREY_GRADIENT_START);
+
+$graph-gradient-start: json-var(GRAPH_GRADIENT_START);
+$graph-gradient-stop: json-var(GRAPH_GRADIENT_STOP);
+
+@mixin grey-gradient {
+  @include linear-gradient($grey-gradient-start, $grey-gradient-stop);
+}
+
+@mixin lynda-gradient {
+  @include linear-gradient(to right,
+          json-var(LYNDA_GRADIENT_START),
+          json-var(LYNDA_GRADIENT_STOP)
+  )
+}
+
+@include breakpointify(".indigo-gradient-bg") { @include indigo-gradient; }
+@include breakpointify(".blue-gradient-bg")   { @include blue-gradient;   }
+@include breakpointify(".orange-gradient-bg") { @include orange-gradient; }
+@include breakpointify(".grey-gradient-bg")   { @include grey-gradient; }
+@include breakpointify(".lynda-gradient-bg")   { @include lynda-gradient; }
+
+
+/*doc
+---
+title: Wild Gradients
+name: wild_gradients
+category: Colors
+---
+
+These gradients may provide extra flair in the proper
+settings such as games. Use with caution. Should you use a wild gradient,
+keep other elements minimal. Don't use two different wild gradients on the
+same screen.
+
+<ul class="sg-color-palette">
+  <li class="nikki-sixx">
+  <li class="dee-snider">
+  <li class="david-lee-roth">
+  <li class="axl-rose">
+  <li class="sebastian-bach">
+  <li class="tom-keifer">
+</ul>
+
+*/
+
+.nikki-sixx {
+  @include linear-gradient($yellow, $pink);
+}
+
+.dee-snider {
+  @include linear-gradient($orange, $cyan);
+}
+
+.david-lee-roth {
+  @include linear-gradient($purple, $cyan);
+}
+
+.axl-rose {
+  @include linear-gradient($blue, $pink);
+}
+
+.sebastian-bach {
+  @include linear-gradient($cyan, $purple);
+}
+
+.tom-keifer{
+  @include linear-gradient(to right, $pink, $purple);
+}
+
+/*doc
+---
+title: Likert Scale
+name: likert_scale
+category: Colors
+---
+
+These colors are used in the survey response widgets to represent various
+degrees of agreement.
+
+<ul class="sg-color-palette">
+  <li class="likert-lowest-bg">
+  <li class="likert-low-bg">
+  <li class="likert-neutral-bg">
+  <li class="likert-high-bg">
+  <li class="likert-highest-bg">
+</ul>
+
+<ul class="sg-text-colors">
+  <li class="likert-lowest">
+  <li class="likert-low">
+  <li class="likert-neutral">
+  <li class="likert-high">
+  <li class="likert-highest">
+</ul>
+*/
+
+$likert-lowest:  json-var(LIKERT_LOWEST);
+$likert-low:     json-var(LIKERT_LOW);
+$likert-neutral: json-var(LIKERT_NEUTRAL);
+$likert-high:    json-var(LIKERT_HIGH);
+$likert-highest: json-var(LIKERT_HIGHEST);
+
+.likert-lowest { color: $likert-lowest; }
+.likert-low { color: $likert-low; }
+.likert-neutral { color: $likert-neutral; }
+.likert-high { color: $likert-high; }
+.likert-highest { color: $likert-highest; }
+
+.likert-lowest-bg { background-color: $likert-lowest; }
+.likert-low-bg { background-color: $likert-low; }
+.likert-neutral-bg { background-color: $likert-neutral; }
+.likert-high-bg { background-color: $likert-high; }
+.likert-highest-bg { background-color: $likert-highest; }
+
+/**
+ * Miscellaneous color utilities.
+ */
+
+// Rapidly fades out the target element.
+.fade-out {
+  opacity: 0;
+  @include transition(opacity 0.15s ease-in-out);
+}

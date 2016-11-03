@@ -1,0 +1,41 @@
+.optional-date__label--empty {
+  width: 100px;
+  height: 1.5em;
+  display: block;
+  position: relative;
+}
+
+.optional-date__label--empty::after {
+  position: absolute;
+  content: '\00a0';
+  left: 30px;
+  width: 20px;
+  margin-top: 11px;
+  border-top: 1px solid $black;
+}
+
+.optional-date__trigger {
+  border: none;
+  background: transparent;
+}
+
+.optional-date__trigger.popdown__trigger {
+  padding: 0;
+}
+
+.optional-date__selector {
+  min-width: 225px;
+}
+
+.optional-date__selection {
+  padding: 15px;
+  border: 0;
+  background: $white;
+  width: 100%;
+  text-align: left;
+}
+
+/* Selects all but the last in a series */
+.optional-date__selection:nth-last-child(n+2) {
+  border-bottom: 1px solid $grey;
+}

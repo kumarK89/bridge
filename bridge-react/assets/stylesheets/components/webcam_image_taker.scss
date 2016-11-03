@@ -1,0 +1,40 @@
+.webcam-image-taker {
+  @include text-center;
+  @include space(padding, xxl, top);
+
+  video {
+    border: 2px dashed $white;
+    border-radius: 10px;
+  }
+
+  .webcam-image-taker__action-bar {
+    background-color: $blue-grey;
+    @include space(margin, xxl, top);
+
+    button {
+      @include space(margin, m);
+    }
+  }
+}
+
+.webcam-image-taker__modal {
+  @include transition(top 300ms);
+  @include shadow;
+
+  top: -700px;
+  right: 20%;
+  bottom: auto;
+  left: 20%;
+  padding: 0;
+  height: auto;
+  width: auto;
+  border: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: $border-radius-default;
+  border-bottom-right-radius: $border-radius-default;
+}
+
+.webcam-image-taker__modal-slide {
+  top: 0;
+}

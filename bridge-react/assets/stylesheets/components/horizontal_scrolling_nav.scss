@@ -1,0 +1,15 @@
+.horizontal-scrolling-nav {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+
+  &__container {
+    @include display(flex);
+    @include flex-flow("row nowrap");
+  }
+
+  &__item {
+    @include flex(0 0 auto);
+  }
+}

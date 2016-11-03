@@ -1,0 +1,235 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Progress Bar
+name: progress-bar
+category: Components
+---
+
+[[[plugin:src-file-path]]]
+
+## Bar
+
+Here's a basic progress bar, generally seen at the top of the page when a
+learner is in mid-course.
+
+```jsx_example
+<ProgressBar progress={0.67} current={0.33} />
+```
+
+Here's a progress bar with cute li'l interval indicators (Note the addition of
+the `intervals` prop).
+
+```jsx_example
+<ProgressBar progress={0.8} current={0.4} intervals={10} />
+```
+
+## Circle
+
+Here's what we like to call a ring o' progress. It shows up on lists of learner
+courses.
+
+```jsx_example
+<ProgressBar type="circle" progress={0.4} />
+```
+
+Or an overdue version:
+
+```jsx_example
+<ProgressBar type="circle" progress={0.75} isOverdue={true} />
+```
+
+## Arcs
+
+This progress variant is displayed when a course is part of a program, and
+simultaneously indicates the progress in both, as though by magic. Data
+visualization magic.
+
+```jsx_example
+<ProgressBar type="arcs" progress={0.5} segments={6} currentSegment={4} />
+```
+
+*/
+
+.progress-bar, #tinymce .progress-bar {
+  $bg-color : "grey";
+  $fg-color : "blue";
+  $height   : 12px;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: $height / 2;
+  height: $height;
+
+  @include full-width;
+  @extend .#{$bg-color}-bg;
+
+  .progress {
+    border-radius: ($height / 2);
+    height: $height;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    @extend .#{$fg-color}-bg;
+    @include transition (width 300ms $ease-in-out-cubic);
+  }
+}
+.progress.progress--furthest {
+  background: transparent;
+  border: 1px solid $blue;
+}
+.progress-arc {
+  height: 60px;
+  width: 60px;
+
+  .range {
+    fill: none;
+    stroke: $grey;
+    stroke-width: 4;
+  }
+
+  .progress {
+    fill: none;
+    stroke: $blue;
+    stroke-linecap: round;
+    stroke-width: 4;
+  }
+}
+
+.segment--range,
+.segment--progress {
+  fill: $grey;
+}
+
+.segment--progress {
+  fill: $blue;
+}
+
+.progress-bar--overdue .progress-arc .progress {
+  stroke: $pink;
+}
+.progress-bar--overdue .segment--progress {
+  fill: $pink;
+}
+
+.theme-light .progress-bar--overdue .progress-arc .progress {
+  stroke: $neutral-danger !important;
+}
+.theme-light .progress-bar--overdue .segment--progress {
+  fill: $neutral-danger !important;
+}
+
+.progress-bar--optional .progress-arc .range {
+  stroke: $med-grey;
+}
+
+.progress-bar--optional .segment--range {
+  fill: $med-grey;
+}
+
+.progress-bar {
+  position: relative;
+  // slide header (mobile)
+  @media #{$media-query-mobile} {
+    background-color: $indigo-op25;
+
+    .progress {
+      background-color: $white;
+    }
+    .progress--furthest {
+      border-color: $white;
+      background: transparent;
+    }
+  }
+
+  .progress-indicators {
+    width: 100%;
+    height: 12px;
+    position: absolute;
+    top: 0;
+
+    &__circle {
+      fill: $indigo-op15;
+      @media #{$media-query-mobile} {
+        fill: $white-op50;
+      }
+      &--highlight {
+        fill: $indigo;
+        @media #{$media-query-mobile} {
+          fill: $white;
+        }
+      }
+
+      &--completed {
+        fill: $white-op40;
+        @media #{$media-query-mobile} {
+          fill: $indigo-op30;
+        }
+        &--highlight {
+          fill: $white;
+          @media #{$media-query-mobile} {
+            fill: $indigo;
+          }
+        }
+      }
+    }
+  }
+
+  // slide header (quiz question)
+  .page--question &,
+  .page--question-answered & {
+    background-color: $indigo-op25;
+
+    .progress {
+      background-color: $white;
+    }
+    .progress-indicators__circle {
+      fill: $white-op40;
+      &--highlight {
+        fill: $white;
+      }
+      &--completed {
+        fill: $indigo-op30;
+        &--highlight {
+          fill: $indigo;
+        }
+      }
+    }
+    .progress--furthest {
+      border-color: $white;
+      background: transparent;
+    }
+  }
+
+  .page--question-answered & {
+    background-color: $white-op10;
+  }
+}
+
+.theme-light .page--question,
+.theme-light .page--question-answered {
+  background-color: $light-grey;
+}
+
+
+.theme-light .page--question .progress-bar,
+.theme-light .page--question-answered .progress-bar {
+  background-color: rgba($med-grey, 0.5);
+}
+
+.theme-light .page--question .progress-indicators__circle,
+.theme-light .page--question-answered .progress-indicators__circle {
+  fill: $indigo-op15;
+  &--highlight {
+    fill: $indigo;
+  }
+
+  &--completed {
+    fill: $white-op40;
+    &--highlight {
+      fill: $white;
+    }
+  }
+}

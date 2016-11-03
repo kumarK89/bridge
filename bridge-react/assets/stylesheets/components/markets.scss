@@ -1,0 +1,147 @@
+@charset "utf-8";
+
+$header-height: json-var(MARKETPLACE_HEADER);
+
+.markets__header__before-content {
+  color: $dark-grey;
+  margin: 0 auto;
+  @include large-content-area;
+  @include clearfix;
+  @include space(padding, xs, top);
+  @include space(padding, m, right left);
+}
+.markets__header__icon--arrow-left {
+  font-size: 1em;
+  margin-right: 5px;
+}
+
+.markets-header .layout--item-header__details{
+  float: none;
+}
+
+.markets__list {
+  padding-left: 5px;
+  @include space(padding, xl, top);
+  @include large-content-area;
+  @include centered;
+}
+.markets__item{
+  padding-right: 0;
+  @include display(flex);
+  @include align-items(center);
+  @include breakpoint(small){
+    @include flex-direction(column);
+  }
+}
+
+.markets__info{
+  width: calc(100% - 200px);
+  padding-right: 100px;
+  @include flex-grow(1);
+  @include breakpoint(small) {
+    width: 100%;
+    padding-bottom: 25px;
+    padding-right: 0;
+  }
+}
+
+.markets__btn-market {
+  margin: auto 0;
+  border-color: $dark-grey;
+  color: $dark-grey;
+}
+.markets__menu-place-link {
+  color: $dark-grey;
+  font-size: 0.8em;
+  position: relative;
+  z-index: $zIndex-1;
+}
+.markets__description {
+  font-weight: normal;
+}
+
+/* NOTES
+ * There is a bug of using calc() with vh
+ * Check workaround example there
+ * http://stackoverflow.com/questions/21476066/calc-and-vh-workaround-for-chrome
+ */
+.markets__frame {
+  box-sizing: border-box;
+  height: 100vh;
+  margin-top: -$header-height;
+  padding-top: $header-height;
+  width: 100%;
+  border: 0;
+}
+
+.markets__safari-apology {
+  @extend .error__content;
+  margin-top: -$header-height;
+  padding-top: $header-height;
+  &__header {
+    margin-top: 250px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  &__body {
+    margin-bottom: 20px;
+  }
+}
+
+.markets__lynda{
+  min-height: 100vh;
+  position: relative;
+  background-color: $grey;
+
+  &--basket-showing{
+    padding-bottom: 120px;
+  }
+  &__basket-footer-wrapper{
+    width: 100%;
+    margin: 0 auto;
+  }
+  &__basket-footer{
+    text-align: right;
+    width: 100%;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background-color: $white;
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(flex-end);
+    border-top: 1px solid $grey;
+    @include breakpoint(small-tall){
+      text-align: center;
+      @include justify-content(center);
+    }
+    .btn{
+      margin: 0 64px 0 $space-xl;
+      letter-spacing: .5px;
+      width: 200px; //We'll have to make this dynamic if/when Lynda.com is I18n'ized
+      @include breakpoint(small-tall){
+        display: block;
+        margin: 5px auto;
+      }
+    }
+  }
+  &__basket-footer-text{
+    font-size: 1.4em;
+    font-weight: 300;
+    vertical-align: middle;
+    @include breakpoint(small-tall){
+      display: block;
+    }
+  }
+  &__basket-footer-link {
+    font-weight: 100;
+  }
+
+  &__body{
+    @include space(padding, m, right left);
+    @include large-content-area;
+    margin: 0 auto;
+    padding-bottom: $space-l;
+    @include clearfix;
+  }
+}

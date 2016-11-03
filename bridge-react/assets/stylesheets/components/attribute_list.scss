@@ -1,0 +1,86 @@
+@charset "utf-8";
+
+/**
+ * Learner custom-field attributes.
+ */
+
+.attribute-list {
+  @include space(margin, xs, right);
+}
+.attribute-list__name {
+  @include space(margin, xs, bottom);
+}
+
+.attribute-list__value {
+  @include space(margin, l, bottom);
+  @include x-medium;
+  margin-left: 0;
+}
+
+.custom-field-value-autocomplete__widget__input {
+  @include rounded-corners-default;
+  @include space(padding, xs);
+  background: $white;
+  top: -8px;
+  left: -8px;
+  width: 100%;
+
+  &[is-open] ic-autocomplete-list {
+    margin-top: 4px;
+    @include rounded-corners-default;
+    box-shadow: 0 0 25px $indigo-op25;
+  }
+
+  ic-autocomplete-option:first-of-type {
+    border-top: 1px solid $grey;
+  }
+
+  ic-autocomplete-toggle {
+    display: none;
+  }
+
+  input {
+    @include x-medium;
+    border: 0;
+    padding: 0;
+    width: 100%;
+  }
+}
+
+/**
+ * React
+ */
+.custom-field-value-autocomplete__widget.react {
+  @include rounded-corners-default;
+  @include space(padding, xs);
+  background: $white;
+  top: -8px;
+  left: -8px;
+  width: 100%;
+
+  input {
+    @include x-medium;
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  &.autocomplete--open .autocomplete__list {
+    margin-top: 4px;
+    @include rounded-corners-default;
+    box-shadow: 0 0 25px $indigo-op25;
+  }
+
+  .autocomplete__option:first-of-type {
+    border-top: 1px solid $grey;
+  }
+
+  .autocomplete__option--selected {
+    font-weight: bold;
+  }
+
+  .autocomplete__option--selected:before {
+    content: none;
+  }
+}

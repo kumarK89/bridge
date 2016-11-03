@@ -1,0 +1,25 @@
+$topbarHeight: json-var(MARKETPLACE_HEADER);
+.marketplace-header{
+  background-color: $blue-grey;
+  @include space(padding, m, left);
+  height: $topbarHeight;
+  color: $white;
+  position: relative;
+  @include breakpoint(medium){
+    display: none;
+  }
+
+  &__to-marketplace, &__nav-location{
+    color: $white;
+    line-height: $topbarHeight;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  &__nav-location{
+    position:absolute;
+    right:0;
+    @include space(margin, m, right);
+  }
+}

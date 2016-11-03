@@ -1,0 +1,28 @@
+.dismissable-notification {
+
+  height: auto;
+  background-color: $blue;
+  color: $white;
+
+  @include display(flex);
+  @include justify-content(space-around);
+  @include align-items(center);
+
+  @include breakpoint(large) {
+    @include space(padding, m, left right);
+  }
+
+  @include breakpoint(mobile) {
+    @include space(padding, s, left right);
+  }
+
+  &__text {
+    @include space(margin, m);
+  }
+
+  &__acknowledgement-button {
+    @include btn-base;
+    @include button-colors($white, $white);
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,18 @@
+.live-course-nav {
+
+  border-bottom: 1px solid $grey;
+
+  &__container {
+    @include large-content-area--padded;
+    @include display(flex);
+    @include justify-content(flex-start);
+    @include centered;
+    position: relative;
+    top: 1px;
+  }
+
+  &__link {
+    color: $dark-grey;
+    display: inline-block;
+  }
+}

@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.csv-table-drop-header {
+  @extend .label;
+  color: $med-grey;
+  background-color: $white;
+  @extend .border;
+  border-color: $med-grey;
+  @include rounded-corners-default;
+  @include space(margin, xs);
+  @include space(padding, xs);
+
+  // flip contrast
+  &--assigned {
+    background-color: $light-green;
+    @extend .border-light-green;
+
+    &.csv-table-drop-header { color: $white; }
+    .selected {
+      // check mark left of assigned field
+      // TODO: refactor ths out
+      // use gs-x sizes instead
+      font-size: 12px;
+    }
+  }
+}
+
+// hightlight
+.active, .primaryActive {
+  .csv-table-drop-header.csv-table-drop-header {
+    @extend .border-blue;
+    color: $blue;
+
+    // else blue on blue
+    &--assigned {
+      color: $white;
+    }
+  }
+}

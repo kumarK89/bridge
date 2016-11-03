@@ -1,0 +1,379 @@
+.slide-comments {
+  @include space(margin, xxl, top);
+}
+
+.slide-comments__header {
+  color: $blue-grey;
+  @extend .border-b;
+  @include border-grey;
+
+  padding-bottom: 10px;
+}
+
+.slide-comments__header__name {
+  @include small;
+
+  padding: 0 10px;
+  text-transform: uppercase;
+}
+
+.slide-comments__header__count {
+  float: right;
+  line-height: 1;
+
+  &__icon {
+    @extend .gs-comment-count-bg;
+    @extend .gs-2x;
+    color: $blue;
+
+    position: relative;
+  }
+
+  &__text {
+    @include bold;
+    color: $white;
+
+    position: absolute;
+    top: 7px;
+    font-size: 0.4em;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.slide-comments__header__sort {
+  @include space(padding, s, bottom);
+
+  &__button {
+    @extend .black;
+
+    float: right;
+  }
+}
+
+.slide-comments__form {
+  @include space(margin, xl, top);
+
+  @include breakpoint(x-large) {
+    @include display("flex");
+  }
+
+  &__wrapper {
+    @include breakpoint(x-large) {
+      @include flex-grow(1);
+      @include flex-shrink(1);
+    }
+  }
+
+  &__container {
+    @include space(padding, l, top);
+    @include space(padding, m, bottom);
+    @include space(padding, s, right left);
+    @extend .border-trbl;
+    border-color: $med-grey;
+    @include transition(min-height 0.15s ease-out);
+
+    border-radius: $border-radius-default;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+    cursor: text;
+    background-color: $light-grey;
+    min-height: 0px;
+
+    &--enabled {
+      background-color: $white;
+      min-height: 107px;
+    }
+  }
+
+  &__avatar {
+    border-radius: 24px;
+    height: 48px;
+    line-height: 48px;
+    width: 48px;
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%) translateY(-50%));
+
+    .avatar__name {
+      @include x-medium;
+    }
+
+    @include breakpoint(x-large) {
+      @include space('margin', xs, right);
+      @include flex-shrink(0);
+      @include transform(translateX(0%) translateY(0%));
+      position: static;
+    }
+  }
+
+  .editable-textarea-frd { // use child selector for specificity
+    border: none;
+    resize: none;
+
+    &:focus {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    @include placeholder {
+      color: $dark-grey;
+      opacity:  1;
+    }
+  }
+
+  &__image-wrapper {
+    display: inline-block;
+    position: relative;
+
+    &:hover, &:focus {
+      div, button {
+        display: block;
+      }
+    }
+  }
+
+  &__image-overlay {
+    opacity: 0.5;
+    background-color: $white;
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: none;
+  }
+
+  &__image-delete {
+    @include btn-static;
+    @include btn-filled-alert;
+    @include transform(translateX(-50%) translateY(-50%));
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+  }
+
+
+  &__attacher {
+    @extend .border-trbl;
+    border-color: $med-grey;
+
+    position: relative;
+    background-color: $grey;
+    border-radius: $border-radius-default;
+    border-style: dashed;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &__cancel-attach {
+    @include btn--reset;
+    color: $dark-grey;
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+  }
+
+  .media-uploader {
+    @include space(padding, m, bottom);
+  }
+
+  &__actions {
+    @include space(padding, xxs);
+    @extend .border-trbl;
+    border-color: $med-grey;
+
+    background-color: $grey;
+    border-radius: $border-radius-default;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top: none;
+    height: 36px;
+  }
+
+  &__attach {
+    @include btn--reset;
+    @include btn-tertiary;
+    margin: 0;
+  }
+
+  &__submit {
+    @include btn--reset;
+    @include btn-tertiary;
+    margin: 0;
+  }
+
+  &.slide-comments__form--updating {
+    @include space(margin, xs, top);
+
+    .slide-comments__form__avatar {
+      display: none;
+    }
+  }
+}
+
+.slide-comments__show-more, .slide-comments__show-less {
+  @include btn--reset;
+  color: $blue;
+  @include space(margin, xxl, left);
+  @include space(margin, s, top);
+
+  i {
+    @include space(margin, xxs, right);
+  }
+
+  span {
+    @include small;
+  }
+}
+
+.slide-comment {
+  @include space(margin, m, top);
+  @include display("flex");
+
+  &__avatar {
+    @include flex-shrink(0);
+
+    border-radius: 24px;
+    height: 48px;
+    line-height: 48px;
+    width: 48px;
+
+    .avatar__name {
+      @include x-medium;
+    }
+  }
+}
+
+.slide-comment__cancel-button {
+  @include btn--reset;
+
+  color: $dark-grey;
+  float: right;
+}
+
+.slide-comment__popup-button {
+  background: $dark-grey;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  float: right;
+  font-size: 10px;
+  line-height: 10px;
+  padding: 4px 4px 3px 5px;
+
+  &:hover {
+    background: $blue-grey;
+  }
+}
+
+.slide-comment__popup {
+  @include space(padding, s);
+
+  background: rgba($indigo, 0.9);
+  border-color: rgba($indigo, 0.9);
+
+  &__btn {
+    @include btn--reset;
+    @include space(margin, xs, bottom);
+    @include small;
+
+    &:last-child {
+      @include margin-none;
+    }
+
+    &:focus {
+      box-shadow: none;
+      color: $white;
+    }
+
+    &:hover {
+      color: $white;
+    }
+
+    color: $med-grey;
+    display: block;
+  }
+
+  &__icon {
+    @include space(padding, xs, right);
+
+    font-size: 1.25em;
+  }
+}
+
+.slide-comment__content {
+  @include space(margin, xs, left);
+  @include flex-grow(1);
+  @include flex-shrink(1);
+
+  &__edited {
+    @include space(margin, s, left);
+    color: $pink;
+  }
+
+  &__name {
+    color: $blue;
+    @include bold;
+  }
+
+  &__inactive {
+    margin-left: 4px;
+    color: $dark-grey;
+  }
+
+  &__time {
+    @include space(margin, s, left);
+    color: $dark-grey;
+  }
+
+  &__image {
+    @include space(margin, s, top);
+
+    width: 100%;
+  }
+
+  &__actions {
+    color: $dark-grey;
+    @include space(margin, xs, top);
+  }
+
+  &__likes {
+    @include space(margin, s, right);
+  }
+}
+
+.slide-comment__image-modal {
+  @extend .border-none;
+
+  background: transparent;
+  text-align: center;
+
+  @include breakpoint(small) {
+    @include padding-none();
+
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: initial;
+    left: 0;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &__btn {
+    @include space(margin, m, top bottom);
+  }
+
+  &__image {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  &__overlay {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}

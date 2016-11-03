@@ -1,0 +1,124 @@
+@charset "utf-8";
+
+.chart--pass-rate {
+  svg {
+    display: block;
+    height: 320px;
+    max-width: 600px;
+    overflow: visible;
+
+    text {
+      font-size: 20px;
+    }
+
+    .labeled-bar {
+      &__bar {
+        stroke: $white;
+      }
+
+      &--attempted .labeled-bar__bar {
+        fill: $dark-grey;
+      }
+
+      &--passed .labeled-bar__bar {
+        fill: $blue;
+      }
+    }
+
+    .bottom-line {
+      shape-rendering: crispEdges;
+      stroke: $blue-grey;
+      stroke-width: 1px;
+    }
+
+    .call-out__pointer {
+      circle,
+      path {
+        fill: none;
+        stroke: $blue-grey;
+      }
+
+      path {
+        shape-rendering: crispEdges;
+      }
+    }
+
+    .call-out--passed {
+      .call-out__pointer {
+        visibility: visible;
+        text-anchor: start;
+      }
+
+      &--short {
+        .call-out__pointer {
+          visibility: hidden;
+        }
+        text {
+          text-anchor: middle;
+        }
+      }
+    }
+
+    .labeled-bar__label {
+      fill: $blue-grey;
+      font-weight: bold;
+
+      &__text {
+        baseline-shift: 15%;
+
+        &--stroked {
+          baseline-shift: 15%;
+          stroke: $white;
+          stroke-width: 0.5px;
+        }
+
+        &--inside {
+          baseline-shift: -115%;
+          fill: $white;
+        }
+      }
+    }
+
+    .bubble {
+      circle {
+        fill: $blue;
+        stroke: none;
+      }
+
+      &__text {
+        fill: $white;
+        font-weight: bold;
+
+        &__number {
+          font-size: 20px;
+        }
+
+        &__symbol {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .bubble__label,
+    .call-out__label {
+      baseline-shift: baseline;
+      fill: $blue-grey;
+      font-size: 13px;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .tick {
+      line {
+        shape-rendering: crispEdges;
+        stroke: $med-grey;
+      }
+
+      text {
+        font-size: 10px;
+        font-weight: normal;
+        stroke: $med-grey;
+      }
+    }
+  }
+}

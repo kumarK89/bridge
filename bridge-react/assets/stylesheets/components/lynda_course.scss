@@ -1,0 +1,194 @@
+.lynda-course{
+  $inner-gutter: $space-l*2;
+  $bodyPadding: $space-m;
+  z-index: 0; //Makes the z-index sets inside this file be contained within this parent stacking context
+  position: relative;
+  &__title{
+    position: relative;
+    padding-right: 220px; //Magical padding value that is approximately equal to the size of the "add to basket" button
+    padding-top: $space-xxs;
+    line-height: 1.2;
+
+    @include breakpoint(small-tall){
+      padding-right: 0;
+    }
+  }
+
+  .markets-header{
+    @include breakpoint(small-tall){
+      padding-bottom: $space-s;
+    }
+  }
+
+  &__basket-checkbox{
+    position:absolute;
+    right: 0;
+    top: $space-xxs;
+    font-size: .8rem;
+
+    @include breakpoint(small-tall){
+      display:block;
+      position:relative;
+      margin-top: $space-s;
+    }
+  }
+
+  &__preview-video{
+    position: absolute;
+    background-color: $black;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  &__video-wrapper{
+    position: relative;
+    padding-bottom: 56.25%; //This % magic is required to make preview iframe video be responsive and have a 16:9 aspect ratio
+    height: 0;
+    overflow: hidden;
+  }
+  &__info-wrapper{
+    padding: 0 $inner-gutter;
+    margin: 0 auto;
+    @include large-content-area;
+
+    @include breakpoint(small-tall){
+      padding: 0;
+    }
+  }
+  &__summary-info{
+    @include display(flex);
+    @include justify-content(space-between)
+  }
+
+  &__author{
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+  &__info{
+    background: $white;
+    z-index: 1;
+    position: relative;
+
+    @include breakpoint(small-tall){
+      background-color: $grey;
+      color: $dark-grey;
+    }
+  }
+
+  &__summary-info{
+    @include display(flex);
+    @include justify-content(space-between);
+    padding: $space-l $inner-gutter;
+    margin: 0 auto;
+    color: $dark-grey;
+    font-size: 1.15em;
+    @include large-content-area;
+
+    @include breakpoint(medium){
+      @include flex-direction(column);
+      padding: $bodyPadding;
+    }
+
+    > div {
+      padding-right: $space-xs;
+      &:last-child{
+        padding: 0;
+      }
+
+      @include breakpoint(medium){
+        padding-bottom: $space-xs;
+      }
+    }
+  }
+
+  &__viewers{
+    > b{
+      font-weight: normal;
+      color: $indigo;
+    }
+  }
+
+  .lynda-course-summary__difficulty{
+    @include breakpoint(small-tall){
+      .v-bar{
+        background-color: $white;
+      }
+    }
+  }
+  &__summary-info-wrapper{
+    border-bottom: 1px solid $grey;
+  }
+
+  &__course-info{
+    @include clearfix;
+    margin: 0 auto;
+    padding: $space-xl $bodyPadding;
+    @include large-content-area;
+
+    @include breakpoint(small-tall){
+      color: $indigo;
+      padding: 0 $bodyPadding;
+    }
+  }
+
+  &__chapter-info{
+    width: 40%;
+    padding-right: $space-xxl;
+    float:left;
+
+    @include breakpoint(small-tall){
+      display: none;
+    }
+  }
+
+  &__description{
+    width: 60%;
+    float:left;
+
+    @include breakpoint(small-tall){
+      width: auto;
+    }
+    img{ //Inside the course description we render sanitized data from the Lynda API, including images. This constrains their size.
+      height: 50px;
+      width: auto;
+    }
+  }
+
+  &__video-duration{
+    color: $dark-grey;
+    padding-right: $space-xs;
+    float:left;
+  }
+
+  &__video-title{
+    margin-left: 4.5em;
+    margin-bottom: $space-xs;
+  }
+
+  &__chapter{
+    margin-top: $space-l;
+    font-size: .9em;
+    &:first-child{
+      margin-top: 0;
+    }
+  }
+  &__chapter-title{
+    padding-bottom: $space-xs;
+    font-size: 1.35em;
+    font-weight: normal;
+  }
+
+  &__topics-title{
+    margin: $space-xxl 0 $space-s 0;
+    font-size: 1em;
+  }
+  &__topic{
+    margin-bottom: $space-s;
+  }
+}

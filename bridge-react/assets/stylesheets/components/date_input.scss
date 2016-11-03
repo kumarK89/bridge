@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@import './pikaday';
+
+.date-input {
+  &__label {
+    letter-spacing: inherit;
+    text-transform: none;
+
+    @extend .h2;
+  }
+
+  &__selector {
+
+    &--link {
+      background: none;
+      border: none;
+      color: $blue;
+      width: 320px;
+      outline: none;
+
+      @include placeholder {
+        color: $blue;
+        opacity: 1; /* included for firefox */
+      }
+
+      @include space(padding, s);
+    }
+
+    &--focused {
+      background: $white;
+      border-radius: $border-radius-default;
+      box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+
+      @include placeholder {
+        color: $grey;
+        opacity: 1; /* included for firefox */
+      }
+    }
+  }
+}

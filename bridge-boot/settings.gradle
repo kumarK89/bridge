@@ -1,0 +1,6 @@
+rootProject.name = 'boot'
+
+include 'bridge-rest-adapter'
+include 'bridge-service-port'
+include 'bridge-jooq-adapter'
+include 'bridge-domain'

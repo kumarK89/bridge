@@ -1,0 +1,15 @@
+.program-header {
+  &__description {
+    textarea {
+      width: 100%;
+    }
+  }
+
+  .program-header__step-notifications-label {
+    width: 88%;
+  }
+
+  .program-header__step-notifications-toggle {
+    width: 12%;
+  }
+}

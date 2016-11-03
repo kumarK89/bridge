@@ -1,0 +1,135 @@
+.splash-view {
+  position: fixed;
+  top: 0;
+  right:0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: table;
+  @include indigo-gradient;
+  color: white;
+  @include transition(opacity 0.6s $ease-in-quad);
+  @include transition-delay(5.0s);
+
+  &--embedded {
+    position: relative;
+    width: 100%;
+  }
+
+  &--fade-out {
+    opacity: 0;
+  }
+
+  &--fast-fade-out { // for testing
+    @include transition-delay(0.1s);
+  }
+
+  &--flat-bg {
+    background: #08223f;
+  }
+
+  &__main-logo-footprint {
+    position: absolute;
+    max-width: 240px;
+    max-height: 160px;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    @include transform(translateX(-50%) translateY(-50%));
+  }
+
+  &__client-logo,
+  &__quote {
+    position: relative;
+    top: 50%;
+    @include transform(translateY(-50%));
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+
+  &__client-logo {
+    fill: currentColor;
+    text-align: center;
+
+    img {
+      max-width: 400px;
+    }
+  }
+
+  &__quote {
+    @include upcase;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 26px;
+  }
+
+  &__quote-decoration {
+    @include linear-gradient(to right, #ee3685, #9436b3);
+    margin-bottom: 12px;
+    width: 50px;
+    height: 10px;
+  }
+
+  &__quote-author {
+    margin-top: 24px;
+    font-size: 12px;
+
+    &:before {
+      content: "\2014"; // em-dash
+    }
+  }
+
+  &__bridge-logo {
+    max-width: 104px;
+    max-height: 36px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    margin-left: -52px;
+
+    &__bars {
+      fill: $bridgelogo-bars-color;
+    }
+    &__wordmark {
+      fill: $bridgelogo-word-color;
+    }
+
+    &--on-dark {
+      &__bars,
+      &__wordmark {
+        fill: $white;
+      }
+    }
+  }
+
+  &__canvas {
+    display: block;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+  }
+}
+.splash-view.theme-light {
+  background: $light-grey;
+}
+.splash-view.theme-light .splash-view__quote {
+  color: $indigo;
+}
+
+.splash-view-preview {
+  @include indigo-gradient;
+  @include full-width;
+  @include full-height;
+}
+
+.theme-light .splash-view-preview {
+  background: $grey;
+}

@@ -1,0 +1,22 @@
+.sort-selector {
+  @include space(padding, s, bottom);
+  color: $blue-grey;
+}
+
+.sort-selector__item {
+  @include space(padding, xxs, top bottom);
+  @include space(padding, s, right left);
+  @include small;
+  cursor: pointer;
+}
+
+.sort-selector__item--checked {
+  color: $blue;
+}
+
+.sort-selector__item:focus {
+  outline: none;
+  background-color: $blue;
+  color: $white;
+  box-shadow: 0 0 0 2px $blue;
+}

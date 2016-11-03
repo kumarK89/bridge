@@ -1,0 +1,63 @@
+.tag-listing {
+  @include space(margin, m, top);
+  @include space(margin, m, bottom);
+
+  font-size: 0.8em;
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__new-entry-button.tag-pill {
+    display: block;
+    border-style: dashed;
+    border-color: $blue;
+    color: $blue;
+  }
+
+  &__remove-entry-button {
+    padding-right: 0;
+    padding-left: 1em;
+  }
+
+  &__icon {
+    font-size: 10px; // otherwise they're HUGE, can't "inherit" either they're
+                     // still big then!
+
+    // this needs more emphasis to look uniform with the X icon we're using
+    &.gs-plus-sign:before {
+      font-weight: bold;
+    }
+  }
+
+  .autocomplete__list {
+    @include display(flex);
+    @include flex-direction(column);
+    @include align-items(flex-start);
+  }
+
+  .autocomplete__no-match {
+    padding: 0.5em 1em;
+  }
+
+  .autocomplete__option {
+    border: 1px solid $dark-grey;
+    border-radius: 6px;
+    color: $blue-grey;
+    display: inline-block;
+    padding: 0.5em 1em;
+    margin-bottom: 0.75em;
+    margin-left: 0.75em;
+    margin-right: 0.75em;
+
+    &:first-child {
+      margin-top: 0.75em;
+    }
+
+    &:focus {
+      color: $white;
+    }
+  }
+}

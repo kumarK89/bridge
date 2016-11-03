@@ -1,0 +1,25 @@
+.sticky-wrapper {
+  &--fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid $grey;
+
+    @include transition(width 125ms ease-in-out);
+
+    @include breakpoint(desktop) {
+      width: calc(100% - 302px);
+
+      .sidebar-is-closed & {
+        width: calc(100% - 60px);
+      }
+
+      .sidebar-is-expanded & {
+        width: calc(100% - 362px);
+      }
+    }
+
+  }
+}

@@ -1,0 +1,74 @@
+.autocomplete {
+  display: inline-block;
+  position: relative;
+}
+
+.autocomplete__list {
+  @include rounded-corners-default;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  max-height: 400px;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px 2px $indigo-op25;
+  background: $white;
+  overflow: auto;
+}
+.autocomplete--open .autocomplete__list {
+  display: block;
+}
+
+.autocomplete__input {
+  @include rounded-corners-default;
+  @include space(padding, xs);
+  width: 100%;
+  border: 2px solid $transparent;
+  padding-right: 20px;
+
+  &:focus {
+    @include transition(box-shadow, 0.3s, $ease-in-out-back);
+    outline: none;
+    border-color: $blue;
+    box-shadow: 0 0 10px 2px $indigo-op25;
+    background: $white;
+  }
+}
+
+// options
+.autocomplete__option {
+  display: block;
+  @extend .border-t;
+  @include border-grey;
+  padding: 16px 8px;
+  cursor: default;
+
+  &:focus {
+    outline: 0;
+    color: $white;
+    background: $blue;
+  }
+
+  &.autocomplete__option--selected:before {
+    content: '✓';
+    position: absolute;
+    left: 4px;
+  }
+
+  &.autocomplete__option--disabled {
+    color: $dark-grey;
+  }
+}
+
+.autocomplete__no-match {
+  color: $dark-grey;
+
+  &:focus {
+    background: $white;
+    color: $dark-grey;
+  }
+}

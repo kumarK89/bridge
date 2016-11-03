@@ -1,0 +1,14 @@
+.my-learning-items {
+  &__active-filter-box {
+    @include large-content-area--padded;
+    @include centered;
+  }
+
+  & .active-filter-box__tag_box {
+    background-color: $light-grey;
+
+    &:hover {
+      background-color: $grey;
+    }
+  }
+}

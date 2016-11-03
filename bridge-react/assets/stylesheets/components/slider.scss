@@ -1,0 +1,18 @@
+.range-input {
+  display: inline-block;
+  width: 70%;
+  vertical-align: middle;
+
+  &__track {
+    height: 2px;
+    margin-top: -1px;
+    background: $white;
+  }
+  &__thumb {
+    border-radius: 6px;
+    height: 12px;
+    width: 12px;
+    margin-top: -6px;
+    background: $white;
+  }
+}

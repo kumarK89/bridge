@@ -1,0 +1,50 @@
+.admin-tags {
+  @include large-content-area;
+  @include space(padding, m);
+  @include space(padding, xxl, top);
+  @include centered;
+
+  &__header {
+    @include space(padding, m, top);
+    @include display(flex);
+    @include flex-flow(column nowrap);
+    @include borders(solid, 1px, bottom);
+    border-color: $grey;
+    color: $blue-grey;
+  }
+
+  &__search {
+    @include space(padding, m, top);
+    @include display(flex);
+    @include justify-content(space-between);
+  }
+
+  &__add-icon {
+    @extend .gs-plus-sign, .gs-1x;
+  }
+
+  &__autocomplete, .autocomplete--open {
+    .autocomplete__list {
+      @include display(flex);
+      @include flex-direction(column);
+      @include align-items(flex-start);
+    }
+
+    &__tag {
+      @extend .tag-pill;
+      @include flex(0 0 auto);
+      @include space(margin, xs, left);
+      @include space(padding, s);
+      font-size: 0.8em;
+
+      &:first-child {
+        @include space(margin, xs, top);
+      }
+
+      &:focus {
+        color: $dark-grey;
+        background: $grey;
+      }
+    }
+  }
+}

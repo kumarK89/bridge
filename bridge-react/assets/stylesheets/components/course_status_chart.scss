@@ -1,0 +1,133 @@
+@charset "utf-8";
+
+.learner-chart a:hover {
+  text-decoration: none;
+}
+.course-status-chart {
+  &__wrapper {
+    max-width: 600px;
+  }
+  svg {
+    height: 350px;
+    overflow:visible;
+    display: block;
+  }
+  path {
+    fill: none;
+    stroke-width: 1.5;
+  }
+  .bar {
+    fill: $dark-grey;
+    stroke: none;
+
+    &--in-progress,
+    &--not-started {
+      fill: $orange;
+    }
+  }
+
+  text {
+    font-size: 20px;
+  }
+  .stop--dark-grey {
+    stop-color: $chart-grey;
+    stop-opacity: 0.2;
+  }
+  .stop--white {
+    stop-color: $white;
+    stop-opacity: 0.2;
+  }
+
+  &__path--unfinished {
+    stroke: $orange;
+  }
+
+  &__group--unfinished {
+    text.data-label{
+      fill: $white;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    circle {
+      fill: $orange;
+      stroke: none;
+    }
+  }
+
+  .data-label {
+    font-weight: bold;
+    fill: $blue-grey;
+  }
+
+  .data-label--header {
+    fill: $blue-grey;
+  }
+  .text-label {
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight:normal;
+    baseline-shift: baseline;
+    fill: $blue-grey;
+  }
+
+  .axis {
+    stroke: $black;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+
+  // overdue version
+  &--overdue .bar{
+    fill: $grey;
+    &--overdue {
+      fill: $pink;
+    }
+  }
+
+  &__group--overdue text.data-label {
+    fill: $white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &--overdue .data-label ,
+  &--overdue &__group--unfinished text.data-label {
+    fill: $dark-grey;
+    &--overdue {
+      fill: $pink;
+    }
+  }
+
+  &__path--overdue {
+    stroke: $pink;
+  }
+
+  &__group--overdue circle {
+    fill: $pink;
+    stroke: none;
+  }
+}
+
+.zero-box {
+  @include breakpoint(medium) {
+    border-bottom: 1px solid $dark-grey;
+  }
+
+  line-height: 1;
+  &__header {
+    text-align: center;
+  }
+  &__zero {
+    @include light;
+    width: 100%;
+    font-size: 184px;
+    text-align: center;
+    color: $blue-op40;
+    &--course-status {
+      color: $orange-op40;
+    }
+  }
+  &__legend {
+    text-align: center;
+  }
+}

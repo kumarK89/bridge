@@ -1,0 +1,106 @@
+.image-manipulator {
+  @include text-center;
+  @include space(padding, xxl, top);
+
+  .gs-x {
+    color: $white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  canvas {
+    cursor: move;
+    border-radius: 100%;
+    border: 3px dashed $white;
+  }
+
+  .image-manipulator__scale-slider {
+    @include space(margin, xl, top);
+    width: 100%;
+    color: $white;
+    font-size: 0.75em;
+    vertical-align: middle;
+
+    .range-input {
+      width: 90%;
+
+      &__track {
+        height: 2px;
+        margin-top: 0;
+        margin-left: 5px;
+        margin-right: 5px;
+        border-radius: 1px;
+        background: $white;
+      }
+
+      &__thumb {
+        border-radius: 8px;
+        height: 16px;
+        width: 16px;
+        margin-top: -6px;
+        background: $white;
+      }
+    }
+
+    .image-manipulator__scale-up {
+      cursor: pointer;
+      margin-top: -1px;
+    }
+
+    .image-manipulator__scale-down {
+      cursor: pointer;
+      padding-top: 6px;
+    }
+  }
+
+  .image-manipulator__action-bar {
+    background-color: $blue-grey;
+    @include space(margin, xxl, top);
+
+    button {
+      @include space(margin, m);
+    }
+
+    .file-input {
+      background-color: transparent;
+
+      .file-input__button {
+        border: solid 1px;
+      }
+    }
+  }
+}
+
+.ReactModal__Content.image-manipulator__modal {
+  @include transition(top 300ms);
+  @include shadow;
+
+  top: -600px;
+  right: 25%;
+  bottom: auto;
+  left: 25%;
+  padding: 0;
+  height: auto;
+  width: auto;
+  border: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: $border-radius-default;
+  border-bottom-right-radius: $border-radius-default;
+
+  @include breakpoint(medium) {
+    right: 0;
+    left: 0;
+  }
+
+  @include breakpoint(small) {
+    right: 0;
+    left: 0;
+  }
+}
+
+.ReactModal__Content.image-manipulator__modal-slide {
+  top: 0;
+}

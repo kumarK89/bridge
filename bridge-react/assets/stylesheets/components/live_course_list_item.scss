@@ -1,0 +1,30 @@
+.course-list-item__meta {
+  .live-course-list-item__end-date {
+    @include breakpoint(small) {
+      white-space: normal;
+    }
+  }
+}
+.live-course-list-item--completed {
+  .live-course-list-item__title {
+    @extend .black;
+  }
+
+  .live-course-list-item__end-date {
+    color: $dark-grey;
+  }
+}
+.live-course-list-item__expires,
+.live-course-list-item__renew {
+  font-weight: 600;
+}
+
+.live-course-list-item--incomplete {
+  .live-course-list-item__end-date {
+    @include bold;
+  }
+}
+.live-course-list-item__call-to-action {
+  text-align: center;
+  margin: 24px 0 0 -40px;
+}

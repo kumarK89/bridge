@@ -1,0 +1,128 @@
+@charset "utf-8";
+
+.integration {
+  width: 50%;
+  min-width:300px;
+
+  @include display(flex);
+  @include flex-direction(column);
+  @include breakpoint(mobile) {
+    margin: 0 10px;
+  }
+  h2 {
+    color: $blue-grey;
+    font-size: 16px;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  button:focus {
+    color: $blue;
+    outline: none;
+  }
+
+  &__header {
+    @include order(2);
+  }
+
+  &__description {
+    border: 1px solid $grey;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    color: $blue-grey;
+    @include space(margin, s, bottom);
+    @include small;
+  }
+
+  &__descriptionWrapper {
+    background-color: $light-grey;
+    @include display(inline-flex);
+    @include flex-direction(column);
+  }
+
+  &__descriptionWrapper p {
+    margin: auto;
+  }
+
+  &__logoWrapper {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+  }
+
+  &__logo {
+    position:absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
+    max-width: 80%;
+  }
+
+  &__overlay {
+    background: rgba(255, 255, 255, 0.9);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
+    @include transition(top 0.5s);
+    @include display(flex);
+  }
+
+  &__overlay--active {
+    top: 0;
+  }
+
+  &__closeBtnWrapper{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 2px;
+  }
+  &__closeBtn {
+
+    @include space(padding, s);
+  }
+
+  &__configureBtn {
+    height: 34px;
+    margin: auto;
+  }
+
+  &__brandedConfigureBtn {
+    display: inline-block;
+    margin: auto;
+
+    img {
+      height: 40px;
+    }
+  }
+
+  &__toast {
+    bottom: 0;
+    left: 0;
+    letter-spacing: normal;
+    position: absolute;
+    width: 100%;
+
+    @include space(padding, s, top bottom);
+    @include space(padding, m, right left);
+    background-color: $pink;
+    color: $white;
+
+    &--success {
+      background-color: $blue;
+    }
+  }
+
+  &__closeToastBtn {
+    position: absolute;
+    right: 8px;
+    top: 4px;
+  }
+}

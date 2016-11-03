@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+.csv-table-primary-header {
+  position: relative;
+  height: 36px;
+  visibility: hidden;
+  @include border-top-radius(10px);
+
+  &--import {
+    @extend .label;
+    background-color: $light-green;
+    color: $white;
+  }
+
+  // mimic csv-table-drop-header if deport
+  &--deport {
+    @extend .csv-table-drop-header;
+    visibility: visible;
+
+    &.csv-table-primary-header--assigned {
+      @extend .csv-table-drop-header--assigned;
+    }
+  }
+
+  // specificity hax
+  &--scanning[class] {
+    @include space(padding, xs, top);
+    background-color: $grey;
+    @extend .black;
+  }
+
+  &--failed[class] {
+    @include space(padding, xs, top);
+    background-color: $pink;
+    color: $white;
+  }
+
+  .primary__progress {
+    background-color: $light-green;
+    color: $white;
+    @include space(padding, xs, top bottom);
+    @include transition (width 0.2s ease-in-out);
+    overflow: hidden;
+    position: absolute;
+    top: 0; bottom: 0; left: 0;
+  }
+
+  .primary__progress__text {
+    width: 271px; // width of primaryDrop minus borders
+  }
+}
+
+.primary .csv-table-primary-header {
+  visibility: visible;
+}
+
+.primaryActive .csv-table-primary-header {
+  visibility: visible;
+  background-color: $white;
+}
+
+.primary .csv-table-primary-header--deport {
+  background-color: $light-green;
+  color: $white;
+}

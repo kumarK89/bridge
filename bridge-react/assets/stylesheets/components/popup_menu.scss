@@ -1,0 +1,28 @@
+.popup-menu {
+  background: rgba($indigo, 0.8);
+  width: 200px;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.5;
+
+  .qtip-tip {
+    opacity: 0.8;
+  }
+
+  ul {
+    padding: 15px 0;
+  }
+}
+
+.popup-menu-item {
+  list-style: none;
+  clear: left;
+}
+.popup-menu-item__link {
+  display: block;
+  color: $white;
+  padding: 4px 13px;
+}
+.popup-menu-item__icon {
+  @include space(margin, xs, right);
+}

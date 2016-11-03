@@ -1,0 +1,30 @@
+.attendance-list {
+  &__user {
+    width: 150px;
+    height: 150px;
+    margin: 0 50px 25px 0;
+  }
+
+  &__toggle {
+    position: relative;
+  }
+
+  &__avatar-cover {
+    background: $blue;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    opacity: .85;
+    z-index: 1;
+
+    &--concluded {
+      background: $dark-grey;
+    }
+  }
+
+  &__check {
+    @include x-large;
+    color: white;
+  }
+}

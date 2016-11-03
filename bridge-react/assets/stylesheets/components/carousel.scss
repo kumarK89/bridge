@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+.carousel {
+  position: relative;
+}
+
+// controls
+.carousel__controls {
+  position: absolute;
+  top: 45%;
+  left: 0;
+  width: 100%;
+}
+.carousel__control {
+  @include btn--reset();
+  position: absolute;
+  padding: 0;
+  color: $blue-grey;
+}
+.carousel__next {
+  right: 0;
+}
+
+// items
+.carousel__clip {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid $grey;
+  margin: 0 65px;
+}
+.carousel__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.carousel__item {
+  float: left;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+}
+.carousel__item-overlay {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: $white;
+  opacity: 0;
+}

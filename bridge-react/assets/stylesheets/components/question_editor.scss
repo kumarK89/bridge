@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+.question-editor {
+  @include space(padding, s, right left);
+
+  &__invalid-question-banner {
+    @include centered;
+    width: $max-page-width;
+  }
+
+  &.ordered-list-question-editor {
+    @include centered;
+    width: $max-page-width;
+  }
+
+  &__text--short-answer {
+    margin: 0 32px;
+    padding: 0 32px;
+  }
+
+  &__answers {
+    .checkbox__display-checkbox {
+      font-size: 1.5em;
+      line-height: 1.8;
+      height: 40px;
+      width: 40px;
+      @include transition(border-radius 0.25s $ease-out-back);
+    }
+
+    &--multiple-choice .checkbox__display-checkbox{
+      @include circular;
+    }
+
+    &--multiple-answer .checkbox__display-checkbox{
+      @include rounded-corners-default;
+    }
+  }
+
+  &__answer--sortable {
+    @extend %grabbable;
+  }
+  &__answer--dragging {
+    @extend %grabbing;
+  }
+
+
+  &__header {
+    @extend .border-b;
+    border-color: $med-grey;
+    @include space(margin, m, bottom);
+    @extend .fixed-width-max;
+    @include centered;
+
+    .table-cell {
+      @include text-middle;
+    }
+  }
+
+  &__answer--invalid {
+    @include placeholder { color: $pink; }
+    .question-editor-answer__body {
+      .editable-textarea__input {
+        @include placeholder { color: $pink; }
+        color: $pink;
+      }
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    &:focus {
+      outline: none;
+    }
+
+    &-editor {
+      @extend %base;
+      @include linear-gradient($transparent, $white-op70);
+      border: 4px solid $blue;
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+
+      &__controls {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        @include space(padding, s, bottom);
+      }
+
+      &__popup {
+        @include space(padding, s);
+        background: rgba($indigo, 0.8);
+
+        .qtip-tip {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}

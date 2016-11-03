@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+.survey-results-participants {
+  @include space(margin, l, bottom);
+}
+.survey-results-participants__header {
+  @include clearfix;
+}
+
+.survey-results-participants__table {
+  @include space(padding, xl, top);
+  @include large-content-area;
+  @include centered;
+}
+.survey-results-participants__title {
+  width: 75%;
+  line-height: 32px;
+}
+.survey-results-participants__progress {
+  @include small;
+}
+.survey-results-participants__icon,
+.survey-results-participants__donut {
+  @include space(margin, xs, right);
+  vertical-align: middle;
+  color: $dark-grey;
+}
+.survey-results-participants__donut {
+  transform: rotate(-90deg);
+
+  &--grey {
+    stroke: $grey;
+    stroke-width: 4;
+  }
+  &--blue {
+    stroke: $blue;
+    stroke-width: 4;
+  }
+}

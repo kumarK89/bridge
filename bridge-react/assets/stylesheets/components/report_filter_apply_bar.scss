@@ -1,0 +1,53 @@
+.report-filter-apply-bar {
+  @include space(padding, s);
+  @include transform(translate3d(0, 100%, 0));
+  @include transition(transform 0.1s);
+  background-color: $grey;
+  bottom: 0;
+  overflow: auto;
+  position: fixed;
+  width: 100%;
+
+  &--active {
+    @include transform(translate3d(0, 0, 0));
+  }
+
+  @include breakpoint(larger-than-phones) {
+    @include space(margin, l, left, negative);
+    @include space(margin, m, top);
+    @include transform(none);
+    @include transition(none);
+    bottom: auto;
+    margin-left: 0;
+    position: static;
+  }
+
+  &__container {
+    @include large-content-area;
+    margin: 0 auto;
+  }
+
+}
+
+.report-filter-apply-bar-controls {
+  float: right;
+
+  &__button {
+    margin: 0 $space-xs;
+
+    &--apply {
+      @include btn;
+      @extend .filled;
+    }
+
+    &--clear {
+      @include btn;
+      @extend .secondary;
+      display: none;
+
+      @include breakpoint(larger-than-phones) {
+        display: inline;
+      }
+    }
+  }
+}

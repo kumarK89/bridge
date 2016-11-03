@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.user-add__input {
+  border: none;
+  @include full-width;
+  @include space(padding, s, top bottom);
+  @include breakpoint(large) {
+    @include space(padding, xxl, left);
+  }
+}

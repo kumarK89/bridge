@@ -1,0 +1,38 @@
+.active-filter-box {
+  @include small;
+  text-align: right;
+  @include space(padding, s, left right);
+
+  &__label {
+    @include space(padding, xs, right);
+  }
+
+  &__tag_box {
+    @include space(margin, xs, right left bottom);
+    display: inline-block;
+    cursor: pointer;
+    @include user-select(none);
+
+    color: $blue-grey;
+    background-color: $white;
+
+    @include borders(solid, 1px, bottom right);
+    border-color: $med-grey;
+
+    // to be consistent with .tag-pill
+    padding: 0.5em 1em;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: $light-grey;
+    }
+  }
+
+  &__box-icon {
+    @include space(margin, xxs, top right left);
+    @include space(margin, xs, bottom);
+    @include space(padding, xs, left);
+    color: $dark-grey;
+    cursor: pointer;
+  }
+}

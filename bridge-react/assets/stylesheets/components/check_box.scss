@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Check Box
+name: 004_check_box
+category: Components
+---
+
+[[[plugin:src-file-path]]]
+
+The checkbox component is used on a list item where a user is given multiple options on an item.
+
+The code is included in the `ListItem` component and the `RemovableItem` component.
+
+```html_example
+<div class="removable-item removable-item--focused">
+  <div class="padding-s pure-g">
+    <div class="pure-u-5-8">
+      <div class="ember-view avatar avatar--user left margin-r-s dee-snider" aria-hidden="true">
+        <span class="avatar__name">LJ</span>
+      </div>
+      <span class="avatar__label">
+        Leroy Jenkins
+      </span>
+    </div>
+    <div class="pure-u-3-8 text-center admin-dashboard__actions">
+      <button class="admin-dashboard__button" type="button">Cancel</button>
+      <button class="admin-dashboard__button" type="button">Save</button>
+    </div>
+    <div class="pure-u-1 padding-t-xs">
+      <label class="ember-view checkbox checkbox--role padding-l-xs checkbox--checked"><span class="checkbox__display-checkbox left"></span>
+        <input class="ember-view ember-checkbox screenreader-only" checked="checked" type="checkbox">
+        <span class="checkbox__label-wrapper left">Author</span>
+      </label>
+      <label class="ember-view checkbox checkbox--role padding-l-xs"><span class="checkbox__display-checkbox left"></span>
+        <input class="ember-view ember-checkbox screenreader-only" type="checkbox">
+        <span class="checkbox__label-wrapper left">Manager</span>
+      </label>
+    </div>
+  </div>
+</div>
+```
+
+*/
+
+.checkbox {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  text-transform: none;
+  @extend .pointer;
+
+  @include clearfix;
+
+  &--focused{
+    outline: none;
+  }
+
+  &__display-checkbox {
+    border: 1px solid $grey;
+    background: $white;
+    border-radius: 3px;
+    color: $white;
+    display: inline-block;
+    font-size: 10px;
+    height: 20px;
+    padding: 4px 0 0 0;
+    width: 20px;
+
+    @include space(margin, xs, right);
+    @include text-center;
+  }
+
+  &--checked &__label-wrapper, /* legacy ember */
+  &__label-wrapper--checked {
+    color: $blue;
+  }
+
+  &--checked &__display-checkbox, /* legacy ember */
+  &__display-checkbox--checked {
+    background: $blue;
+    border-color: $white;
+
+    @extend .gs-check;
+  }
+
+  &--disabled,
+  &__display-checkbox--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--white-fill {
+    &.checkbox--checked .checkbox__display-checkbox {
+      background: $white;
+      color: inherit;
+    }
+  }
+}
+
+.theme-light .checkbox {
+  &__display-checkbox {
+    border-color: $chart-grey;
+  }
+
+  &__display-checkbox--checked {
+    color: $blue-grey;
+    border-color: $chart-grey;
+  }
+}
+
+
+.checkbox--role {
+  display: block;
+  margin: 16px 0;
+  @include breakpoint(large) {
+    display: inline-block;
+    margin: 8px 0;
+  }
+}

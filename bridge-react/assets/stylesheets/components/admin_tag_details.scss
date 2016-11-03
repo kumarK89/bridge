@@ -1,0 +1,148 @@
+.admin-tag-details {
+  &__search {
+    @include large-content-area;
+    @include centered;
+    @include space(padding, l, left);
+    @include small;
+    @include bold;
+    color: $dark-grey;
+
+    @include style-placeholder(".search-field__input") {
+      @include small;
+      color: $med-grey;
+    }
+
+    &__wrapper {
+      border-bottom: 1px solid $grey;
+      width: 100%;
+    }
+  }
+
+  .autocomplete-toggle {
+    @include large-content-area;
+    @include centered;
+    @include space(padding, m, left right);
+  }
+
+  &__add-item, .autocomplete--open {
+    @include large-content-area;
+    @include centered;
+
+    .autocomplete__list {
+      @include display(flex);
+      @include flex-direction(column);
+      @include align-items(flex-start);
+    }
+
+    .autocomplete__option {
+      font-size: 1.2em;
+      padding: 0;
+      width: 100%;
+    }
+
+    &__search-result {
+      @include space(padding, s, top bottom);
+      @include space(padding, xs, left right);
+    }
+  }
+}
+
+.admin-tag-details-actions {
+  @include space(margin, xxl, right);
+
+  @include breakpoint(medium) {
+    @include centered;
+  }
+
+  &__delete-button {
+    @include btn;
+    @include btn-secondary;
+    @include space(margin, s, top bottom);
+    @include small;
+    white-space: nowrap;
+  }
+}
+
+.admin-tag-details-header--delete {
+  @include space(padding, l, left right);
+
+  .content-header {
+    &__sections {
+      @include borders(solid, 2px);
+      @include border-color($med-grey);
+      @include rounded-corners-default;
+      @include shadow;
+      @include justify-content(space-around);
+    }
+  }
+
+  .content-header-section {
+    &__icon-text {
+      @include breakpoint(mobile) {
+        padding-bottom: 0;
+      }
+    }
+
+    &__icon-wrapper {
+      border-color: $indigo;
+      background-color: $indigo;
+    }
+
+    &__icon {
+      color: $white;
+    }
+
+    &__title {
+      color: $indigo;
+    }
+  }
+
+  & .admin-tag-details-header {
+    &__delete-confirm-text {
+      @include space(padding, s, top left right bottom);
+      @include border-color($grey);
+      @include small;
+      max-width: 280px;
+
+      @include breakpoint(large) {
+        @include borders(solid, 2px, right);
+      }
+
+      @include breakpoint(medium) {
+        @include space(padding, xs, top);
+        @include borders(solid, 2px, bottom);
+      }
+
+      h3 {
+        @include bold;
+        @include space(margin, xs, bottom);
+      }
+    }
+
+    &__delete-options {
+      @include space(margin, m, all);
+      @include display(flex);
+      @include flex-wrap(wrap);
+      @include justify-content(space-around);
+      @include align-items(center);
+
+      @include breakpoint(small) {
+        @include space(margin, xs, all);
+      }
+
+      button {
+        @include btn-base;
+        @include small;
+        @include space(margin, s, top bottom);
+      }
+
+      .delete-options__button--cancel {
+        @include btn-tertiary-color($dark-grey);
+      }
+
+      .delete-options__button--delete {
+        @include btn-tertiary-color($pink);
+      }
+    }
+  }
+}
