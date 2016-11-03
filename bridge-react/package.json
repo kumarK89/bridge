@@ -104,6 +104,7 @@
       "./test/helpers/browser.js"
     ],
     "reporter": [
+      "lcov",
       "text-summary",
       "html"
     ],
