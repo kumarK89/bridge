@@ -34,7 +34,7 @@ class SurveySortItemContainer extends Component{
 			<div>
 			{   
 
-                sortOptions.map(function(sort, index) {
+                sortOptions.map(function(sort) {
                     let isChecked = (this.state.activeSortItem === sort.value)
 			        let sortItemclassName = classnames({
 			            'sort-selector__item': true,

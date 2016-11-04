@@ -12,7 +12,7 @@ class SurveyListContainer extends Component{
     		<div>
     			<ul className="survey-list bordered">
 	    		{
-	                this.props.surveysData && this.props.surveysData.map(function(survey, index) {	               
+	                this.props.surveysData && this.props.surveysData.map(function(survey) {
 	                    let surveyListItemKey = 'surveyListItem-'+survey.surveyId; 
 	                    return <SurveyListItemContainer key={surveyListItemKey} 
                                                         deleteSurvey={this.props.deleteSurvey}

@@ -51,10 +51,8 @@ class SurveySearchFieldContainer extends Component{
     if (event.key === 'Escape') {
       event.target.value = '';
       this.handleInputChange(event);
-    } else if (event.key === 'Enter') {
-      if (this.state.searchTerm && this.state.searchTerm.replace(/ /g, '') !== '') {
+    } else if (event.key === 'Enter' && this.state.searchTerm && this.state.searchTerm.replace(/ /g, '') !== '') {
         this.props.onCarriageReturn && this.props.onCarriageReturn(this.state.searchTerm);
-      }
     }
   }
   handleFocus(){
