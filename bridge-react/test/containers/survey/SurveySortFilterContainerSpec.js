@@ -39,4 +39,11 @@ describe('<SurveySortFilterContainer />', () =>{
         expect(wrapper.find('.popdown__modal')).to.have.length(1);
     });
 
+    it('Check openModal function', () => {
+         const wrapper = mount(<SurveySortFilterContainer isModalOpen={true} onSortSelect={mockFunc1} onFilterSelect={mockFunc2} clearSortFilterParams={mockFunc3} />);
+         wrapper.find('button').simulate('click');
+         expect(wrapper.state('isModalOpen')).to.equals(true);
+    });
+
+
 })
