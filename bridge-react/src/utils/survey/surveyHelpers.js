@@ -24,9 +24,9 @@ var surveyHelpers = {
 	deleteSurvey : function(deleteSurveyId){
 		return axios.delete(_BASE_URL+'/survey/deleteSurvey?surveyId='
 			         +deleteSurveyId)
-		.then(
+		.then(function(){
 			return 'SUCCESS';
-		)
+		})
 		.catch(function(error){
 			return logCustomMessage(error , {
                deleteSurveyId : deleteSurveyId,
