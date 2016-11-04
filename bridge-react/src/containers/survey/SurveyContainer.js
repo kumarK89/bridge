@@ -58,12 +58,11 @@ class SurveyContainer extends Component{
     }
     deleteSurvey(surveyId){
         surveyHelpers.deleteSurvey(surveyId)
-        .then(function(data){
+        .then(
             this.getSurveys(this.state.searchTerm,
                         this.state.sortParam,
-                        this.state.isUnPublished);
-        }.bind(this));
-        
+                        this.state.isUnPublished)
+        );
     }
     getSurveys(searchTerm,sortParam,isUnPublished){
         surveyHelpers.getSurveys(searchTerm,

@@ -33,12 +33,6 @@ describe('<SurveySortFilterContainer />', () =>{
         expect(mockFunc1.calledOnce).to.equal(true);
     });
 
-    xit('Check openModal function', () => {
-        const wrapper = shallow(<SurveySortFilterContainer isModalOpen={true} onSortSelect={mockFunc1} onFilterSelect={mockFunc2} clearSortFilterParams={mockFunc3} />);
-        wrapper.find('button').simulate('click');
-        expect(wrapper.state('isModalOpen')).to.equals(true);
-    });
-
     it('Check afterOpenModal function', () => {
         const wrapper = shallow(<SurveySortFilterContainer isModalOpen={true} onSortSelect={mockFunc1} onFilterSelect={mockFunc2} clearSortFilterParams={mockFunc3} />);
         wrapper.instance().afterOpenModal();

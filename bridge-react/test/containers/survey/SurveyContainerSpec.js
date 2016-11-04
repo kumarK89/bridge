@@ -91,17 +91,37 @@ describe('<SurveyContainer />', () =>{
         expect(wrapper.state('surveys')).to.equal('test');
     });
 
-    xit('deleteSurvey checking for success response', (done) => {
+    it('deleteSurvey checking for success response', (done) => {
+        let data = {success:'test'};
         const wrapper = shallow(<SurveyContainer {...minProps}/>);
         let getSurveysFunc = sinon.spy(wrapper.instance(),'getSurveys');
         wrapper.instance().deleteSurvey(1);
-        expect(getSurveysFunc).to.have.been.called;
+        const resolved = new Promise((resolve) => resolve({ data }));
+        sandbox.stub(axios, 'get').returns(resolved);
+        surveyHelpers.getSurveys('test','Ascending',true).then(() => {
+            expect(getSurveysFunc).to.have.been.called;
+        }).then(done, done);
+    });
+
+    it('deleteSurvey service call check for success response', (done) => {
+        let data = {success:'test'};
+        const wrapper = shallow(<SurveyContainer {...minProps}/>);
+        let getSurveysFunc = sinon.spy(wrapper.instance(),'getSurveys');
+        let delSurveyFunc = sinon.spy(wrapper.instance(),'deleteSurvey');
+        wrapper.instance().deleteSurvey(1);
+        const resolved = new Promise((resolve) => resolve({ data }));
+        sandbox.stub(axios, 'get').returns(resolved);
+        const resolved1 = new Promise((resolve) => resolve({ data }));
+        sandbox.stub(axios, 'delete').returns(resolved1);
+        surveyHelpers.deleteSurvey(1).then(() => {
+            expect(getSurveysFunc).to.have.been.called;
+        }).then(done, done);
     });
 
     it('deleteSurvey checking for error response', (done) => {
         let data = {error:'test'};
         const rejected = new Promise((resolve, reject) => reject({ data }));
-        sandbox.stub(axios, 'delete').returns(rejected);
+        sandbox.stub(axios, 'get').returns(rejected);
         surveyHelpers.deleteSurvey(1).then(() => {
             expect(data.error).to.equals('test');
         }).then(done, done);
