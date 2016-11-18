@@ -97,6 +97,6 @@ sonarqube {
         property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
         property "sonar.jacoco.itReportPath", "${project.buildDir}/jacoco/jacoco-it.exec"
         property "sonar.exclusions", "src/main/java/com/bridge/entity/**"
-        property "sonar.coverage.exclusions", "src/main/java/com/bridge/entity/**"
+        property "sonar.coverage.exclusions", "src/main/java/com/bridge/entity/**,src/main/java/com/bridge/BridgeBootApplication.java"
     }
 }
