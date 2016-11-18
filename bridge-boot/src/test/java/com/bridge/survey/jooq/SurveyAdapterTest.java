@@ -288,11 +288,22 @@ public class SurveyAdapterTest {
         surveyQuestion.setAllowPreText(true);
         surveyQuestion.setSurveyId(1);
         surveyQuestions.add(surveyQuestion);
+
+        SurveyQuestion surveyQuestion1 = new SurveyQuestion();
+        surveyQuestion1.setId(0);
+        surveyQuestion1.setRequired(true);
+        surveyQuestion1.setPreTextMessage("txt");
+        surveyQuestion1.setText("Test question 2");
+        surveyQuestion1.setIdealAnswerOptionId(1);
+        surveyQuestion1.setAllowPreText(true);
+        surveyQuestion1.setSurveyId(1);
+        surveyQuestions.add(surveyQuestion1);
+
+
         surveyAdapter.saveOrUpdateSurveyQuestions(surveyQuestions);
         Assert.assertEquals(expected, dslContext.lastID());
 
     }
-
 
 
     @Test
@@ -307,7 +318,7 @@ public class SurveyAdapterTest {
                 "\"\\\"answer_type_id\\\":\\\"1\\\",\\\"option_id\\\":\\\"1\\\"}," +
                 "{\\\"question_text\\\":\\\"test2\\\"\" +\n" +
                 "\",\"is_required\":\"true\",\"answer_type_id\":\"1\",\"option_id\":\"2\"}]}");
-        surveyAdapter.saveorUpdateSurveyTemplate(1l, "TEXT", str);
+        surveyAdapter.saveorUpdateSurveyTemplate("TEXT", str);
     }
 
     @Test
