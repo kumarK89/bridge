@@ -1,0 +1,99 @@
+.content-header {
+  background-color:$light-grey;
+  color: $dark-grey;
+  @include space(padding, xl, top left bottom);
+
+  @include breakpoint(medium) {
+    @include space(padding, xl, right);
+  }
+
+  &__sections {
+    @include large-content-area;
+    @include display(flex);
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include centered;
+
+    @include breakpoint(large) {
+      min-height: 150px;
+    }
+
+    @include breakpoint(medium) {
+      @include flex-direction(column);
+    }
+  }
+}
+
+.content-header-section {
+  &__title-column {
+    @include display(flex);
+    @include flex-direction(column);
+    @include justify-content(space-around);
+  }
+
+  &__title {
+    @include xx-large;
+  }
+
+  &__list--slashed {
+    @extend .list--slashed;
+    @include x-medium;
+    @include space(margin, xxs, left);
+  }
+
+  &__icon-text {
+    font-size: 2em;
+    font-weight: lighter;
+    @include space(padding, s, top);
+    @include space(padding, m, right bottom left);
+    @include large-content-area;
+    @include centered;
+    @include display(flex);
+    @include align-items(center);
+
+    @include breakpoint(medium) {
+      @include flex-direction(column);
+      @include space(margin, s, top);
+      line-height: 1.25;
+    }
+  }
+
+  &__icon-wrapper {
+    border-radius: 50%;
+    background-color: transparent;
+    border: 5px solid $dark-grey;
+    @include space(margin, m, right);
+    @include space(padding, l, right bottom);
+    padding-top: 20px;
+    padding-left: 20px;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+
+    @include breakpoint(medium) {
+      @include space(margin, s, bottom);
+    }
+  }
+
+  &__icon {
+    @extend .gs-1x;
+
+    color: $dark-grey;
+    font-family: arial;
+    @include display(flex);
+    @include align-items(center);
+  }
+
+  &__nav-link {
+    @include bold;
+    @include small;
+    @include space(margin, m, left);
+    color: $dark-grey;
+  }
+
+  &__nav-icon {
+    @extend .gs-arrow-left;
+    @extend .gs-1x;
+    @include space(padding, xs, right);
+  }
+}

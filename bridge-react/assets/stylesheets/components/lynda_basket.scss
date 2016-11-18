@@ -1,0 +1,45 @@
+.markets__lynda--basket{
+  background-color: $white;
+}
+
+.lynda-basket{
+  .markets-header{
+    background: $white;
+  }
+  .lynda-basket__delete-row{
+    text-align: right;
+    padding-right: $space-s;
+    .gs-x{
+      cursor: pointer;
+    }
+  }
+
+  &__table-body{
+    font-size: .75rem;
+  }
+  &__course-link{
+    font-size: 1rem;
+  }
+
+  &__buttons{
+    margin-top: $space-l;
+    .btn{
+       margin: $space-s $space-s 0 0;
+    }
+  }
+  &__no-courses{
+    padding: $space-xs;
+  }
+
+  &__success{
+    text-align:center;
+    hr{
+      margin:45px 0 40px 0;
+      border-top:none;
+      border-color: $grey;
+    }
+  }
+  &__success-heading{
+    margin:80px 0 20px 0;
+  }
+}

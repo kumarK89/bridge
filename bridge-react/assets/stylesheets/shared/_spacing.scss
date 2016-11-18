@@ -1,0 +1,267 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Margins
+name: margins
+category: Spacing
+---
+
+[[[plugin:src-file-path]]]
+
+Margin classes take the form `margin-[sides]-[size]`, where `[sides]` is
+replaced with a combination of t, r, b, and l (for top, right, bottom, and
+left margins respectively), and `[size]` is `xxs`, `xs`, `s`, `m`, `l`, `xl` or `xxl`.
+
+Margins can be removed with the `-none` suffix.
+
+<ul class="sg-spacers">
+  <li><div class="margin-none"/>
+  <li><div class="margin-trbl-xxs"/>
+  <li><div class="margin-trbl-xs"/>
+  <li><div class="margin-trbl-s"/>
+  <li><div class="margin-trbl-m"/>
+  <li><div class="margin-trbl-l"/>
+  <li><div class="margin-trbl-xl"/>
+  <li><div class="margin-trbl-xxl"/>
+</ul>
+
+*/
+
+
+/*doc
+---
+title: Padding
+name: padding
+category: Spacing
+---
+
+Padding classes take the form `padding-[sides]-[size]`, where `[sides]` is
+replaced with a combination of t, r, b, and l (for top, right, bottom, and
+left padding respectively), and `[size]` is `xxs`, `xs`, `s`, `m`, `l`, `xl` or `xxl`.
+
+Padding can be removed with the `-none` suffix.
+
+<ul class="sg-spacers">
+  <li><div class="padding-none"/>
+  <li><div class="padding-trbl-xxs"/>
+  <li><div class="padding-trbl-xs"/>
+  <li><div class="padding-trbl-s"/>
+  <li><div class="padding-trbl-m"/>
+  <li><div class="padding-trbl-l"/>
+  <li><div class="padding-trbl-xl"/>
+  <li><div class="padding-trbl-xxl"/>
+</ul>
+
+*/
+@mixin margin-none {
+  margin: 0;
+}
+@include breakpointify(".margin-none") {
+  @include margin-none;
+}
+@include breakpointify(".padding-none") {
+  padding: 0;
+}
+
+@mixin padding-none($sides: all) {
+  @if ($sides == all) {
+    padding: 0;
+  } @else {
+    @each $side in $sides {
+      padding-#{$side}: 0;
+    }
+  }
+}
+
+$spacing-size: json-var(SPACING_SIZE);
+$space-xxs: $spacing-size/2;
+$space-xs: $spacing-size;
+$space-s: $spacing-size*2;
+$space-m: $spacing-size*3;
+$space-l: $spacing-size*4;
+$space-xl: $spacing-size*5;
+$space-xxl: $spacing-size*6;
+
+@mixin space($type, $size-code, $sides: all, $negative:'') {
+  $size: '';
+  @if $size-code == xxs {
+    $size: $spacing-size/2;
+  } @else {
+    $size: $spacing-size * index(xs s m l xl xxl, $size-code);
+  }
+  @if $sides == all {
+    @if $negative != '' {
+      #{$type}: -$size;
+    } @else {
+      #{$type}: $size;
+    }
+
+  } @else {
+    @each $side in $sides {
+      @if $negative != '' {
+        #{$type}-#{$side}: -$size;
+      } @else {
+        #{$type}-#{$side}: $size;
+      }
+    }
+  }
+}
+
+@each $prop in margin, padding {
+  @each $size in xxs, xs, s, m, l, xl, xxl {
+
+    .#{$prop}-#{$size},
+    .#{$prop}-trbl-#{$size} {
+      @include space($prop, $size);
+    }
+    .#{$prop}-t-#{$size} {
+      @include space($prop, $size, top);
+    }
+    .#{$prop}-tr-#{$size} {
+      @include space($prop, $size, top right);
+    }
+    .#{$prop}-trb-#{$size} {
+      @include space($prop, $size, top right bottom);
+    }
+    .#{$prop}-trl-#{$size} {
+      @include space($prop, $size, top right left);
+    }
+    .#{$prop}-tb-#{$size} {
+      @include space($prop, $size, top bottom);
+    }
+    .#{$prop}-tbl-#{$size} {
+      @include space($prop, $size, top bottom left);
+    }
+    .#{$prop}-tl-#{$size} {
+      @include space($prop, $size, top left);
+    }
+    .#{$prop}-r-#{$size} {
+      @include space($prop, $size, right);
+    }
+    .#{$prop}-rb-#{$size} {
+      @include space($prop, $size, right bottom);
+    }
+    .#{$prop}-rbl-#{$size} {
+      @include space($prop, $size, right bottom left);
+    }
+    .#{$prop}-rl-#{$size} {
+      @include space($prop, $size, right left);
+    }
+    .#{$prop}-b-#{$size} {
+      @include space($prop, $size, bottom);
+    }
+    .#{$prop}-bl-#{$size} {
+      @include space($prop, $size, bottom left);
+    }
+    .#{$prop}-l-#{$size} {
+      @include space($prop, $size, left);
+    }
+  }
+}
+
+// TODO: find a category for the following (utilities?) and document them
+
+$header-height: 4em;
+
+/* floats */
+@mixin left        { float: left; }
+@mixin right       { float: right; }
+@mixin clear       { clear: both; }
+@mixin clear-left  { clear: left; }
+@mixin clear-right { clear: right; }
+@mixin centered    {
+  margin-left: auto;
+  margin-right: auto;
+}
+@mixin clearfix {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    @include clear;
+  }
+}
+.left, %left { @include left; }
+.right, %right { @include right; }
+.clear, %clear { @include clear; }
+.clear-left, %clear-left { @include clear-left; }
+.clear-right, %clear-right { @include clear-right; }
+.centered, %centered { @include centered; }
+.clearfix, %clearfix { @include clearfix; }
+
+/* display */
+@mixin block        { display: block; }
+@mixin inline       { display: inline; }
+@mixin inline-block { display: inline-block; }
+.block { @include block }
+.inline { @include inline }
+.inline-block { @include inline-block }
+
+.hidden {
+  display: none !important;
+}
+
+.hidden-mobile {
+  @include breakpoint(medium) {
+    display: none !important;
+  }
+}
+
+.hidden-desktop {
+  @include breakpoint(large) {
+    display: none !important;
+  }
+}
+
+/* position */
+.absolute { position: absolute; }
+.upper-left {
+  @extend .absolute;
+  left: 0;
+  top: 0;
+}
+@mixin relative { position: relative; }
+.relative { @include relative; }
+
+/* size */
+.constrained {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.constrained-width-60 {
+  max-width: 60%
+}
+
+.constrained-width-50 {
+  max-width: 50%
+}
+
+.constrained-width-40 {
+  max-width: 40%
+}
+
+.constrained-width-35 {
+  max-width: 35%
+}
+
+@mixin full-height {
+  height: 100%;
+}
+.full-height { @include full-height; }
+
+.full-viewport-height {
+  height: 100vh;
+}
+
+.full-min-height {
+  min-height: 100%;
+  min-height: 100vh;
+}
+
+@mixin full-width {
+  width: 100%;
+}
+.full-width, %full-width { @include full-width; }

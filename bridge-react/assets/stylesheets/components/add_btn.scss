@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+.add-btn {
+  @include btn;
+  @include btn-secondary;
+  @include btn--round;
+  float: right;
+  font-size: 16px;
+  text-align: center;
+  @include space(margin, xxs, top);
+  @include breakpoint(large) {
+    height: auto;
+    width: auto;
+    line-height: inherit;
+    margin-top: 16px;
+    font-size: 12px;
+    padding: 9px 20px 7px 20px;
+  }
+
+  &:active {
+    @include button-active(#576474, $background-color: $dark-grey);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.07);
+  }
+}
+
+.add-btn--detail {
+  margin-top: 0;
+}
+.add-btn__text {
+  display: none;
+
+  @include breakpoint(large) {
+    display: inline;
+  }
+}

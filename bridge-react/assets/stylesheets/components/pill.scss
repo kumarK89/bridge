@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+.pill {
+  @include rounded-corners-default;
+  @include x-small;
+  font-weight: bold;
+  background-color: $dark-grey;
+  color: $white;
+  display: inline-block;
+  flex: none;
+  line-height: 1;
+}

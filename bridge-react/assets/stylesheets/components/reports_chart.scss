@@ -1,0 +1,163 @@
+@charset "utf-8";
+
+$reports-chart-container-height: 500px;
+
+.reports-selector {
+  @include large-content-area;
+  margin-top: 70px;
+}
+
+.reports-chart {
+  background-color: $white;
+  @include space(margin, l, bottom);
+  @include space(padding, s, right left);
+  @include space(padding, l, top);
+  @include large-content-area;
+  @include centered;
+  @include clearfix;
+  position: relative;
+}
+
+.reports-chart__options {
+  color: $blue-grey;
+  margin-left: 99px;
+  margin-right: 67px;
+}
+
+.reports-chart__toggle-options {
+  margin-top: 11px;
+}
+
+.reports-chart__range-options {
+  @include semi-bold;
+  text-transform: uppercase;
+  color: black;
+
+  @include breakpoint(larger-than-phones) {
+    width: 13em;
+  }
+}
+
+.reports-chart .combo-box__icon {
+  @include space(margin, xxs, left);
+  @include x-small;
+}
+
+.reports-chart__container {
+  min-height: $reports-chart-container-height;
+  @include space(margin, xl, right left);
+  @include borders(solid, 1px, bottom);
+  border-color: $med-grey;
+}
+
+.reports-chart__no-data-message {
+  @include semi-bold;
+  position: absolute;
+  top: $reports-chart-container-height / 2;
+  width: 100%;
+  text-align: center;
+}
+
+.reports-chart__loader-container {
+  position: absolute;
+  width: 100%;
+  height: $reports-chart-container-height;
+}
+
+.reports-chart__bar {
+  cursor: pointer;
+}
+.reports-chart__bar-stop--top--active {
+  stop-color: $chart-grey;
+  stop-opacity: 1;
+}
+.reports-chart__bar-stop--bottom--active {
+  stop-color: $dark-grey;
+  stop-opacity: 1;
+}
+
+.reports-chart__line {
+  fill: none;
+  stroke: white;
+  stroke-width: 3;
+}
+.reports-chart__line-stop--top {
+  stop-color: $pink;
+  stop-opacity: 1;
+}
+.reports-chart__line-stop--bottom {
+  stop-color: $purple;
+  stop-opacity: 1;
+}
+.reports-chart__line-bg {
+  pointer-events: none;
+}
+
+.reports-chart__yaxis,
+.reports-chart__xaxis {
+  fill: $blue-grey;
+  font-size: 12px;
+
+  path {
+    fill: none;
+  }
+}
+.reports-chart__xaxis__min {
+  text-anchor: start;
+}
+.reports-chart__xaxis__max {
+  text-anchor: end;
+}
+
+.reports-chart__tip {
+  @include space(padding, s);
+  position: relative;
+  pointer-events: all;
+  background: rgba($indigo, .9);
+  border-radius: $border-radius-default;
+  text-align: center;
+
+  &:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba($indigo, 0);
+    border-top-color: rgba($indigo, 0.9);
+    border-width: 15px;
+    margin-left: -15px;
+  }
+}
+
+.reports-chart__tip__header {
+  @include x-small;
+  @include space(padding, xs, bottom);
+  @include space(margin, xs, bottom);
+  line-height: 1em;
+  color: $grey;
+  border-bottom: 1px solid $blue-grey;
+}
+.reports-chart__tip__table {
+  @include display(flex);
+}
+.reports-chart__tip__cell {
+  @include space(padding, xs, right left);
+}
+.reports-chart__tip__value {
+  @include x-large;
+  color: $white;
+  line-height: 1.3em;
+  white-space: nowrap;
+}
+.reports-chart__tip__label {
+  @include x-small;
+  color: $dark-grey;
+  line-height: 1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+

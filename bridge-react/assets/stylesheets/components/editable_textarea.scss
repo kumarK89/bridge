@@ -1,0 +1,189 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Editable Textarea
+name: editable-textarea
+category: Components
+---
+
+[[[plugin:src-file-path]]]
+
+```hbs_example
+{{editable-textarea label="Course Name" placeholder="Biology 101" modifiers="h2" autofocus=true}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" modifiers="block"}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" value="I Have a Label" modifiers="show-label"}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" value="I Have a Very Long Title Very Very Long Indeed" modifiers="block"}}
+{{editable-textarea disabled=true label="Course Name" placeholder="Biology 101" value="I'm Disabled"}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" value="I Am Full Width" modifiers="full-width"}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" value="An External Course" icon="gs-external-course"}}
+{{editable-textarea label="Course Name" placeholder="Biology 101" value="This Text is Centered" modifiers="text-center"}}
+
+<ul class="list--slashed">
+  <li>
+    {{editable-textarea label="Required Score:" placeholder="90" modifiers="show-label as-link" value="0%"}}
+  </li>
+  <li>
+    {{#editable-textarea label="Default Due:" placeholder="0" modifiers="show-label as-link" value="3"}}
+      days from add date
+    {{/editable-textarea}}
+  </li>
+</ul>
+
+{{editable-textarea placeholder="Jane" value="John" modifiers="padded-s"}}
+
+<table>
+  <thead>
+    <tr>
+      <th id="first_name">First Name</th>
+      <th id="last_name">Last Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        {{editable-textarea labelledby="first_name" placeholder="Jane" value="John" modifiers="no-border padded-s"}}
+      </td>
+      <td>
+        {{editable-textarea labelledby="last_name" placeholder="Smith" value="Doe" modifiers="no-border padded-s"}}
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+{{editable-textarea label="Course Description" placeholder="course description here" modifiers="full-width" value="Before they sold out Williamsburg semiotics locavore, Tonx Vice keytar ugh organic retro occupy distillery tofu gastropub. Wayfarers YOLO distillery ethnic Cosby sweater ennui, Banksy sartorial fashion axe food truck cornhole asymmetrical. Lo-fi sriracha organic hoodie slow-carb squid, freegan street art mixtape sustainable Tumblr single-origin coffee. VHS Truffaut selfies, paleo actually organic retro dreamcatcher skateboard blog vegan gastropub deep v. Hashtag kogi kale chips pour-over. Gastropub swag salvia, Kickstarter keytar master cleanse Etsy authentic deep v kogi chia Williamsburg." }}
+```
+
+*/
+
+$editable-textarea-border: 2px;
+$editable-textarea-padding-xxs: 4px;
+$editable-textarea-padding-s: 16px;
+$editable-textarea-offset: $editable-textarea-border;
+
+.editable-textarea {
+
+  display: inline;
+
+  &__wrapper {
+  // wraps the input and the placeholder content
+    position: relative; // so that the input can be positioned to cover it
+    display: inline-block;
+    /*margin: 0 -1 * $editable-textarea-padding-xxs;*/
+  }
+
+  &__input {
+  // covers the wrapper
+    background: transparent;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    &:not(:focus) {
+      resize: none;
+    }
+
+    &:focus {
+      @include transition(box-shadow, 0.3s, $ease-in-out-back);
+
+      outline: none;
+      border-color: $blue;
+      box-shadow: 0 0 10px 2px $indigo-op25;
+      background: $white;
+    }
+  }
+
+  &__placeholder {
+  // not visible but makes the wrapper take up the space so that the input can cover it
+    visibility: hidden;
+    white-space: pre-wrap; // match textarea formatting
+    word-wrap: break-word;
+  }
+
+  &__content {
+  // formatting applied to both placeholder and input so that they fill the same space
+    @include rounded-corners-default;
+
+    border: $editable-textarea-border solid transparent;
+    display: inline-block;
+    padding: $editable-textarea-padding-xxs;
+    line-height: 1.5;
+  }
+
+}
+
+/******************** Modifiers ******************************/
+
+// show-label : label is hidden by default
+.editable-textarea:not(.editable-textarea--show-label) {
+  .editable-textarea__label-text {
+    @extend .screenreader-only;
+  }
+}
+
+// block : component is inline by default
+.editable-textarea--block {
+  display: block;
+}
+
+// full-width : component fills the full width of its container
+.editable-textarea--full-width {
+  display: block;
+  .editable-textarea__wrapper {
+    display: block;
+  }
+  .editable-textarea__content {
+    width: calc(100% - $editable-textarea-offset);
+  }
+}
+
+// h2 : component text is h2 style
+.editable-textarea--h2 {
+  .editable-textarea__content {
+    font-size: 28px;
+    font-weight: bold;
+  }
+}
+@include style-placeholder(".editable-textarea--h2 .editable-textarea__input") {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+// no-border : remove blue border on focused state
+.editable-textarea--no-border {
+  .editable-textarea__content {
+    border-width: 0;
+  }
+}
+
+// padded-s : override the xxs default padding
+.editable-textarea--padded-s {
+  .editable-textarea__content {
+    padding: $editable-textarea-padding-s;
+  }
+}
+
+// as-link : input looks like a link when it's not focused
+.editable-textarea--as-link {
+  .editable-textarea__input {
+    color: $blue;
+    cursor: pointer;
+  }
+
+  .editable-textarea__input:focus {
+    cursor: text;
+  }
+}
+
+// text-center : center the text in the textarea
+.editable-textarea--text-center {
+  .editable-textarea__content {
+    text-align: center;
+  }
+}
+

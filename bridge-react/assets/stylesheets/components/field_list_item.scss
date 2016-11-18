@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+$new-field-width: 150px;
+
+.field-list-item {
+  background-color: $dark-grey;
+  color: $white;
+  @extend .label;
+  min-width: 120px;
+  @extend .overflow-hidden; /* for chrome */
+  @include space(padding, xs, top bottom);
+  @include space(padding, s, right left);
+  @include space(margin, s, right);
+  @include space(margin, xs, bottom);
+  margin-left: 0;
+  @include rounded-corners-default;
+  @extend .inline-block;
+  @include text-center;
+  box-shadow: 0 3px 8px -1px $black-op40;
+
+  &--new {
+    width: $new-field-width;
+    text-align: center;
+    @include dashed-bordered-button($dark-grey);
+    cursor: pointer;
+    box-shadow: none;
+  }
+
+  &--editing {
+    &.field-list-item { background-color: $white; }
+    padding: 1px;
+    @include rounded-corners-default;
+    box-shadow: none;
+    input {
+      width: $new-field-width;
+    }
+  }
+
+  &--primary {
+    &.field-list-item {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  &--assigned {
+    @extend .translucent;
+    box-shadow: none;
+    &.field-list-item.field-list-item--primary {
+      background-color: $dark-grey;
+    }
+  }
+}

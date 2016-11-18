@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+.EditableCell {
+  position: relative;
+  border: 2px solid transparent;
+  width: 100%;
+
+  &:not(:focus) {
+    background-color: transparent;
+    padding: 4px 1px 3px 0;
+  }
+
+  &:focus {
+    padding: 0;
+    color: $blue-grey;
+    border: 2px solid $blue;
+    border-radius: 5px;
+    outline: none;
+    margin: 4px 0 3px 0;
+    line-height: 1.5;
+  }
+}

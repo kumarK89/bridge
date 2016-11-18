@@ -1,0 +1,281 @@
+@charset "utf-8";
+
+.slide-template-preview-list {
+  @include margin-none;
+  @include padding-none(right left);
+  @include space(padding, xs, top bottom);
+  counter-reset: item;
+  list-style: none;
+}
+
+.slide-template-preview {
+  @include space(padding, l, left);
+  @include space(padding, xs, top bottom);
+  @include space(margin, xs, top bottom left);
+  position: relative;
+
+  &:before {
+    @include small;
+    @include bold;
+    color: $dark-grey;
+    content: counter(item);
+    counter-increment: item;
+    position: absolute;
+    left: 5px;
+    top: 10px;
+  }
+
+  /* we don't want the placeholder bumping the numbers as we drag */
+  &.ui-sortable-placeholder:before {
+    content: "";
+    counter-increment: none;
+  }
+
+  &:hover, &--selected {
+    .slide-template-preview__content {
+      @include transform(scale(1.1));
+    }
+  }
+
+  &--selected, &--selected:hover {
+    &.active .slide-template-preview__content {
+      outline: none;
+      border: 2px solid $blue;
+      box-shadow: 0 0 16px rgba(0, 0, 0, .3);
+    }
+  }
+
+  &--invalid .slide-template-preview__content {
+    opacity: 0.4;
+    font-size: 36px;
+    color: $white;
+    text-align: center;
+  }
+
+  &__title {
+    @include x-small;
+    @include bold;
+    color: $blue-grey;
+    position: absolute;
+    left: 150px;
+    top: 10px;
+    width: 100px;
+    max-height: 120px;
+    overflow: hidden;
+
+    &--blank {
+      opacity: 0.6;
+    }
+  }
+}
+
+.slide-template-preview__content {
+  border: 2px solid transparent;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, .1);
+  cursor: pointer;
+  font-size: 0.3em;
+  font-weight: 500;
+  height: 120px;
+  overflow: hidden;
+  width: 100px;
+
+  /* hack to hardware accelerate transform so that we
+   * don't get nasty artifacts when also using
+   * -webkit-overflow-scrolling:touch;
+   */
+  -webkit-transform: translate3d(0,0,0);
+
+  @include transition-property(transform, border-color);
+  @include transition-duration(200ms);
+
+  color: $blue-grey;
+  @include space(padding, s);
+  background-color: $white;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__wrapper {
+    max-height: 84px;
+    overflow: hidden;
+  }
+
+  &__wrapper--invalid:before {
+    padding-top: 22px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
+
+    color: $indigo;
+  }
+
+  &--question:hover {
+    color: $white;
+  }
+
+
+  .body {
+    font-size: 2px;
+    height: 100%;
+
+    p, ol, ul, img {
+      margin-bottom: 4px;
+    }
+
+    p:empty {
+      display: none;
+    }
+
+    ol, ul {
+      padding-left: 4px;
+    }
+
+    iframe {
+      display: none;
+    }
+  }
+
+  h1, .h1 {
+    font-size: 4px;
+    margin: 0 0 4px 0;
+
+    @include bold;
+  }
+  h2, .h2, h3, .h3 {
+
+    font-size: 3px;
+    margin: 0 0 4px 0;
+
+    @include bold;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .media-placeholder {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    max-height: 40px;
+  }
+
+  .media-placeholder__close,
+  .media-placeholder--text,
+  .loader,
+  .bad-media {
+    display: none;
+  }
+}
+
+.slide-template-preview--question .slide-template-preview__content {
+  &, a { color: $white; }
+  background-color: $dark-grey;
+   h1 {
+    font-size: 8px;
+  }
+}
+.slide-template-preview--question.slide-template-preview--selected .slide-template-preview__content {
+  background: $blue;
+}
+
+.slide-template-preview__enrichment-icon {
+  color: $white;
+  font-size: 30px;
+  margin: -10px auto 0 auto;
+  text-align: center;
+}
+
+.content-add {
+  &__wrapper{
+    background: transparent;
+    margin-bottom: 80px;
+    @include space(padding, xs, top bottom);
+  }
+  &__button {
+    background-color: $blue-grey;
+    @include circular;
+    @extend .border-none;
+    @include transition (background-color 0.2s ease-in-out);
+    float: left;
+    margin-left: 16px;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    width: 40px;
+    color: white;
+    &:hover{
+      text-decoration: none;
+    }
+    &.active {
+      background: $blue;
+    }
+  }
+}
+
+.cover-slide-preview {
+  @include space(padding, xl, top bottom left);
+  @include space(padding, s, right);
+  @include small;
+  @include bold;
+  @include shadow;
+  color: $blue-grey;
+  cursor: pointer;
+  border-color: $transparent;
+  border-style: solid;
+  border-width: 2px;
+  background: $white;
+}
+
+.cover-slide-preview__actions {
+  @include right;
+  display: none;
+}
+
+.cover-slide-preview--selected {
+  border-color: $blue;
+  .cover-slide-preview__actions {
+    display: block;
+    opacity: 0.5;
+  }
+}
+
+.cover-slide-preview--selected:hover {
+  .cover-slide-preview__actions {
+    opacity: 1;
+  }
+}
+
+.slide-template-preview__placeholder {
+  text-align: center;
+
+  &--invalid {
+    opacity: 0.4;
+  }
+
+  &--audio .black-bg {
+    height: 1px;
+    width: 30%;
+  }
+
+  // to avoid the cascade of ".body p, ol, ul, img" above ...
+  //
+  // we basically need to add a margin any thumbnail that does not include an
+  // img:
+  &--audio, &--invalid {
+    margin-bottom: 4px;
+  }
+
+  i[class^="gs-"] {
+    font-size: 16px;
+    line-height: 1;
+  }
+}

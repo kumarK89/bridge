@@ -1,0 +1,100 @@
+.message-overlay {
+
+  &__modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__form {
+    padding: 0;
+    @include display("flex");
+    @extend .flex-column;
+  }
+
+  &__overflow {
+
+    &-circle {
+      stroke-width: 0.5px;
+      fill: $blue-grey;
+      stroke: $black;
+    }
+
+    &-label {
+      fill: $white;
+      text-anchor: middle;
+    }
+  }
+
+  &__to {
+    border: none;
+    @include display("flex");
+    @extend .flex-row;
+    margin: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    @include large;
+    @include bold;
+  }
+
+  &__caution {
+    color: $neutral-warning;
+    @include base;
+    margin-left: 10px;
+  }
+
+  &__content {
+    @include display("flex");
+    @extend .flex-column;
+    margin-top: 150px;
+    margin-left: 30%;
+
+    input {
+      @include placeholder {
+        color: $dark-grey;
+      }
+        
+      resize: none;
+      border: 0;
+      outline: none;
+      color: $blue;
+      @include bold;
+      @include large
+      margin-top: 40px;
+      margin-left: 10px;
+    }
+
+    textarea {
+      @include placeholder {
+        color: $dark-grey;
+      }
+
+      resize: none;
+      border: 0;
+      outline: none;
+      height: 200px;
+      color: $black;
+      margin-top: 40px;
+      margin-left: 10px;
+      @include light;
+      font-size: 18px;
+    }
+
+    button {
+      margin-left: 15px;
+      align-self: flex-start;
+    }
+  }
+
+}

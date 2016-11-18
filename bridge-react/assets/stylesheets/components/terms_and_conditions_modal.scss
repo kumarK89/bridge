@@ -1,0 +1,78 @@
+.terms-and-conditions-modal__overlay {
+  overflow: auto;
+  background-color: hsla(0, 0%, 100%, .90);
+  padding: 10px;
+};
+
+.terms-and-conditions-modal {
+  @include shadow;
+  @include rounded-corners-default;
+
+  position: absolute;
+  top: 10%;
+  bottom: 10%;
+  left: 2%;
+  right: 2%;
+  overflow: auto;
+  max-width: 46.875em;
+  margin: 40px auto;
+};
+
+.terms-and-conditions-modal__main {
+  @include display(flex)
+  @include flex-direction(column)
+
+  height: 100%;
+};
+
+.terms-and-conditions-modal__title {
+  color: $blue-grey;
+  @extend .border-b;
+  @include border-grey;
+  @include light;
+  @include text-center;
+  @include upcase;
+  @include x-medium;
+  @include flex-shrink(0);
+
+  margin: 0;
+};
+
+.terms-and-conditions-modal__content {
+  @extend .border-b;
+  @include border-grey;
+  @include flex-grow(1);
+
+  height: 65%;
+  overflow-y: scroll;
+  padding: 6px 0;
+
+  .PRbody {
+    padding-top: 20px;
+  }
+}
+
+.terms-and-conditions-modal__buttons {
+  @extend .text-right;
+  @include flex-shrink(0);
+
+  padding: 5px 0;
+}
+
+.terms-and-conditions-modal__prompt {
+  @include text-center;
+
+  padding: 5px 0;
+}
+
+.terms-and-conditions-modal__prompt__accept {
+  @include btn;
+  @include btn-filled;
+}
+
+.terms-and-conditions-modal__prompt__decline {
+  @include btn;
+  @include btn--content-editor;
+
+  padding-left: 0;
+}

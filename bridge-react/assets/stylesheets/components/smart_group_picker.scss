@@ -1,0 +1,96 @@
+.smart-group-picker {
+  &--with-list {
+    box-shadow: 0 0 25px $indigo-op25;
+  }
+
+  &--with-list &__input {
+    border-color: transparent;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+.smart-group-picker .bridge-ui-list {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  max-height: 400px;
+
+  border-bottom-right-radius: $border-radius-default;
+  border-bottom-left-radius: $border-radius-default;
+
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 10px 2px $indigo-op25;
+  background: $white;
+  overflow: auto;
+}
+
+.smart-group-picker .bridge-ui-list__item {
+  display: block;
+  @extend .border-t;
+  @include border-grey;
+  padding: 16px 8px;
+  cursor: default;
+
+  &:focus, &:hover, &--active {
+    outline: 0;
+    color: $white;
+    background: $blue;
+  }
+}
+
+.smart-group-picker__input {
+  width: 100%;
+
+  border-radius: $border-radius-default;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+
+  position: relative;
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+
+.smart-group-picker--with-uppercase-values {
+  .bridge-ui-list__item,
+  .smart-group-picker__input--with-value {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+}
+
+.smart-group-picker__caret {
+  position: absolute;
+  right: 16px;
+  pointer-events: none;
+  line-height: 1;
+  font-size: 8px;
+  margin-top: 24px;
+}
+
+.smart-group-picker .bridge-ui-list__item,
+.smart-group-picker__input {
+  font-size: 18px;
+  @include space(padding, s, top right bottom left);
+}
+
+.smart-group-rule-editor__rule-predicate .combo-box__box {
+  padding: 14px;
+  text-align: center;
+}
+
+.smart-group-rule-editor__rule-predicate .combo-box__list {
+  padding-top: 0;
+  padding-bottom: 0;
+  top: 100%;
+  text-align: center;
+}
+
+.smart-group-rule-actions__ember-wrapper {
+  float: left;
+}

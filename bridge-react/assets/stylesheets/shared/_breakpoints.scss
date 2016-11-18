@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Breakpoints
+name: layout-breakpoints
+category: Layout
+---
+
+Our current breakpoints are as follows:
+
+<strong>Mobile</strong> - up to 568px
+
+<strong>Tablet</strong> - up to 767px
+
+<strong>Desktop</strong> - 768px and greater
+
+<strong>Wide Desktop</strong> - 1200px and greater (avoid using when possible)
+
+<h3>Mixin</h3>
+
+We favor using inline breakpoints for responsive design.
+
+To include an inline responsive style use `@include breakpoint(size)`
+
+Available sizes:
+
+<strong>small</strong> - up to 568px
+
+<strong>medium</strong> - up to 767px
+
+<strong>large</strong> - 768px and greater
+
+<strong>x-large</strong> - 1200px and greater
+
+For example, if you wanted to have a box on a page to have a red
+background on mobile, a black background on tablets, and a blue
+background on desktop you would use the following example.
+
+There are also some vertical media queries available if you need to
+target shorter viewports. They are as follows:
+
+<strong>short-mobile</strong> - up to 680px (made to target devices 768 or lower with chrome)
+
+<strong>short</strong> - up to 930px
+
+<strong>Note:</strong> The breakpoint queries should go from x-large
+to small like in the example below.
+
+```
+.responsive-demo-block {
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+
+  @include breakpoint(x-large) {
+    background-color: green;
+  }
+
+  @include breakpoint(large) {
+    background-color: blue;
+  }
+
+  @include breakpoint(medium) {
+    background-color: black;
+  }
+
+  @include breakpoint(small) {
+    background-color: red;
+  }
+}
+```
+
+```html_example
+<div class="responsive-demo-block">
+  Resize me!
+</div>
+```
+
+*/
+
+/**
+ * _breakpoints.css
+ * variable declarations for @media breakpoints
+ */
+
+$breakpoint-s: 568px;
+$breakpoint-mobile: 767px;
+$breakpoint-desktop: 768px;
+$breakpoint-tablet-vertical: 60rem;
+$breakpoint-wide-desktop: 1200px;
+$breakpoint-height: 930px;
+$breakpoint-height-mobile: 700px;
+
+$media-query-l: "screen and (min-width: #{$breakpoint-s})";
+$media-query-s: "screen and (max-width: #{$breakpoint-s}), screen and (max-height: 400px)";
+$media-query-s-tall: "screen and (max-width: #{$breakpoint-s})";
+$media-query-mobile: "screen and (max-width: #{$breakpoint-mobile})";
+$media-query-desktop: "screen and (min-width: #{$breakpoint-desktop})";
+$media-query-wide-desktop: "screen and (min-width: #{$breakpoint-wide-desktop})";
+$media-query-short: "screen and (max-height: #{$breakpoint-height})";
+$media-query-short-mobile: "screen and (max-height: #{$breakpoint-height-mobile})";
+
+
+// breakpoint mixin
+
+@mixin breakpoint($size) {
+  $mq:"";
+  @if $size == small {
+    $mq:$media-query-s;
+  } @else if $size == small-tall {
+    $mq:$media-query-s-tall;
+  } @else if $size == medium or $size == mobile {
+    $mq:$media-query-mobile;
+  } @else if $size == large or $size == desktop {
+    $mq:$media-query-desktop;
+  } @else if $size == x-large {
+    $mq:$media-query-wide-desktop;
+  } @else if $size == short {
+    $mq:$media-query-short;
+  } @else if $size == short-mobile {
+    $mq:$media-query-short-mobile;
+  } @else if $size == larger-than-phones {
+    $mq:$media-query-l;
+  }
+
+  @media #{$mq} {
+    @content;
+  }
+}
+
+// A crazy mixin for generating classes that conditionally affect their targets
+// depending on the @media query.
+//
+// Example
+//
+//   ```scss
+//   @include breakpointify(".foo") {
+//     color: cornflowerblue;
+//     font-weight: bold;
+//   }
+//   ```
+//
+//   The above SCSS generates three classes: `.foo`, `.foo-mobile`, and
+//   `.foo-desktop`.
+//
+//   `.foo` will apply all the time; `.foo-mobile` will only affect its element
+//   when the mobile media query takes effect; and `.foo-desktop` only affects
+//   its element while the desktop media query holds sway.
+@mixin breakpointify($selector) {
+  #{$selector} {
+    @content;
+  }
+}

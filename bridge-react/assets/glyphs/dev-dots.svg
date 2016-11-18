@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="28px" height="18px" viewBox="0 0 28 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.1 (15681) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 1 + Rectangle 457 + Oval 1 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1-Overview" sketch:type="MSArtboardGroup" transform="translate(-570.000000, -586.000000)" fill="#000000">
+            <g id="Rectangle-456-+-Oval-1-+-Rectangle-457-+-Oval-1-Copy" sketch:type="MSLayerGroup" transform="translate(562.000000, 574.000000)">
+                <g id="Oval-1-+-Rectangle-457-+-Oval-1-Copy" transform="translate(8.042553, 12.510638)" sketch:type="MSShapeGroup">
+                    <ellipse id="Oval-1" cx="3.12765957" cy="13.8510638" rx="3.12765957" ry="3.12765957"></ellipse>
+                    <path d="M23.6404681,1.09104353 C24.1017329,0.22353055 25.1760958,-0.107300425 26.053696,0.359327888 L26.053696,0.359327888 C26.9252201,0.822725477 27.2603719,1.8968064 26.7965361,2.76915465 L20.0763682,15.4079522 C19.6151034,16.2754652 18.5407406,16.6062962 17.6631404,16.1396678 L17.6631404,16.1396678 C16.7916163,15.6762703 16.4564645,14.6021893 16.9203002,13.7298411 L23.6404681,1.09104353 Z" id="Rectangle-457"></path>
+                    <path d="M11.1702128,16.9787234 C12.8975715,16.9787234 14.2978723,15.5784225 14.2978723,13.8510638 C14.2978723,12.1237051 12.8975715,10.7234043 11.1702128,10.7234043 C9.44285408,10.7234043 8.04255319,12.1237051 8.04255319,13.8510638 C8.04255319,15.5784225 9.44285408,16.9787234 11.1702128,16.9787234 Z" id="Oval-1-Copy"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

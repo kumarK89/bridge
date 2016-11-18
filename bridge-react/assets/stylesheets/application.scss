@@ -1,0 +1,381 @@
+@charset "utf-8";
+
+@import 'vendor/normalize';
+@import 'vendor/pure';
+@import 'vendor/bourbon/bourbon';
+@import 'vendor/ic/modal';
+@import 'vendor/jquery.qtip';
+@import 'vendor/react-toggle';
+@import 'vendor/mediaelementplayer';
+//@import '../../../node_modules/draft-js/dist/Draft';
+
+@import 'ext/jquery.qtip';
+@import 'ext/mediaelementplayer';
+
+$font-stack: 'Avenir-Webfont', 'Avenir', 'Droid Sans', 'DroidSansRegular', Corbel, Tahoma, Geneva, sans-serif;
+
+$max-page-width: 46.875em;
+
+// map generated from json file, so we can share w/ js land
+@import './shared/variables.json';
+
+@function json-var($var) {
+  @return map-get($variables, $var);
+}
+
+@import 'shared/_webfonts';
+@import 'shared/_breakpoints';
+@import 'shared/_spacing';
+@import 'shared/_color';
+@import 'shared/_overrides';
+@import 'shared/_typography';
+@import 'shared/_getsmart-font';
+@import 'shared/_icons';
+@import 'shared/_buttons';
+@import 'shared/_borders';
+@import 'shared/_layout';
+@import 'shared/_lists';
+@import 'shared/_forms';
+@import 'shared/_slides';
+@import 'shared/_z-index';
+@import 'shared/_sidebar_variables';
+
+
+// ui components
+@import 'components/ui/rounded_icon';
+
+// styling for vendor components
+@import 'components/ic_autocomplete';
+@import 'components/ic_menu';
+
+// needs to go here—some of the vars are used in other components
+@import 'components/icons';
+@import 'components/sidebar';
+
+@import 'components/layouts/authoring';
+@import 'components/layouts/banner';
+@import 'components/layouts/dialog';
+@import 'components/layouts/item_header';
+@import 'components/layouts/list';
+@import 'components/layouts/mobile_menu_bar';
+
+@import 'components/active_filter_box';
+@import 'components/add_btn';
+@import 'components/admin_dashboard';
+@import 'components/admin_tag_details';
+@import 'components/admin_tags';
+@import 'components/affiliated_accounts';
+@import 'components/anchored_modal';
+@import 'components/answer_list';
+@import 'components/attachment_button';
+@import 'components/attachment_table';
+@import 'components/attachment_tray';
+@import 'components/attendance_list';
+@import 'components/attribute_list';
+@import 'components/authentication';
+@import 'components/author_course_templates';
+@import 'components/author_groups';
+@import 'components/author_user_header';
+@import 'components/auto_csv_status';
+@import 'components/auto_csv_scheduler';
+@import 'components/autocomplete';
+@import 'components/autocomplete_toggle';
+@import 'components/author_program_detail_header';
+@import 'components/availability_editor';
+@import 'components/avatar_base';
+@import 'components/badged_icon';
+@import 'components/breadcrumb.scss';
+@import 'components/br_masquerade';
+@import 'components/branding';
+@import 'components/change_log';
+@import 'components/course_summary_dashboard';
+@import 'components/check_box';
+@import 'components/combo_box';
+@import 'components/copy_text_box';
+@import 'components/copy_text_modal';
+@import 'components/calendar_icon';
+@import 'components/carousel';
+@import 'components/color_picker';
+@import 'components/collapsible_table_cards.scss';
+@import 'components/course_certificate';
+@import 'components/course_header';
+@import 'components/course_list';
+@import 'components/course_locking_popup';
+@import 'components/course_meta_grid';
+@import 'components/course_status';
+@import 'components/course_status_chart';
+@import 'components/course_upload';
+@import 'components/cover_slide';
+@import 'components/cover_slide_settings';
+@import 'components/crossfade_expander';
+@import 'components/csv_preview';
+@import 'components/csv_table';
+@import 'components/csv_table_drop_header';
+@import 'components/csv_table_primary_header';
+@import 'components/csv_upload_container';
+@import 'components/dashboard_viz';
+@import 'components/dashboard_text_widget';
+@import 'components/date_input';
+@import 'components/days_of_week_picker';
+@import 'components/dismissable_notification';
+@import 'components/drawer_modal';
+@import 'components/download';
+@import 'components/editable_cell';
+@import 'components/editable_text';
+@import 'components/editable_textarea';
+@import 'components/editable_textarea_frd';
+@import 'components/ember_application';
+@import 'components/error';
+@import 'components/error_developer';
+@import 'components/expand_button';
+@import 'components/expire_reenroll_settings';
+@import 'components/factoid_editor';
+@import 'components/fake_chrome';
+@import 'components/field_list_item';
+@import 'components/file_input';
+@import 'components/filter_search';
+@import 'components/filter_selector';
+@import 'components/filter_switch';
+@import 'components/filter_sort';
+@import 'components/filter_type_selector';
+@import 'components/fine_tune_button';
+@import 'components/free_trial';
+@import 'components/group_avatar';
+@import 'components/grouped_tag_listings';
+@import 'components/content_header.scss';
+@import 'components/hero_popup';
+@import 'components/horizontal_scrolling_nav';
+@import 'components/image_manipulator';
+@import 'components/input_field';
+@import 'components/integration';
+@import 'components/learner_course';
+@import 'components/learner_course_external';
+@import 'components/learner_import';
+@import 'components/learner_profile';
+@import 'components/learner_program';
+@import 'components/learner_slide';
+@import 'components/learner_survey_view';
+@import 'components/learning_item_list';
+@import 'components/masquerade_overlay';
+@import 'components/my_learning_items';
+@import 'components/library';
+@import 'components/library_list_item_tags';
+@import 'components/live_course_learners';
+@import 'components/live_course_list_item';
+@import 'components/live_course_nav';
+@import 'components/live_course_session_card';
+@import 'components/live_course_session_list';
+@import 'components/live_training_calendar';
+@import 'components/loader';
+@import 'components/logo_preview';
+@import 'components/lti_resource';
+@import 'components/lynda_breadcrumbs';
+@import 'components/lynda_basket';
+@import 'components/lynda_categories';
+@import 'components/lynda_course';
+@import 'components/lynda_course_summary';
+@import 'components/lynda_preview_banner';
+@import 'components/lynda_search';
+@import 'components/marketplace_header';
+@import 'components/media_uploader';
+@import 'components/message_box';
+@import 'components/message_overlay';
+@import 'components/multiple_widget_container';
+@import 'components/not_found';
+@import 'components/open_enrollment_registration';
+@import 'components/optional_date_editor';
+@import 'components/ordered_list_question_editor';
+@import 'components/overflow_fade_ref_fn';
+@import 'components/page_head';
+@import 'components/pass_rate_chart';
+@import 'components/permission';
+@import 'components/permission_editor';
+@import 'components/permission_group';
+@import 'components/pill';
+@import 'components/popdown';
+@import 'components/popup_menu';
+@import 'components/program_course_list';
+@import 'components/program_editor';
+@import 'components/program_edit';
+@import 'components/program_header';
+@import 'components/program_list';
+@import 'components/progress_bar';
+@import 'components/question_editor';
+@import 'components/question_prompt';
+@import 'components/quiz_short_answer';
+@import 'components/quiz_question_intro';
+@import 'components/score_distribution_chart';
+@import 'components/removable_item';
+@import 'components/refinement_group';
+@import 'components/report_header';
+@import 'components/report_filter';
+@import 'components/report_filter_apply_bar';
+@import 'components/report_refinements';
+@import 'components/reports_chart';
+@import 'components/reports_table';
+@import 'components/role_filter_popup';
+@import 'components/role_pill';
+@import 'components/saml_debugger';
+@import 'components/search_bar';
+@import 'components/search_bar_loader';
+@import 'components/search_field';
+@import 'components/sharable_enrollment_link';
+@import 'components/slide_comments';
+@import 'components/slider';
+@import 'components/slide_editor';
+@import 'components/slide_template_preview';
+@import 'components/smart_group_picker';
+@import 'components/smart_group_rule_row';
+@import 'components/sort_selector';
+@import 'components/sortable_table';
+@import 'components/splash_view';
+@import 'components/sticky_wrapper';
+@import 'components/sub_accounts';
+@import 'components/support_accounts';
+@import 'components/survey';
+@import 'components/survey_distribute_box';
+@import 'components/survey_distribution_list';
+@import 'components/survey_distribution_results';
+@import 'components/survey_edit.scss';
+@import 'components/survey_header_actions.scss';
+@import 'components/survey_list';
+@import 'components/survey_results_participants';
+@import 'components/terms_and_conditions_modal';
+@import 'components/tag_listing';
+@import 'components/tag_pill';
+@import 'components/tagged_item_list';
+@import 'components/tinymce_modal';
+@import 'components/toast';
+@import 'components/toggle_control';
+@import 'components/tooltip';
+@import 'components/translucent_background_image';
+@import 'components/tray_layout';
+@import 'components/tray_list';
+@import 'components/vocabulary_editor';
+@import 'components/uber_hax';
+@import 'components/upgrade_modal';
+@import 'components/user_add';
+@import 'components/markets';
+@import 'components/webcam_image_taker';
+@import 'components/webhook';
+@import 'components/welcome_message_box';
+
+// this needs to be after sortable_table
+@import 'components/enrollment_list';
+
+@import 'routes';
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+// ensure IE10+ doesn't insert unwanted icons into elements
+::-ms-clear, ::-ms-reveal {
+  width: 0;
+  height: 0;
+}
+
+.screenreader-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+.page-head {
+  line-height: 50px;
+}
+
+.brand {
+  letter-spacing: 0.2em;
+}
+
+.table {
+  display: table;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: top;
+
+  &.text-baseline {
+    vertical-align: baseline;
+  }
+
+  &.text-middle {
+    vertical-align: middle;
+  }
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.content-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.constrain-width,
+.constrain-width--padded {
+  max-width: $max-page-width;
+}
+
+.fixed-width-max {
+  width: $max-page-width;
+}
+
+.constrain-width--padded {
+  @include space(padding, s, right left);
+}
+
+.pure-u-1,
+.page-head [class *= "pure-u"] {
+  max-width: 100%;
+}
+
+.no-transition {
+  &, & * {
+    @include transition-property(none);
+  }
+}
+
+%grabbable,
+.grabbable {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+%grabbing,
+.grabbing {
+  cursor: move;
+  cursor: -webkit-grabbing;
+  cursor: -moz-grabbing;
+}
+
+%unselectable,
+.unselectable {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.break-word {
+  word-wrap: break-word;
+}

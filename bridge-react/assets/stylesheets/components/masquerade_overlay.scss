@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+// fixed overlay that shows when masquerading
+
+$masquerade-color: $pink;
+$masquerade-border-size: 5px;
+
+.masquerade-overlay {
+
+  &--banner {
+    border-top-left-radius: 10px;
+    height: auto;
+    color: $white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: $masquerade-color;
+    @include space(padding, s, top bottom);
+    padding-left: 40px;
+    width: auto;
+
+    div.p {
+      @include space(padding, xs, top bottom);
+    }
+  }
+
+  &--user-avatar {
+    display: inline-block;
+    margin: 0 8px;
+  }
+
+  &--stop-button {
+    @include btn;
+    @include btn-alert;
+    @include right;
+    @include space(margin, l, right);
+    @include space(margin, l, left);
+    @include space(margin, xxs, top);
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      @include button-hover($white, $border-color: $masquerade-color, $box-shadow: $white);
+    }
+    &:active {
+      @include button-active($masquerade-color, true, $white);
+    }
+  }
+
+  @each $side in top, right, bottom, left {
+    &--#{$side} {
+      background: $masquerade-color;
+      position: fixed;
+      @if $side == 'top' or $side == 'bottom' {
+        height: $masquerade-border-size;
+        width: 100%;
+      }
+      @else {
+        height: 100%;
+        width: $masquerade-border-size;
+      }
+      #{$side}: 0;
+    }
+  }
+
+}
+
+.appWrapper,
+.sidebar__wrapper {
+  &--masquerade-overlay {
+    $masquerade-banner-size: 90px;
+
+    padding-top: $masquerade-border-size;
+    padding-bottom: $masquerade-banner-size;
+
+    // Ensure content is still visible when banner starts to wrap.
+    @media #{$media-query-mobile} {
+      padding-bottom: $masquerade-banner-size * 1.5;
+    }
+
+    // Make the grey-gradient-bg full height in the old slide editor authoring-sidebar.
+    &.without-sidebar {
+      padding-bottom: 0;
+    }
+
+    // Don't cover slide content.
+    .slide-editor {
+      padding-bottom: $masquerade-banner-size;
+    }
+
+    // Give the dialog a little more room.
+    .course-upload {
+      margin-bottom: $masquerade-banner-size;
+    }
+
+    // Keep the toaster "inside" the border.
+    .toaster {
+      margin-right: $masquerade-border-size;
+    }
+
+    // TODO: Learning Library :-/
+    // TODO: Course Branding?
+  }
+}

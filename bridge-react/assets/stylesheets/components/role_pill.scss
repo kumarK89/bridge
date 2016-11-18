@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.role-pill {
+  line-height: 1;
+  display: inline-block;
+  float: right;
+  padding: 7px 8px;
+  margin: 1px 8px 0 0;
+  @include borders(solid, 1px, top right left bottom);
+  @include rounded-corners-default;
+  border-color: $dark-grey;
+  color: $dark-grey;
+  text-align: center;
+  font-size: 10px;
+  @extend %label;
+}
+
+.role-pill.role-pill--changed {
+  color: $pink;
+  border-color: $pink;
+}

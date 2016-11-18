@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+// use to style HTML5 form placeholders
+//
+// @include style-placeholder('#search') {
+//    font-size: 14px;
+//    text-transform: uppercase;
+//
+// }
+//
+@mixin style-placeholder($input-selector) {
+  @each $selector in '::-webkit-input-placeholder', ':-moz-placeholder', '::-moz-placeholder', ':-ms-input-placeholder' {
+    #{$input-selector}#{$selector} {
+      @content;
+    }
+  }
+}
+
+/* generic styles */
+input, select, textarea {
+  font-size: 16px;
+}
+
+/* dark-background styles */
+.dark {
+  color: $white;
+
+  input {
+    @extend .inverse-input;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  [aria-invalid=true] {
+    border-color: $pink;
+  }
+}
+
+.inverse-input {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  box-shadow: none;
+  color: $white;
+}
+
+input.thin {
+  border-radius: 3px;
+  background: transparent;
+  border: 2px solid $white;
+  box-shadow: none;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $dark-grey;
+  @include space(padding, xs);
+}
+
+.settings-form {
+  input {
+    border: 2px solid $grey;
+    @include rounded-corners-default;
+  }
+
+  input:focus {
+    border-color: $blue;
+    outline: none;
+  }
+
+  [aria-invalid=true], [aria-invalid=true]:focus {
+    border-color: $pink;
+  }
+
+  .help-block {
+    display: block;
+    @include space(padding, xs, top);
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  &__button {
+    @include btn;
+    @include btn-filled;
+    @include space(margin, xl, top);
+    font-size: 0.35em;
+  }
+}
+
+.input-s  { width: 25%;  }
+.input-m  { width: 50%;  }
+.input-l  { width: 75%;  }
+.input-xl { width: 100%; }
+
+.input-r {
+  @include breakpoint(medium) {
+    width: 100%;
+  }
+  @include breakpoint(small) {
+    width: 100%;
+  }
+}
+
+
+/* specialty classes */
+// use with care
+%no-outline {
+  outline: none;
+}

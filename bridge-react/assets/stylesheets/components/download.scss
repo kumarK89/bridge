@@ -1,0 +1,50 @@
+.download-container {
+  background-color: $white;
+  @include display(flex);
+  @include flex-direction(column);
+  @include flex-grow(1);
+  @include space(padding, l);
+  border-radius: $border-radius-default;
+
+  &__contents {
+    @include centered;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+
+    &__header {
+      @extend .h2;
+      @include x-large;
+    }
+
+    &__secondary {
+      color: $dark-grey;
+    }
+  }
+}
+
+.download-controls {
+  @extend .list--inline;
+  @include right;
+
+  &__button {
+    @include btn;
+    @extend .secondary;
+    background-color: $white;
+  }
+}
+
+.download-icon {
+  height: 64px;
+  width: 64px;
+}
+
+.download-icon-container {
+  @include space(margin, xl, bottom);
+}
+
+// Inherited from other components
+
+.csv-upload-container__header--download {
+  @include space(padding, xxl, bottom);
+}

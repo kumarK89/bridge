@@ -1,0 +1,162 @@
+.authoring-heading {
+  @extend .border-b;
+  border-color: $med-grey;
+  background-color: $blue-grey;
+  position: relative;
+  height: 75px;
+}
+
+.authoring-heading--collapsed {
+  position: fixed;
+  top: 0;
+  right: 12px;
+  height: auto;
+  border-bottom-right-radius: $border-radius-default;
+  border-bottom-left-radius: $border-radius-default;
+  padding: 13px 11px 4px 11px; // need to match exactly with opposite toggle state
+}
+.authoring-heading__title {
+  max-width: 40%;
+  .editable-text {
+    @extend .truncated;
+    display: inline-block;
+    width: 100%;
+  }
+}
+.authoring-heading__title,
+.authoring-heading__title .EditableText__Content {
+  display: inline-block;
+  line-height: 40px;
+}
+.authoring-heading__title--medium {
+  @include x-medium;
+}
+.authoring-heading__title--short {
+  @include large;
+}
+.authoring-heading__title-input {
+  @include large;
+  width: 100%;
+  color: $blue-grey;
+  border: 2px solid $blue;
+  border-radius: 5px;
+  outline: none;
+}
+.authoring-heading__save-status {
+  @include space(padding, xs, top);
+  @include space(padding, xl, right);
+  @include space(padding, m, left);
+  color: $dark-grey;
+  @extend .base;
+}
+
+.authoring-heading__save-status--error {
+  @include space(padding, xs, top);
+  @include space(padding, xl, right);
+  @include space(padding, m, left);
+  color: $pink-lt25;
+
+  .gs-caution {
+    color: $pink-lt25;
+  }
+}
+.authoring-heading__save-status--preview {
+  display: none;
+  @include breakpoint(x-large) {
+    display: inline;
+  }
+}
+.authoring-heading__save-status--disconnected {
+  @include upcase;
+  @include semi-bold;
+}
+.authoring-heading__preview-button {
+  @include right;
+  @include space(padding, xl, right);
+  margin-top: 3px;
+}
+.authoring-heading__menu-button {
+  @include btn--reset();
+  @include right;
+  @include large;
+  @include space(margin, m, right);
+  padding: 0;
+}
+.authoring-heading__menu-button:focus {
+  box-shadow: none;
+}
+.authoring-heading--collapsed .authoring-heading__menu-button {
+  margin-right: 0;
+}
+
+.authoring-heading__back-button {
+  @include space(margin, m, right);
+  @include space(padding, xs, top);
+  @include space(padding, m, right);
+  @include semi-bold;
+
+  border-right: $dark-grey 1px solid;
+  color: $white;
+  padding-top: 12px;
+  padding-bottom: 6px;
+
+  i {
+    @include space(margin, xs, right);
+    font-size: 1.1em;
+  }
+}
+
+.authoring-sidebar {
+  @extend .border-r;
+  border-color: $med-grey;
+  left: 0;
+  height: calc(100vh - 75px);
+  width: 331px;
+  position: absolute;
+  overflow: auto;
+}
+
+.authoring-sidebar--with-toast {
+  @extend .authoring-sidebar;
+  height: calc(100vh - 75px - 96px);
+}
+
+.authoring-sidebar__actions {
+  @include full-width;
+  background: rgba($chart-grey, 0.3);
+  height: 60px;
+  top: 0;
+}
+
+.authoring-sidebar__content {
+  @extend .border-t;
+  border-color: $med-grey;
+  @include full-width;
+  top: 60px;
+  height: calc(100vh - 135px);
+  position: absolute;
+  overflow-y: scroll;
+}
+
+.authoring-sidebar__content--with-toast {
+  @extend .authoring-sidebar__content;
+  height: calc(100vh - 135px - 96px);
+}
+
+
+.authoring-pane {
+  left: 331px;
+  height: calc(100vh - 75px);
+  width: calc(100% - 331px);
+  position: absolute;
+  overflow-y: scroll;
+}
+
+.authoring-pane--with-toast {
+  @extend .authoring-pane;
+  height: calc(100vh - 75px - 96px);
+}
+
+.authoring-pane--no-scroll {
+  overflow: hidden;
+}

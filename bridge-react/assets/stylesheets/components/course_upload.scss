@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+.course-upload {
+  box-shadow: 0 0 48px $indigo-op25;
+  width: $max-page-width;
+
+  .media-uploader {
+    margin-top: 6em;
+  }
+
+  .media-uploader--uploading {
+    border: 32px solid $grey;
+    background: $white;
+
+    p {
+      color: $med-grey;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.learner-profile {
+
+  &__backdrop {
+    height: 200px;
+  }
+
+  &__avatar-container {
+    position: relative;
+    top: 100px;
+    text-align: center;
+
+    & .avatar--user-header {
+     @include avatar-base(200px);
+     margin: 0 auto;
+    }
+  }
+
+  &__avatar-menu {
+    position: relative;
+    margin-bottom: -200px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100px;
+    height: 200px;
+    width: 200px;
+    padding-top: 60px;
+    opacity: 0.2;
+    text-align: center;
+    color: $white;
+
+    .learner-profile__change {
+      cursor: pointer;
+      width: 80px;
+      margin-top: -15px;
+    }
+  }
+
+  &__avatar-menu:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__settings-container {
+    // have to override shared/_icons.scss: [class*=gs-]
+    font-size: 1em;
+
+    margin: 120px auto 0 auto;
+    max-width: 1200px;
+    text-align: center;
+
+    .EditableText {
+      width: 50%;
+      margin: auto;
+    }
+
+    .combobox--language-selector {
+      margin-top: 40px;
+    }
+  }
+}

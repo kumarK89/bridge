@@ -1,0 +1,133 @@
+@charset "utf-8";
+div.tinymce-mediaupload-overlay,
+.mce-floatpanel {
+  background: none;
+  border: none;
+  bottom: auto;
+  left: 25vw;
+  padding: 0;
+  position: fixed;
+  right: 25vw;
+  top: 35vh;
+  width: 40vw;
+}
+
+div.tinymce-mediaupload-modal {
+  background-color: $indigo-op15;
+}
+
+[route="author.courses.slide"] #application {
+  transition: -webkit-filter 0.2s $ease-in-quad;
+}
+
+[route="author.courses.slide"] #application[aria-hidden="true"] {
+  @include filter(blur(3px));
+}
+
+[route="author.courses.slide"] div#application.tinymce-mediauploader--sharpen {
+  @include filter(blur(1px));
+}
+
+// ------------- Link Modal Stuff --------------
+
+// this part is required for the the promt when there
+// is no `http://` in front of the url
+div[role=alertdialog] div .mce-container-body {
+  @include space(padding, l, top right left);
+}
+
+
+.mce-window {
+
+  // Stop all the element heights TinyMCE!
+  .mce-textbox, .mce-window-body, .mce-container, .mce-abs-layout, .mce-formitem  {
+    height: auto !important;
+  }
+
+  .mce-window-head {
+    @include space(padding, s);
+    background: $white;
+    color: $med-grey;
+    margin-bottom: 0;
+  }
+
+  .mce-title {
+    text-align: center;
+  }
+
+  .mce-close {
+    @include large;
+    background: transparent;
+    top: 7px;
+    right: 10px;
+    position: absolute;
+    // height: 36px;
+    border: 0;
+  }
+
+  .mce-window-body {
+    @extend %base;
+    background-color: $white;
+    width: auto !important;
+    @include display(flex);
+    @include flex-direction(column);
+  }
+
+  .mce-formitem {
+    border: 1px $grey;
+    width: auto !important;
+    @include space(margin, m, bottom left right);
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .mce-container-body:focus {
+    outline: none;
+    outline-width: 0;
+
+  }
+
+  .mce-combobox {
+    width: 100% !important;
+    @include space(margin, xs, top bottom);
+  }
+
+  .mce-textbox {
+    @include space(padding, xs);
+    @include space(margin, xs, top bottom);
+    width: 100% !important;
+    border-style: solid;
+    @include border-grey;
+  }
+
+  .mce-foot, .mce-foot .mce-container-body {
+    background-color: $white;
+    @include justify-content(center);
+    @include display(flex);
+    @include flex-direction(row-reverse);
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .mce-btn {
+    float:right;
+    width: 6em !important;
+    @include space(margin, m, bottom);
+    @include space(margin, s, left right);
+  }
+
+  .mce-btn button {
+    @include btn;
+  }
+
+  .mce-first button {
+    @include btn-filled;
+
+  }
+
+  .mce-last button {
+    @include btn-secondary;
+  }
+}

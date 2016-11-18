@@ -1,0 +1,111 @@
+.report-refinement {
+  background: white;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: scroll;
+
+  color: $indigo;
+
+  &__item {
+    @include display(flex);
+    @include space(margin, xxs, top bottom);
+    @include space(padding, s, right left);
+    @include space(padding, xxs, bottom);
+    font-size: 1rem;
+    list-style: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0;
+
+    .checkbox {
+      @include space(margin, s, bottom);
+      font-size: inherit;
+      &__display-checkbox {
+        @include space(margin, s, right);
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+        border-radius: 4px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &--open {
+    display: block;
+  }
+
+  &__type {
+    text-align: center;
+  }
+
+  @include breakpoint(larger-than-phones) {
+    @include space(padding, l, top bottom);
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+
+    &__item {
+      width: 50%;
+      margin-bottom: initial;
+
+      &--checkbox {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.report-refinement-controls {
+  @include breakpoint(larger-than-phones) {
+    @include space(padding, l, right left);
+  }
+}
+
+.report-refinement-columns {
+  @include display(flex);
+  @include flex-wrap(wrap);
+  @include justify-content(space-between);
+  @include space(margin, l, top bottom);
+  transition: all 250ms ease-in-out;
+  transform: scaleY(1);
+}
+
+.report-refinement-pagination-controls {
+  @include text-center;
+
+  &__button {
+    @include btn;
+    @extend .tertiary;
+    @include space(margin, m, right left);
+  }
+}
+
+.report-refinement-search-message {
+  @include text-center;
+  color: $dark-grey;
+  @include space(padding, m);
+}
+
+.add-refinement-button {
+  @include btn--reset;
+  @include centered;
+  color: $dark-grey;
+  display: block;
+  text-align: center;
+
+  &__icon {
+    @extend .gs-plus-sign;
+    @extend .gs-3x;
+    display: block;
+  }
+
+  &__label {
+    display: block;
+    font-weight: bold;
+  }
+}

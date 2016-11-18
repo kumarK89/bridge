@@ -1,0 +1,149 @@
+//CATEGORIES SUB-PAGE
+.lynda-categories{
+  $category-card-width: 175px;
+  $category-card-margin: 7px;
+  $category-card-total-width: ($category-card-width+$category-card-margin*2);
+  $course-count-height: 30px;
+  $black-strip-height: 6px;
+  position: relative;
+
+  &__logo-header{
+    text-align: center;
+    @include lynda-gradient();
+    &__img{
+      height: 180px;
+      @include space(padding, l, top);
+      @include space(padding, s, bottom);
+    }
+  }
+  &__category-list{
+    text-align:center;
+    max-width: $category-card-total-width*4;
+    margin: 0 auto;
+    padding-bottom: $space-l;
+  }
+  &__category-list-heading{
+    @include light;
+    @include space(margin, m);
+    @include space(margin, xxl, top);
+  }
+
+  &__preview-banner{
+    @extend .lynda-categories__category-list-heading;
+    padding: 0 40px 20px 40px;
+  }
+
+  &__text-center{
+    text-align: center;
+  }
+
+  &__category{
+    border-radius: 4px;
+    width: $category-card-width;
+    display: inline-block;
+    text-align: center;
+    position: relative;
+    background-color: $white;
+    cursor: pointer;
+    margin: $category-card-margin;
+    margin-bottom: $category-card-margin + $black-strip-height;
+    &:after{
+      content: '';
+      height: $black-strip-height;
+      width: $category-card-width;
+      background: $black;
+      position: absolute;
+      bottom: -$black-strip-height;
+      left: 0;
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+      transition: .3s height, .3s background;
+    }
+    &:hover{
+      text-decoration: none;
+      .lynda-categories__category-name{
+        color: $blue;
+      }
+
+      .lynda-categories__course-count{
+        color: $white;
+      }
+
+      &:after{
+        background: $blue;
+        height: $black-strip-height + $course-count-height;
+      }
+    }
+  }
+
+  &__course-count{
+    height: $course-count-height;
+    position: relative;
+    width: 100%;
+    font-size: .8em;
+    line-height: $course-count-height;
+    border-top: 1px solid $grey;
+    color: $blue;
+    transition: .3s color;
+  }
+
+  &__category-top{
+    height: 125px;
+    @include x-medium;
+    @include space(padding, xxs, top);
+  }
+
+  &__category-name-wrapper{
+    @include display(flex);
+    height: 55px;
+  }
+  &__category-name{
+    margin: auto;
+    color: $indigo;
+    @include space(padding, xs, left);
+    @include space(padding, xs, right);
+    @include space(padding, xxs, bottom);
+    line-height: 1;
+  }
+  &__category-icon{
+    color: $blue;
+    font-size: 1.7em;
+    display: block;
+    margin-top: -2px; //Shifts it slightly up. Shouldn't cause problems
+  }
+
+  @include breakpoint(small-tall){
+    &__logo-header{
+      padding: $space-xs 0 $space-xl 0;
+      box-shadow: 0 2px 3px 0 rgba($black,.15);
+
+    }
+    &__category-list-heading{
+      margin: $space-l $space-m $space-xs $space-m;
+      text-align: left;
+      font-size: 1.25em;
+    }
+    &__category{
+      width: 280px;
+      height: 215px;
+      margin: 15px 10px;
+      float: none;
+    }
+
+    &__category-top{
+      font-size: 1.8em;
+    }
+
+    &__category-icon{
+      line-height: 1.8em;
+    }
+
+    &__course-count{
+      $course-count-height: 45px;
+      font-size: 1.1em;
+      height: $course-count-height;
+      line-height: $course-count-height;
+    }
+
+  }
+}

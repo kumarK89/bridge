@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="512px" height="512px" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>trash</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Exports" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="trash" sketch:type="MSArtboardGroup" fill="#000000">
+            <g id="Delete" sketch:type="MSLayerGroup" transform="translate(67.000000, 0.000000)">
+                <path d="M239.610169,33 L354.281027,33 C367.531251,33 378.285311,43.7421331 378.285311,56.9932259 L378.285311,78.3726498 C378.285311,91.6225619 367.538227,102.365876 354.281027,102.365876 L24.2895949,102.365876 C11.0393709,102.365876 0.285310734,91.6237426 0.285310734,78.3726498 L0.285310734,56.9932259 C0.285310734,43.7433138 11.0323948,33 24.2895949,33 L138,33 L138,23.9932259 C138,10.7433138 148.745054,0 161.999749,0 L215.61042,0 C228.856294,0 239.610169,10.7421331 239.610169,23.9932259 L239.610169,33 Z M23.0047264,146 C9.74728207,146 0.251147612,156.66913 1.79628718,169.845269 L39.0737693,487.728064 C40.6181161,500.897443 52.6249873,511.573333 65.8722676,511.573333 L312.698354,511.573333 C325.954409,511.573333 337.951713,500.904203 339.496852,487.728064 L376.774334,169.845269 C378.318681,156.675891 368.819119,146 355.565895,146 L23.0047264,146 Z" id="Rectangle-2210" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

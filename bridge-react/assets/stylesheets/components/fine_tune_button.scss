@@ -1,0 +1,25 @@
+.fine-tune-button {
+  @include btn--reset;
+  background: transparent;
+  border: none;
+  color: $white;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &--active {
+    color: $bright-blue;
+  }
+
+  &__icon {
+    vertical-align: middle;
+  }
+
+  &__label {
+    display: none;
+
+    @include breakpoint(larger-than-phones) {
+      display: inline;
+      margin-right: $space-s;
+    }
+  }
+}

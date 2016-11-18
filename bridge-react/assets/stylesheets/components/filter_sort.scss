@@ -1,0 +1,118 @@
+.sort-selector__header,
+.filter-selector__header {
+  margin-bottom: 0;
+}
+
+.filter-sort-selector {
+  min-width: 200px;
+
+  .sort-selector__header, .filter-selector__header {
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  .filter-selector__header {
+    @include space(padding, m, top);
+    @include space(margin, xs, top);
+    @include border-grey;
+    @extend .border-t;
+  }
+}
+
+// ASHES: delete everything below this point once we remove the last ember
+// filter-sort, since the FilterSort component is now built on top of
+// Popdown and *Selector
+//
+// And even *that* is now deprecated, so this stuff definitely must go :)
+
+.filter-sort ic-modal-main {
+  @include transition(opacity 300ms ease);
+  @include shadow;
+
+  padding: 0 0 16px 0;
+  width: 200px;
+  height: auto;
+  border-radius: $border-radius-default;
+  border: 0px;
+  background: $white;
+}
+
+.filter-sort {
+  float: right;
+  color: $blue-grey;
+
+  ic-modal, .ic-modal-form {
+    cursor: pointer;
+    background-color: transparent;
+  }
+
+  ic-modal-title,
+  .ic-modal-close {
+    display: none;
+  }
+
+  &__trigger {
+    @include btn--reset();
+    @include rounded-corners-default;
+    padding: 9px 20px 7px;
+    &:focus {
+      border: none;
+      box-shadow: 0 0 0 2px $blue;
+    }
+  }
+
+  &__header {
+    @include small;
+    @include space(margin, xs, top bottom);
+    @include space(padding, s, right left);
+    @include space(padding, xs, top bottom);
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  &__header:last-of-type {
+   @include space(padding, m, top);
+   @include space(margin, m, top);
+   @include border-grey;
+   @extend .border-t;
+  }
+
+}
+
+.filter-sort-item {
+  @include space(padding, xxs, top bottom);
+  @include space(padding, s, right left);
+  @include small;
+  cursor: pointer;
+}
+
+.filter-sort-item--checked {
+  color: $blue;
+}
+
+.filter-sort-item:focus {
+  outline: none;
+  background-color: $blue;
+  color: $white;
+  box-shadow: 0 0 0 2px $blue;
+}
+
+
+.filter-sort .checkbox {
+  display: block;
+  @include space(padding, s, right left);
+  @include space(padding, xs, top bottom);
+}
+
+.filter-sort .checkbox--focused {
+  background-color: $blue;
+  color: $white;
+}
+
+.filter-sort .checkbox--checked.checkbox--focused .checkbox__label-wrapper {
+  color: $white;
+}
+
+.filter-sort .checkbox__label-wrapper {
+  width: 140px;
+}

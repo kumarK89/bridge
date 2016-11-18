@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="54px" height="43px" viewBox="0 0 54 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.1 (15681) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="1-Overview" sketch:type="MSArtboardGroup" transform="translate(-1063.000000, -1233.000000)" fill="#000000">
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(1063.000000, 1233.000000)">
+                <path d="M13.4,24.9505508 L13.4,41.0046954 C13.4,42.1066717 12.5140625,43 11.3992109,43 L5.80078908,43 C4.69578378,43 3.8,42.104714 3.8,40.9977129 L3.8,30.36451 L13.4,24.9505508 Z" id="Rectangle-809" sketch:type="MSShapeGroup"></path>
+                <path d="M18.2,21.0402742 L18.2,40.9950534 C18.2,42.1029738 19.0957838,43 20.2007891,43 L25.7992109,43 C26.9140625,43 27.8,42.1057238 27.8,41.0025781 L27.8,25.9974219 C27.8,25.454825 27.6092282,24.8647054 27.2993844,24.3440435 L22.2078627,27.2763119 L19.5935953,23.2826425 L19.8891083,23.1124531 L18.2,21.0402742 Z" id="Rectangle-809-Copy" sketch:type="MSShapeGroup"></path>
+                <path d="M42.2,15.3228249 L42.2,41.0014648 C42.2,42.1052253 41.3140625,43 40.1992109,43 L34.6007891,43 C33.4957838,43 32.6,42.1051524 32.6,41.0060662 L32.6,21.6122263 L42.2,15.3228249 Z" id="Rectangle-809-Copy-2" sketch:type="MSShapeGroup"></path>
+                <path d="M41.6774139,9.96050929 L27.247509,19.2570269 L27.2575679,19.2722168 L23.2661133,21.832886 L18.5731833,15.1762355 L2.61426737,25.457824 L0,21.4641546 L15.8205136,11.2717323 L15.8183594,11.2686768 L20.1223145,8.49731445 L20.1236918,8.49939439 L20.1280936,8.49655852 L20.6684351,9.32200778 L24.611945,15.277078 L39.4153425,5.73993639 L36.5711805,0.433298765 L54.0070411,0 L43.8949369,14.0979639 L41.6774139,9.96050929 Z" id="Rectangle-812" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

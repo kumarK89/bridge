@@ -1,0 +1,127 @@
+.lynda-search{
+  $filterListWidth: 200px;
+
+  &__top{
+    background-color: $white;
+    .layout--item-header{
+      background: $white none;
+      @include space(padding, m, bottom);
+    }
+  }
+  &__top-category-bar {
+    position: relative;
+    padding-right: 175px; //Magical padding value that is approximately equal to the size of the 'new search' button
+  }
+  &__controls{
+    border-top: 1px solid darken($light-grey, 5%);
+    color: $blue-grey;
+    background-color: $white;
+    .search-field{
+      width: 100%;
+      padding-left: 0;
+      &--no-label .search-field__input {
+        width: calc(100% - 30px);
+      }
+    }
+    &__inner{
+      @include space(padding, xs, top bottom);
+      @include space(padding, m, right left);
+      margin: 0 auto;
+      max-width: 1000px;
+    }
+  }
+  &__new-search-button {
+    position:absolute;
+    right: 0;
+    top: $space-xxs;
+    font-size: .8rem;
+
+    @include breakpoint(small-tall){
+      display:block;
+      position:relative;
+      margin-top: $space-s;
+    }
+  }
+
+  &__filter-list{
+    margin-top: $space-s;
+    padding-right: $space-xl;
+    width: $filterListWidth;
+    float: left;
+    @include breakpoint(small-tall){
+      float: none;
+      margin-top: 0;
+    }
+    &__title{
+      padding-bottom: $space-s;
+      padding-top: 20px;
+      color: darken($blue-grey, 10%);
+      font-weight: bold;
+    }
+    &__column{
+      max-height: 225px;
+      overflow: hidden;
+      margin-bottom: 50px;
+      &--expanded{
+        max-height: 396px;
+        overflow-y: auto;
+        position: relative;
+      }
+    }
+    &__item{
+      padding: $space-xxs 0;
+      color: $blue-grey;
+      display: block;
+      &:hover{
+        text-decoration: none;
+        color: $blue;
+      }
+      &--selected{
+        color: $blue;
+        .gs-x{
+          font-size: .7em;
+          display: inline-block;
+          width: 0;
+        }
+      }
+    }
+    &__item-name{
+      margin-right: 12px;
+    }
+    &__show-all{
+      color: darken($blue-grey, 10%);
+      cursor: pointer;
+      margin: $space-xs 0;
+      font-weight: bold;
+      .gs-arrow-down{
+        font-size: .7em;
+        margin-left: 4px;
+      }
+    }
+  }
+
+  &__courses {
+    margin-left: $filterListWidth;
+    margin-top: $space-xxl;
+    width: calc(100% - #{$filterListWidth});
+    @include clearfix;
+    @include breakpoint(small-tall) {
+      margin-left: 0;
+      margin-top: $space-l;
+      width: auto;
+      @include display(flex);
+      @include justify-content(center);
+      @include flex-wrap(wrap);
+    }
+  }
+
+  &__body__no-side-filter {
+    max-width: 1050px;
+  }
+
+  &__courses__no-side-filter {
+    @extend .lynda-search__courses;
+    width: 100%;
+    margin-left: 0;
+  }
+}

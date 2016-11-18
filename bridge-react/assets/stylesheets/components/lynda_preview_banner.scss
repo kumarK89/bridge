@@ -1,0 +1,12 @@
+.lynda-preview-banner {
+
+  &__preview-mode {
+    background-color: $blue;
+    color: $white;
+    padding: 20px 20px 25px 35px;
+    margin: 40px 20px 0 0;
+    &__foot-note {
+      font-size: 13px;
+    }
+  }
+}

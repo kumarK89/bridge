@@ -1,0 +1,446 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Font
+name: 001_font
+category: Typography
+---
+
+[[[plugin:src-file-path]]]
+
+Bridge uses Avenir as its primary font. Avenir is approachable and yet minimal.
+It exhibits individuality and character but is not overbearing.
+
+*/
+
+// to get around fontcustom's assumption that we use compass
+@function font-url($fonturl){
+  @return url(#{$fonturl});
+}
+
+
+/*doc
+---
+title: Font Sizes
+name: font_sizes
+category: Typography
+---
+
+One of Bridge's primary uses is content consumption, including reading.
+As such, its text size should never go below 16px on the desktop. Type sizes
+are divisible by 4px, with 16px being the base.
+
+<div class="sg-review">
+The above miniumum font size is no longer accurate. We should verify that we want to keep the `.small` and
+`.x-small` classes below.
+</div>
+
+```html_example
+<p class="x-small">.x-small</p>
+<p class="small">.small</p>
+<p>Base font size</p>
+<p class="x-medium">.x-medium</p>
+<p class="large">.large</p>
+<p class="x-large">.x-large</p>
+<p class="xx-large">.xx-large</p>
+<p class="large-copy">.large-copy</p>
+```
+
+*/
+
+@mixin base {
+  font-size: 16px;
+}
+.base, %base { @include base; }
+
+html {
+  @include base;
+  color: $indigo;
+  font-family: $font-stack;
+  line-height: 1.5;
+}
+
+@mixin x-small { // REVIEW: can we remove this?
+  font-size: 12px;
+}
+.x-small, %x-small { @include x-small; }
+
+@mixin small { // REVIEW: is this too small?
+  font-size: 14px;
+}
+.small, %small { @include small; }
+
+// OPTIMIZE: refactor since .medium is for font-weight
+@mixin x-medium {
+  font-size: 20px;
+}
+.x-medium, %x-medium { @include x-medium; }
+
+@mixin large {
+  font-size: 24px;
+}
+.large, %large { @include large; }
+
+@mixin x-large {
+  font-size: 32px;
+  &--centered {
+    line-height: 80px;
+  }
+}
+.x-large, %x-large { @include x-large; }
+
+@mixin xx-large {
+  font-size: 40px;
+  &--centered {
+    line-height: 80px;
+  }
+}
+.xx-large, %xx-large { @include xx-large; }
+
+@mixin large-copy {
+  font-size: 1.5em;
+}
+.large-copy, %large-copy { @include large-copy; }
+
+/*doc
+---
+title: Line Height (Leading)
+name: line_height
+category: Typography
+---
+
+Line height (or leading) should be at least 1.5x the type size for legibility.
+
+```html_example
+<p>This is the default line height. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+<p class="leading-normal">This is normal line height. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+<p class="leading-large">This is large line height. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
+```
+
+*/
+
+.leading-condensed { line-height: 1 }
+.leading-normal { line-height: 1.5; }
+.leading-large  { line-height: 2; }
+
+/*doc
+---
+title: Links
+name: links
+category: Typography
+---
+
+Links get the default styles automatically. To remove the link styles, apply the `.no-link-style` class.
+
+```html_example
+<a href="http://bridgelms.com">I'm a Link. Don't click me.</a>
+<a href="http://bridgelms.com" class="no-link-style">I'm a Link. Don't click me.</a>
+```
+
+*/
+a {
+  color: $blue;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.no-link-style {
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+/*doc
+---
+title: Headings
+name: headings
+category: Typography
+---
+
+Bridge supports heading levels 1 through 3.
+
+```html_example
+<h1>Heading Level 1</h1>
+<h2>Heading Level 2</h2>
+<h3>Heading Level 3</h3>
+```
+
+When the semantic structure of the content doesn't match the requested visual treatment, the heading
+classes below can be applied. This will keep the hierarchy of the content intact to better support
+Accessibility.
+
+```html_example
+<h2 class="h1">I'm an H2</h2>
+<h3 class="h2">I'm an H3</h3>
+<h1 class="h3">I'm an H1</h1>
+```
+
+*/
+@mixin header-style($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin light-text-dark-bg() {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, .h1 {
+  @include space(margin, xxl, bottom);
+}
+
+h2, .h2 {
+  @include space(margin, l, bottom);
+}
+
+h3, .h3 {
+  @include space(margin, l, bottom);
+
+  &.inline-header {
+    @include space(margin, xs, bottom);
+  }
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  @include breakpointify("&.margin-none") { margin: 0; }
+}
+
+@media #{$media-query-mobile} {
+  h1, .h1 {
+    @include header-style(32px, 200);
+  }
+
+  h2, .h2 {
+    @include header-style(24px, bold);
+    @include space(margin, m, bottom);
+  }
+
+  h3, .h3 {
+    @include header-style(16px, bold);
+    @include space(margin, m, bottom);
+  }
+}
+
+@media #{$media-query-desktop} {
+  h1, .h1 {
+    @include header-style(44px, 200);
+  }
+
+  h2, .h2 {
+    @include header-style(28px, bold);
+  }
+
+  h3, .h3 {
+    @include header-style(24px, bold);
+  }
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3 {
+  &.light {
+    font-weight: 200;
+  }
+}
+
+/*doc
+---
+title: Labels
+name: labels
+category: Typography
+---
+
+```html_example
+<span class="label">I am a label</span>
+<span class="label label--alt">I am an alt label</span>
+```
+
+*/
+
+.label, %label {
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+@mixin label {
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.label.label--alt {
+  background-color: $white;
+  color: $dark-grey;
+  display: inline-block;
+  border-radius: 50px;
+  line-height: 1.5;
+  padding: 8px 20px;
+}
+
+/*doc
+---
+title: Font Weight
+name: font_weight
+category: Typography
+---
+
+```html_example
+<p class="light">I am light weight font</p>
+<p class="medium">I am medium weight font</p>
+<p class="semi-bold">I am semi-bold font</p>
+<p class="bold">I am bold font</p>
+<p><b>I am also bold</b></p>
+```
+
+
+*/
+
+@mixin light       { font-weight: 200; }
+@mixin medium      { font-weight: normal; }
+@mixin semi-bold   { font-weight: 600; }
+@mixin bold        { font-weight: bold; }
+.light, %light { @include light; }
+.medium, %medium { @include medium; }
+.semi-bold, %semi-bold { @include semi-bold; }
+.bold, %bold { @include bold; }
+
+/*doc
+---
+title: Font Style
+name: font_style
+category: Typography
+---
+
+```html_example
+<p class="italic">I am italicized</p>
+<p><i>I am also italicized</i></p>
+<p><em>I'm italicized too</em></p>
+<p class="upcase">I am in all caps</p>
+<p class="downcase">I am in lower case</p>
+<p>what's<span class="superscript">up</span></p>
+<p class="monospace">I am monospaced.</p>
+```
+
+*/
+@mixin italic      { font-style: italic; }
+@mixin upcase      { text-transform: uppercase; }
+@mixin downcase    { text-transform: lowercase; }
+@mixin superscript { font-size: 0.75em; margin-left: 0.125em; vertical-align: top; }
+@mixin monospace   { font-family: $monospace; }
+.italic, %italic { @include italic; }
+.upcase, %upcase { @include upcase; }
+.downcase, %downcase { @include downcase; }
+.superscript, %superscript { @include superscript; }
+.monospace, %monospace { @include monospace; }
+
+/*doc
+---
+title: Horizontal Text Alignment
+name: text_alignment_horizontal
+category: Typography
+---
+
+```html_example
+<p class="text-left">I am left aligned.</p>
+<p class="text-right">I am right aligned.</p>
+<p class="text-center">I am center aligned.</p>
+```
+
+*/
+
+
+@mixin text-left   { text-align: left; }
+@mixin text-right  { text-align: right; }
+@mixin text-center { text-align: center; }
+.text-left, %text-left { @include text-left; }
+.text-right, %text-right { @include text-right; }
+.text-center, %text-center { @include text-center; }
+
+
+/*doc
+---
+title: Vertical Text Alignment
+name: text_alignment_vertical
+category: Typography
+---
+
+```html_example
+<p class="text-bottom">I am bottom aligned.</p>
+<p class="text-middle">I am middle aligned.</p>
+<p class="text-top">I am top aligned.</p>
+```
+
+*/
+
+@mixin text-bottom { vertical-align: bottom; }
+@mixin text-middle { vertical-align: middle; }
+@mixin text-top    { vertical-align: top; }
+.text-bottom, %text-bottom { @include text-bottom; }
+.text-middle, %text-middle { @include text-middle; }
+.text-top, %text-top { @include text-top; }
+.text-above-baseline-10 { vertical-align: -10% }
+
+/* miscellaneous */
+
+// OPTIMIZE: find a better place for these?
+
+.contain-content {
+  -ms-word-break: break-all;
+  word-break: break-all;
+
+  word-break: break-word;
+
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.nowrap      { white-space: nowrap; }
+.pre-wrap    { white-space: pre-wrap; }
+
+.search-highlight { color: $purple }
+
+a:hover .search-highlight {
+  color: inherit;
+}
+
+/*doc
+---
+title: Truncated Text
+name: truncated
+category: Typography
+---
+
+```html_example
+<p class="truncated">I am about to be truncated and I will be cut off with ellipsis</p>
+```
+
+*/
+
+
+.truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+@mixin header-with-colored-block($height:10px, $width:50px) {
+  @extend .label;
+  &:before {
+    @include space(margin, xs, right);
+    content:"";
+    position: relative;
+    height: $height;
+    width: $width;
+    display: inline-block;
+    background-color: currentColor;
+  }
+}

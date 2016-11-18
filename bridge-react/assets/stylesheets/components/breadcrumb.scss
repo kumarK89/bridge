@@ -1,0 +1,11 @@
+.breadcrumb {
+  color: $med-grey;
+  @include space(padding, l, left);
+
+  &__separator {
+    color: $dark-grey;
+    @include space(margin, xs, left);
+    @extend .gs-arrow-right;
+    @extend .gs-3-4;
+  }
+}

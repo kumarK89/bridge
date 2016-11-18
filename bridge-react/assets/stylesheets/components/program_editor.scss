@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+.program-editor {
+  @extend .grey-gradient-bg;
+  position: relative;
+}
+
+.program-editor__done-link {
+  position: absolute;
+  top: 50px;
+  right: 65px;
+}
+
+.program-editor__publish-link {
+  position: absolute;
+  top: 50px;
+  right: 165px;
+}
+
+.program-editor__header {
+  @extend .grey-gradient-bg;
+  z-index: 11; // position over any inputs
+
+  h1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.flexbox .program-editor__header {
+  @extend %fb-vertical-center;
+}

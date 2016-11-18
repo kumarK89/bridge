@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+/*doc
+---
+title: Lists
+name: 001_lists
+category: Lists
+---
+
+[[[plugin:src-file-path]]]
+
+```html_example
+  <ul class="unstyled">
+    <li>Item one</li>
+    <li>Item two</li>
+  </ul>
+```
+
+*/
+
+.unstyled, %list--unstyled {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &.centered {
+    @include centered;
+  }
+}
+
+/*doc
+---
+title: Bordered Lists
+name: bordered_lists
+category: Lists
+---
+
+You'll probably want to use `bordered` list along with `unstyled`.
+
+```html_example
+  <ul class="unstyled bordered">
+    <li>Item one</li>
+    <li>Item two</li>
+  </ul>
+```
+
+*/
+
+ul.bordered, ol.bordered {
+  > li {
+    border-bottom: 1px solid $grey;
+  }
+
+  > li:first-of-type {
+    border-top: 1px solid $grey;
+  }
+}
+
+.dark {
+  ul.bordered, ol.bordered {
+    > li {
+      border-bottom: 1px solid $white-op10;
+    }
+
+    > li:first-of-type {
+      border-top: 1px solid $white-op10;
+    }
+  }
+}
+
+/*doc
+---
+title: Inline Lists
+name: inline_lists
+category: Lists
+---
+
+```html_example
+  <ul class="list--inline">
+    <li>Item one</li>
+    <li>Item two</li>
+  </ul>
+```
+
+*/
+
+%list--inline,
+.list--inline {
+  @extend %list--unstyled;
+
+  > li {
+    @extend .inline-block;
+    @include space(margin, s, left);
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+}
+
+/*doc
+---
+title: Numbered Lists
+name: numbered_lists
+category: Lists
+---
+
+The `numbered` list class adds numbers for each item as a pseudo element so that you can style them.
+You'll probably want to use `list--numbered` along with `unstyled`.
+
+```html_example
+  <ol class="unstyled list--numbered">
+    <li>Item one</li>
+    <li>Item two</li>
+  </ol>
+```
+
+*/
+
+.list--numbered {
+  counter-reset: ol-counter;
+  > li:before {
+    content: counter(ol-counter);
+    counter-increment: ol-counter;
+  }
+}
+
+/*doc
+---
+title: Separated (Slashed) Lists
+name: slashed_lists
+category: Lists
+---
+
+```html_example
+  <ol class="list--slashed">
+    <li>Item one</li>
+    <li>Item two</li>
+  </ol>
+```
+
+*/
+
+
+.list--slashed {
+  @extend %list--inline;
+
+  > li {
+    margin-left: 0;
+    white-space: nowrap;
+    &.wrap {
+      white-space: normal;
+    }
+
+    &:after {
+      content: "/";
+      @include space(padding, xs, right left);
+      display: inline-block;
+    }
+
+    &:last-of-type {
+      &:after {
+        content: "";
+      }
+    }
+  }
+}
+
+.list--slashed > li {
+  @include breakpoint(small) {
+    display: block;
+    margin: 0;
+    @include space(padding, xs);
+    &:after {
+      content: "";
+    }
+  }
+}

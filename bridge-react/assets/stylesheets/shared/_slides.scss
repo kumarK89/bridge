@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+.slide-content, #tinymce {
+  font-size: 20px;
+
+  img, iframe {
+    display: block;
+    max-width: 100%;
+    border: 0;
+
+    @include centered;
+  }
+
+  .attachment--preview {
+    display: none;
+  }
+
+  p, ul, ol {
+    @include space(margin, l, bottom);
+  }
+
+  ul, ol {
+    @include space(margin, xl, right left);
+  }
+}
+
+
+@media #{$media-query-mobile} {
+  .slide-content {
+    font-size: 16px;
+
+    h1, .h1 {
+      @include header-style(28px, bold);
+    }
+
+    h2, .h2 {
+      @include header-style(24px, bold);
+    }
+
+    h3, .h3 {
+      @include header-style(16px, bold);
+    }
+
+    img {
+      @include space(margin, m, top bottom);
+    }
+
+    p {
+      @include space(margin, m, bottom);
+    }
+  }
+}
+
+.page--slide {
+  background-color: $white;
+}
+
+
+// Quiz Questions
+
+.page--question {
+  @extend .david-lee-roth;
+
+  header {
+    background: transparent;
+  }
+}
+.theme-light .page--question {
+  background-color: $light-grey;
+  color: $indigo;
+}
+
+.page--question-answered {
+  @extend .indigo-gradient-bg;
+  header {
+    background: transparent;
+  }
+}
+.theme-light .page--question-answered {
+  @include linear-gradient($med-grey-gradient-start, $light-grey);
+}
+
+@media #{$media-query-mobile} {
+  .feedback {
+    margin: 0 -16px;
+  }
+}
+
+// For simulating a gradient animation when shifting twixt slide states.
+.gradient-transition-shim {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.learner-course-slide .attachment .overlay {
+  display: none;
+}
+.slide-warning {
+  margin-top: 30px;
+  color: $pink;
+  text-align: center;
+}

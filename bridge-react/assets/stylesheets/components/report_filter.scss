@@ -1,0 +1,96 @@
+.report-filter {
+  background-color: $blue-grey;
+
+  color: $white;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  &--scrolling {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  }
+
+  &--place-holder {
+    min-height: 5.125rem;
+  }
+
+  &__container {
+    @include large-content-area;
+    @include flex-wrap(wrap);
+    @include display(flex);
+
+    margin: 0 auto;
+
+    @media screen and (min-width: $breakpoint-s){
+      @include flex-wrap(nowrap);
+    }
+  }
+
+  &__section {
+    @include space(padding, s, top bottom);
+    @include space(padding, s, left);
+    @include align-self(center);
+    cursor: pointer;
+
+    &--open {
+      color: $blue;
+    }
+
+    &--refine {
+      border-top: 1px solid $dark-grey;
+      @include flex-grow(1);
+      width: 100%;
+
+      @include breakpoint(larger-than-phones) {
+        @include flex-grow(0);
+
+        width: auto;
+        margin: $space-xs $space-l $space-xs auto;
+        border-left: 1px solid $dark-grey;
+        border-top:none;
+      }
+    }
+
+    .combo-box__label, .combo-box__icon {
+      color: $white;
+    }
+
+    .report-filter-date__input {
+      background: transparent;
+      border: none;
+      font-size: 14px;
+      font-weight: bold;
+      width: 55px;
+      &::-ms-clear {
+        display: none;
+      }
+
+
+      @include breakpoint(larger-than-phones) {
+        width: 96px;
+      }
+
+      &:focus {
+        outline: none;
+        color: $blue;
+      }
+
+      &.report-filter-date__start {
+        text-align: right;
+      }
+    }
+
+    .reports-chart__range-options {
+      & .combo-box__list {
+        padding: $space-xxs 0;
+        width: 10rem;
+      }
+
+      & .combo-box__icon {
+        @extend .gs-3-4;
+      }
+    }
+  }
+}

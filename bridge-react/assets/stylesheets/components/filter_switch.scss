@@ -1,0 +1,22 @@
+.filter-switch {
+  @include space(padding, s, bottom);
+  color: $blue-grey;
+}
+
+.filter-switch__item {
+  @include space(padding, xxs, top bottom);
+  @include space(padding, s, right left);
+  @include small;
+  cursor: pointer;
+}
+
+.filter-switch__item--checked {
+  color: $blue;
+}
+
+.filter-switch__item:focus {
+  outline: none;
+  background-color: $blue;
+  color: $white;
+  box-shadow: 0 0 0 2px $blue;
+}

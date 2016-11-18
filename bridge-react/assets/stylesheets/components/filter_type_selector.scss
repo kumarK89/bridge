@@ -1,0 +1,97 @@
+.filter-type-selector {
+
+  &__cancel {
+    background-color: $blue-grey;
+    @include flex-grow(1);
+    @include align-self(center);
+    text-align: left;
+    color: $white;
+    cursor: pointer;
+
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1.12rem;
+
+    @include breakpoint(larger-than-phones) {
+      @include order(2);
+      @include flex-grow(initial);
+      @include align-self(initial);
+      color: $med-grey;
+      margin-left: auto;
+      background: transparent;
+      text-align: right;
+
+      position: relative;
+    }
+  }
+
+  &__cancel::before {
+    content: '<';
+
+    @include breakpoint(larger-than-phones) {
+      content: '';
+    }
+  }
+
+  &__heading {
+    text-align: center;
+  }
+
+  &__heading-mobile {
+    background-color: $blue-grey;
+    @include space(padding, s, top right bottom left);
+    @include flex-grow(3);
+    @include align-self(center);
+    display: block;
+    color: $white;
+    text-align: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  &__header {
+    @include space(margin, l, bottom);
+    @include display(flex);
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+
+    @include breakpoint(larger-than-phones) {
+      display: none;
+    }
+  }
+
+  &__item {
+    @include space(padding, l, right left);
+    @include space(padding, s, top bottom);
+    @include space(margin, s, top right bottom left);
+
+    border: 1px solid $grey;
+    text-align: center;
+    background: transparent;
+    display: block;
+    border-radius: $border-radius-default;
+    text-transform: capitalize;
+
+    @include breakpoint(larger-than-phones) {
+      width: auto;
+      min-width: 20%;
+      @include space(margin, xs, top right bottom left);
+    }
+  }
+
+  &__option-container {
+    display: flex;
+    @include align-content(stretch);
+    @include flex-direction(column);
+
+    @include breakpoint(larger-than-phones) {
+      @include flex-direction(row);
+      @include justify-content(center);
+    }
+  }
+}

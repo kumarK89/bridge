@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+.learner-slide-header {
+  @include breakpoint(medium) {
+    @include space(margin, xl, b);
+    @include blue-gradient;
+  }
+
+  &__grid-container {
+    @include breakpoint(medium) {
+      @include space(padding, s, top right left);
+    }
+    @include breakpoint(large) {
+      @include space(padding, m);
+    }
+  }
+  &__exit-link {
+    @include bold;
+    @extend .label;
+
+    @include breakpoint(medium) {
+      color: $white;
+    }
+    @include breakpoint(large) {
+      color: $med-grey;
+    }
+  }
+
+  &__exit-link:hover, &__exit-link:focus {
+    border-bottom: 1px solid currentColor;
+    margin: 0 0 -1px 0;
+    outline: none;
+    text-decoration: none;
+  }
+
+  .progress-bar-wrapper {
+    cursor: pointer;
+  }
+}
+.theme-light .learner-slide-header__exit-link {
+  color: $med-grey;
+}
+
+.learner-slide-title-container {
+  @include breakpoint(medium) {
+    @include space(padding, s, right left);
+    @include space(padding, xs, bottom);
+  }
+}
+.learner-slide-title {
+  @include breakpoint(medium) {
+    margin: 0;
+    color: $white;
+    //style like a mobile h2
+    @include header-style(24px, bold);
+    @include space(margin, m, bottom);
+  }
+}
+

@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+// See jsapp/shared/components/UserAvatar.js gravatarUrl method
+// for related sizing of gravatar images.
+@mixin avatar-base ($avatar-size) {
+  border-radius: 50%;
+  height: $avatar-size;
+  line-height: $avatar-size;
+  width: $avatar-size;
+  box-shadow: none;
+  border: solid 1px $white;
+  @include transition(color 0.4s $ease-in-out-quad);
+  @include text-center;
+  @include text-middle;
+
+  &__img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &--user {
+    position: relative;
+  }
+
+  &--user &__name {
+    color: $white;
+    position: relative;
+  }
+
+  &--user &__img {
+    position: absolute;
+    top: 0;
+  }
+
+  &__name {
+    font-size: $avatar-size * 0.375;
+    @include bold;
+    vertical-align: top;
+    position: relative;
+    top: -1px; // to compensate for 2px border
+  }
+
+  &__label {
+    line-height: $avatar-size;
+    word-wrap: break-word;
+    cursor: pointer;
+  }
+
+  &__label-extra {
+    color: $dark-grey;
+    @include text-middle;
+    line-height: $avatar-size;
+    word-wrap: break-word;
+  }
+
+  &--sidebar {
+    margin: 4px 6px;
+
+    @include breakpoint(short) {
+      margin: 4px 6px 4px 0;
+    }
+  }
+
+  &--group {
+    border: 2px solid;
+    @include clearfix;
+
+    &__name {
+      float: left;
+      width: 100%;
+    }
+
+  }
+}
+
+@mixin avatar-small {
+  @include avatar-base(48px);
+
+  &:before {
+    vertical-align: middle;
+    font-size: 20px;
+  }
+
+  .avatar__name {
+    font-size: 16px;
+  }
+}
+
+@mixin avatar-medium {
+  @include avatar-base(80px);
+  .avatar__name {
+    font-size: 32px;
+  }
+}
+
+.avatar {
+  @include avatar-base(32px);
+
+  &--group {
+    border: 2px solid;
+    @include clearfix;
+
+    .avatar__name {
+      float: left;
+      width: 100%;
+    }
+  }
+
+  &--selected {
+    color: $blue-op70;
+    border: 2px solid $blue;
+    line-height: 1;
+    position: relative;
+
+    & .gs-check-circle{
+      font-size: 1.85555555rem;
+      position: absolute;
+      left: -1px;
+      top: 0;
+    }
+  }
+}
+
+.avatar--large {
+  @include avatar-base(100px);
+
+  .avatar__name {
+    font-size: 36px;
+  }
+}
+
+.avatar--medium,
+%avatar--medium {
+
+  @include avatar-medium;
+  &.avatar--group {
+    background: $white;
+  }
+}
+
+.avatar--small {
+  @include avatar-small;
+}
+
+.avatar__user-header-container {
+  height: 200px;
+  padding-left: 28%;
+}
+
+.avatar--user-header {
+  @include avatar-base(100px);
+  margin: 0;
+  display: block;
+  border-width: 3px;
+  flex-shrink: 0;
+
+  .avatar__name {
+    @include xx-large;
+  }
+}
+.avatar--user-header-label {
+  color: $indigo;
+  @include space(margin, s, bottom);
+
+  @include breakpoint(large) {
+    line-height: 80px;
+    font-size: 32px;
+    margin: 0;
+  }
+}
+.avatar--user-header-manager {
+  color: $indigo;
+  @include text-center;
+  @include space(margin, s, bottom);
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.avatar--image-uploader {
+  width: 50%;
+}

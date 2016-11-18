@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.program-list {
+
+  @extend %list--unstyled;
+
+  & .unpublished a {
+    color: $dark-grey;
+  }
+}

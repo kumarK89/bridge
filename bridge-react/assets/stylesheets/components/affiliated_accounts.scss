@@ -1,0 +1,35 @@
+.affiliated-accounts__revoke-prompt {
+  background-color: $white;
+
+  width: 310px;
+}
+.affiliated-accounts__revoke-prompt__p {
+  @include space(margin, m);
+  @include centered;
+}
+
+.affiliated-accounts__revoke-prompt__button {
+  @include upcase;
+  @include bold;
+
+  width: 100%;
+  height: 3.0em;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8em;
+
+  &--cancel {
+    @extend .affiliated-accounts__revoke-prompt__button;
+    @include space(margin, s, top);
+
+    border-top: 1px solid $grey;
+    background-color: $transparent;
+  }
+
+  &--submit {
+    @extend .affiliated-accounts__revoke-prompt__button;
+
+    color: $white;
+    background-color: $dim-blue;
+  }
+}

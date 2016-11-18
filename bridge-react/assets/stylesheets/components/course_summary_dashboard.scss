@@ -1,0 +1,177 @@
+.course-summary-dashboard {
+
+  &__container {
+    @include large-content-area;
+    @include centered;
+    @include space(padding, m, right left);
+
+    & .average-score {
+      table {
+        @include space(margin, s, bottom);
+      }
+
+      td .combo-box span {
+        @include small;
+        color: $blue;
+      }
+
+      td:first-child {
+        @include space(padding, m, right);
+        border-right: 1px solid $grey;
+      }
+
+      td:nth-child(2) .combo-box {
+        @include space(padding, s, left);
+        margin-top: 2px;
+      }
+    }
+
+    &--small:first-child {
+      @include breakpoint(large) {
+        border-right: 1px solid $grey;
+      }
+    }
+
+    &--small {
+      @include space(padding, m, top right left);
+      @media screen and (max-width: $breakpoint-tablet-vertical){ /*max-width makes me sad*/
+        width: 100%;
+        border-right: none;
+      }
+    }
+  }
+
+  &__widget-canvas {
+    height: 0;
+    width: 100%;
+    position: relative;
+
+    svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &.attempts-to-pass {
+        .percent-line {
+          stroke: $chart-grey;
+          stroke-width: 1px;
+        }
+
+        .percent-label {
+          @include small;
+          @include bold;
+          fill: $blue-grey;
+
+          &.right {
+            text-anchor: start;
+          }
+
+          &.left {
+            text-anchor: end;
+          }
+        }
+
+        .nodata-label {
+          @include large;
+          @include bold;
+          text-anchor: middle;
+          text-transform: uppercase;
+          fill: $bright-blue;
+        }
+
+        .inner-label {
+          text-anchor: middle;
+          @include x-small;
+        }
+
+        path.arc {
+          stroke-width: 1.5px;
+          stroke: $white;
+        }
+      }
+
+      &.learners-failed {
+        path.arrow {
+          fill: none;
+          stroke-width: 9px;
+          stroke-linecap: round;
+        }
+
+        .failed-label {
+          text-anchor: middle;
+          @include large;
+          fill: $black;
+        }
+
+        .percent-label {
+          text-anchor: middle;
+          @include small;
+          fill: $black;
+        }
+
+        .callout-line {
+          stroke: $chart-grey;
+          stroke-width: 1px;
+        }
+
+        .outer-label {
+          @include x-small;
+          @include bold;
+          text-transform: uppercase;
+          fill: $dark-grey;
+        }
+      }
+    }
+  }
+}
+
+
+.course-summary-widget-row {
+  @include display(flex);
+  @include flex-direction(column);
+  @include justify-content(space-between);
+  @include align-items(stretch);
+  @include flex-wrap(wrap);
+  width: 100%;
+
+  @include breakpoint(larger-than-phones) {
+    @include flex-direction(row);
+  }
+
+  &__cell {
+    @include space(padding, s, top right bottom left);
+    @include flex-grow(1);
+
+    display: block;
+    position: relative;
+
+    &::before {
+      position: absolute;
+      border-top: 1px solid $grey;
+      border-left: none;
+      width: 70%;
+      left: 15%;
+      top: 0;
+      content: '';
+    }
+
+    @include breakpoint(larger-than-phones) {
+      border-top: none;
+      width: 50%;
+
+      &::before {
+        position: absolute;
+        border-top: none;
+        border-left: 1px solid $grey;
+        height: 70%;
+        top: 15%;
+        left: 0;
+        content: '';
+      }
+    }
+
+    &:first-child::before {
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+ic-menu {
+  display: inline-block;
+  position: relative;
+}
+
+ic-menu-list {
+  position: absolute;
+  display: none;
+  right: 0;
+  top: 0;
+}
+
+ic-menu-list[aria-expanded="true"] {
+  display: block;
+}
+
+ic-menu-list {
+  outline: none;
+  background: #fff;
+  @include rounded-corners-default;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  list-style-type: none;
+}
+
+ic-menu-item {
+  display: block;
+  padding: 4px 20px;
+  cursor: default;
+  @extend .border-b;
+  @include border-grey;
+
+  ic-menu &:first-of-type {
+    @include border-top-radius($border-radius-default);
+  }
+
+  ic-menu &:last-of-type {
+    @extend .border-none;
+    @include border-bottom-radius($border-radius-default)
+  }
+}
+
+ic-menu-item:focus {
+  background: #3879D9;
+  color: #fff;
+  outline: none;
+}
+
+ic-menu-item[aria-disabled="true"] {
+  color: #999;
+}
+
+ic-menu-item[aria-disabled="true"]:focus {
+  background: #ccc;
+  color: #000;
+}
+
+ic-menu-item a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.slide-editor__toolbar {
+  ic-menu-list {
+    width: 300px;
+    z-index: 1000;
+  }
+  &__desc {
+    color: $dark-grey;
+  }
+}
