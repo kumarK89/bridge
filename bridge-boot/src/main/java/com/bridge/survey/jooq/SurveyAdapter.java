@@ -109,7 +109,7 @@ public class SurveyAdapter {
         LOGGER.debug("In getAnswerTypeWithOptions");
 
         AnswerTypes at = AnswerTypes.ANSWER_TYPES.as("at");
-        AnswerOptions ao = AnswerOptions.ANSWER_OPTIONS.as(("ao"));
+        AnswerOptions ao = AnswerOptions.ANSWER_OPTIONS.as("ao");
         Field options = dsl.select(DSL.field("string_agg(ao.id||'-'||ao.option_text,',')"))
                 .from(ao)
                 .where(ao.ANSWER_TYPE_ID.equal(at.ID)).asField("options");
@@ -146,11 +146,10 @@ public class SurveyAdapter {
     /**
      * Save template on creating a new template  and update if the template already exists.
      *
-     * @param id
      * @param templateName
      * @param questionsJson
      */
-    public void saveorUpdateSurveyTemplate(long id, String templateName, String questionsJson) {
+    public void saveorUpdateSurveyTemplate(String templateName, String questionsJson) {
         LOGGER.debug("In saveorUpdateSurveyTemplate");
         Record1<Long> seqVal = dsl.select(SURVEY_TEMPLATES_ID_SEQ.nextval()).fetchOne();
         dsl.insertInto(SURVEY_TEMPLATES, SURVEY_TEMPLATES.ID, SURVEY_TEMPLATES.NAME,
