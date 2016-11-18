@@ -1,0 +1,103 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jooq:jooq-codegen:3.8.4")
+        classpath("org.jooq:jooq-meta:3.8.4")
+        classpath("org.jooq:jooq:3.8.4")
+        classpath("org.postgresql:postgresql:9.4.1211.jre7")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2-rc2")
+    }
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'org.sonarqube'
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'bridge_boot'
+    version = '1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-jooq')
+    compile('org.jooq:jooq-meta')
+    compile('org.jooq:jooq-codegen')
+    compile('org.modelmapper.extensions:modelmapper-jooq:0.7.7')
+    compile('com.google.code.gson:gson:1.7.2')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    runtime('org.postgresql:postgresql')
+
+}
+
+task generate << {
+    def writer = new StringWriter()
+    def xml = new groovy.xml.MarkupBuilder(writer)
+            .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd') {
+        jdbc() {
+            driver('org.postgresql.Driver')
+            url('jdbc:postgresql://localhost:5432/bridge')
+            user('postgres')
+            password('admin')
+        }
+        generator() {
+            database() {
+                name('org.jooq.util.postgres.PostgresDatabase')
+                inputSchema('public')
+            }
+            generate() {
+                pojos('true')
+                instanceFields('true')
+                deprecated('false')
+            }
+            target() {
+                packageName('com.bridge.entity')
+                directory('src/main/java')
+            }
+        }
+    }
+
+    org.jooq.util.GenerationTool.generate(
+            javax.xml.bind.JAXB.unmarshal(new StringReader(writer.toString()),
+                    org.jooq.util.jaxb.Configuration.class)
+    )
+}
+
+
+jacocoTestReport {
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports after running tests."
+    additionalSourceDirs = files(sourceSets.main.allJava.srcDirs)
+}
+
+sonarqube {
+    properties {
+        property "sonar.modules", "boot"
+        property "boot.sonar.host.url", "http://localhost:9000"
+        property "boot.sonar.projectVersion", "1.0"
+        property "boot.sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+        property "boot.sonar.jacoco.itReportPath", "${project.buildDir}/jacoco/jacoco-it.exec"
+        property "sonar.exclusions", "src/main/java/com/bridge/entity/**"
+        property "sonar.coverage.exclusions", "src/main/java/com/bridge/entity/**"
+    }
+}
