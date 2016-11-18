@@ -1,9 +1,0 @@
-@charset "utf-8";
-
-.rounded-icon {
-  background-color: $blue;
-  @include circular;
-  @include centered;
-  @include space(margin, s, top bottom);
-  @extend .avatar--medium;
-}
