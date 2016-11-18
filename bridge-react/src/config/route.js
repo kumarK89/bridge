@@ -10,7 +10,6 @@ import NewSurveyContainer from '../containers/survey/customSurvey/NewSurveyConta
 import PreviewViewContainer from '../containers/preview/PreviewViewContainer'
 import ParentSurveyContainer from  '../containers/survey/ParentSurveyContainer'
 import SurveyViewContainer from '../containers/survey/surveyView/SurveyViewContainer'
-import SurveyDistributionContainer from '../containers/survey/surveyDistribution/SurveyDistributionContainer'
 
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
@@ -21,7 +20,6 @@ let routes= (
             <Route path='/' component={BridgeContainer}/>
             <Route path='/showSurvey' component={BridgeContainer}/>
             <Route path='/createSurvey' component={CreateSurveyContainer}/>
-            <Route path='/surveyDistribution' component={SurveyDistributionContainer}/>            
             <Route path='/newSurvey' component={NewSurveyContainer}/>
             <Route path='/newSurveyFromTemplate/:surveyTemplateId' component={NewSurveyContainer}/>
             <Route path='/previewSurvey' component={PreviewViewContainer}/>            
