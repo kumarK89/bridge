@@ -63,7 +63,6 @@ public class SurveyControllerTest {
         Survey survey = new Survey();
         survey.setSurveyId(1);
         survey.setSurveyName("surveyName");
-        survey.setSurveyDistributionses(new ArrayList<SurveyDistribution>());
         List<Survey> surveys = new ArrayList<Survey>();
         surveys.add(survey);
         surveyResponse.setSurveys(surveys);
