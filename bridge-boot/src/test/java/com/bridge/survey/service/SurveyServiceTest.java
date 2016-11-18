@@ -104,7 +104,7 @@ public class SurveyServiceTest {
 
 
     @Test
-    public void testSaveorUpdateSurvey_WhenSurveyIdIsZero_thenreturnSurveyId() {
+    public void testSaveorUpdateSurvey_WhenSurveyIdIsZero_thenSaveSurvey() {
         long surveyId = 0;
         String surveyName = "Test Survey";
         List<SurveyQuestion> surveyQuestions = new ArrayList<>();
@@ -130,6 +130,26 @@ public class SurveyServiceTest {
         surveyService.saveOrUpdateSurvey(surveyRequest);
         Mockito.verify(surveyAdapter).saveSurvey(surveyName);
         Mockito.verify(surveyAdapter).saveOrUpdateSurveyQuestions(surveyQuestions);
+
+    }
+
+    @Test
+    public void testSaveorUpdateSurvey_WhenSurveyQuestionNotGiven() {
+        long surveyId = 0;
+        String surveyName = "Test Survey";
+        SurveyRequest surveyRequest = new SurveyRequest();
+        surveyRequest.setSurveyId(surveyId);
+        surveyRequest.setSurveyName(surveyName);
+        List<SurveyQuestion> surveyQuestions = new ArrayList<>();
+        surveyRequest.setSurveyQuestions(surveyQuestions);
+
+        Mockito.when(surveyAdapter.saveSurvey(surveyName)).thenReturn(1l);
+        Mockito.when(surveyAdapter.updateSurvey(1l, surveyName)).thenReturn(1l);
+        Mockito.doNothing().when(surveyAdapter).saveOrUpdateSurveyQuestions(
+                Mockito.anyListOf(SurveyQuestion.class));
+        surveyService.saveOrUpdateSurvey(surveyRequest);
+        Mockito.verify(surveyAdapter).saveSurvey(surveyName);
+        Mockito.verify(surveyAdapter).saveOrUpdateSurveyQuestions(Mockito.anyListOf(SurveyQuestion.class));
 
     }
 
@@ -310,6 +330,7 @@ public class SurveyServiceTest {
         SurveyResponse output = surveyService.saveSurveyFromTemplate(surveyRequest);
         Survey surveyOutput = output.getSurveys().get(0);
         Assert.assertSame(surveyOutput.getSurveyName(), survey.getSurveyName());
+
     }
 
 }
